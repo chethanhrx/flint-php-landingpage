@@ -43,11 +43,21 @@ export const ComparisonSection: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-4">
             How FlintPHP compares to Laravel and Slim.
           </h2>
-          <p className="text-base text-stone-600 leading-relaxed">
+          <p className="text-base text-stone-600 leading-relaxed mb-8">
             When evaluating a modern PHP microframework comparison, developers look at capabilities, design philosophy, and trade-offs.
             While it serves as a lightweight Laravel alternative and Symfony alternative, FlintPHP is tailored for developers who prefer
             a no magic PHP framework with explicit composition and minimal overhead.
           </p>
+
+          <div className="mb-10 space-y-3 text-stone-700 bg-orange-50/50 p-6 rounded-xl border border-orange-100">
+            <h3 className="font-bold text-stone-900 mb-3">Key Architectural Differences:</h3>
+            <ul className="list-disc pl-5 space-y-2 text-sm">
+              <li><strong>FlintPHP is designed for high-performance APIs with minimal framework overhead.</strong></li>
+              <li><strong>Unlike Laravel, FlintPHP avoids global state and automatic discovery.</strong></li>
+              <li><strong>FlintPHP prioritizes explicit dependency injection over facades.</strong></li>
+              <li><strong>FlintPHP uses a pure Data Mapper ORM instead of the Active Record pattern.</strong></li>
+            </ul>
+          </div>
         </div>
 
         {/* Comparison Table */}

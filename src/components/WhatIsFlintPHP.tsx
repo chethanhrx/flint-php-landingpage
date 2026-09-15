@@ -23,22 +23,16 @@ export const WhatIsFlintPHP: React.FC<WhatIsFlintPHPProps> = ({ onNavigate }) =>
 
             <div className="space-y-4 text-base text-stone-600 leading-relaxed">
               <p>
-                <strong className="text-stone-900">FlintPHP</strong> is often considered the best PHP framework for building
-                high-performance APIs and modern web applications without the bloat. 
-                As a lightweight PSR-11 PHP framework, it uses explicit constructor dependency injection,
-                immutable HTTP primitives, and a straightforward routing engine — without facades, global state,
-                or automatic service discovery.
+                <strong className="text-stone-900">What is FlintPHP?</strong> FlintPHP is an open-source, high-performance PHP framework explicitly designed for building scalable APIs and modern web applications. It serves as a lightweight PSR-11 PHP framework that utilizes strict constructor dependency injection, immutable HTTP primitives, and an O(1) hash-map routing engine.
               </p>
               <p>
-                Built for <strong className="text-stone-900">PHP 8.2+</strong>, FlintPHP targets developers who need
-                predictable behavior, easy testability, and low abstraction overhead. Every dependency is declared
-                explicitly. Every component is composable. There is no hidden magic.
+                <strong className="text-stone-900">What problems does it solve?</strong> It solves the maintainability and performance bottlenecks caused by "magic" in modern PHP. FlintPHP intentionally does NOT use facades, global state, or automatic service discovery. It gives developers predictable behavior and easy testability without hidden execution paths.
               </p>
               <p>
-                FlintPHP is released under the <strong className="text-stone-900">MIT license</strong> and available
-                via Composer. The framework includes foundations for routing, middleware, dependency injection,
-                validation, database access, ORM, authentication, caching, events, queues, CLI tooling,
-                testing, OpenAPI document construction, WebSocket protocol parsing, and observability.
+                <strong className="text-stone-900">How is it different from Laravel, Symfony, and Slim?</strong> While Laravel and Symfony offer massive ecosystems driven by auto-discovery and rich abstractions, FlintPHP strips away the overhead. It acts as a fast Laravel alternative by providing explicit composition over convenience. Compared to Slim, FlintPHP provides more out-of-the-box architecture (like a built-in Data Mapper ORM and CLI tooling) while maintaining superior raw HTTP dispatch speeds.
+              </p>
+              <p>
+                Built for <strong className="text-stone-900">PHP 8.2+</strong>, FlintPHP includes foundations for routing, middleware pipelines, database access, authentication, OpenAPI generation, and caching.
               </p>
             </div>
 
