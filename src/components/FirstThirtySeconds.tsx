@@ -127,7 +127,7 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
       question: 'Where the source code is',
       summary: 'Open source under the permissive MIT license on GitHub (chethanhrx/flintphp).',
       detail:
-        'Official repository: github.com/chethanhrx/flintphp and official project skeleton: packagist.org/packages/flintphp/skeleton.',
+        'Official repository: github.com/chethanhrx/flintphp and official project skeleton: github.com/chethanhrx/flintphp-skeleton.',
       icon: FolderGit2,
       badge: 'Open Source',
       actionText: 'GitHub Repository',

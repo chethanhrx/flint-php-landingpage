@@ -170,7 +170,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="https://packagist.org/packages/flintphp/skeleton"
+                  href="https://github.com/chethanhrx/flintphp-skeleton"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-stone-900 transition-colors inline-flex items-center gap-1"
