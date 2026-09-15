@@ -126,7 +126,8 @@ export default function App() {
       ) : (
         <div className="flex-1">
           <DocumentationView
-            initialSlug={activeDocSlug}
+            activeSlug={activeDocSlug}
+            onSelectSlug={(slug) => handleNavigate('docs', slug)}
             onOpenSearch={() => setIsSearchOpen(true)}
             onBackToHome={() => handleNavigate('home')}
           />

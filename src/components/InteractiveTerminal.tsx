@@ -119,7 +119,7 @@ export const InteractiveTerminal: React.FC = () => {
           '  → \x1b[36msrc/Controllers/Api/OrderController.php\x1b[0m',
           '',
           '\x1b[90m',
-          '// Type Coverage: 100% PHP 8.2+ Typed Parameters',
+          '// Type Coverage: 100% PHP 8.2+ Strict Types',
           '// Zero static facades. Injected dependencies: OrderRepository, EventDispatcher\x1b[0m',
           '',
           '\x1b[33mNext step:\x1b[0m Register route in \x1b[37mconfig/routes.php\x1b[0m:',

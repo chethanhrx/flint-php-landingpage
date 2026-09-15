@@ -19,13 +19,15 @@ import {
 } from 'lucide-react';
 
 interface DocumentationViewProps {
-  initialSlug?: string;
+  activeSlug?: string;
+  onSelectSlug?: (slug: string) => void;
   onOpenSearch: () => void;
   onBackToHome: () => void;
 }
 
 export const DocumentationView: React.FC<DocumentationViewProps> = ({
-  initialSlug,
+  activeSlug,
+  onSelectSlug,
   onOpenSearch,
   onBackToHome,
 }) => {
@@ -34,16 +36,14 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
     return DOCS_DATA.flatMap((cat) => cat.pages);
   }, []);
 
-  const [currentSlug, setCurrentSlug] = useState<string>(
-    initialSlug || allPages[0].slug
-  );
+  
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [copiedCodeIndex, setCopiedCodeIndex] = useState<number | null>(null);
 
   // Active page
   const currentPage = useMemo(() => {
-    return allPages.find((p) => p.slug === currentSlug) || allPages[0];
-  }, [allPages, currentSlug]);
+    return allPages.find((p) => p.slug === activeSlug) || allPages[0];
+  }, [allPages, activeSlug]);
 
   // Active category
   const currentCategory = useMemo(() => {
@@ -61,9 +61,8 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
   const nextPage = currentIndex < allPages.length - 1 ? allPages[currentIndex + 1] : null;
 
   const handleSelectPage = (slug: string) => {
-    setCurrentSlug(slug);
+    if (onSelectSlug) onSelectSlug(slug);
     setMobileSidebarOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCopyCode = (code: string, idx: number) => {

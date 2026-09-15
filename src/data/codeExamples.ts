@@ -92,7 +92,7 @@ $router->get('/api/users/{id}', function (Request $request, int $id): Response {
         'user_id' => $id,
         'requested_at' => (new DateTimeImmutable())->format(DATE_ATOM),
     ]);
-})->name('users.show');
+}, 'users.show');
 `,
   },
   {

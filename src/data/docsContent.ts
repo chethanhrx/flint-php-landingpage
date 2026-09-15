@@ -293,7 +293,7 @@ function handle(Request $request): Response
         slug: 'routing',
         category: 'Core Architecture',
         title: 'Fast Routing Engine',
-        description: 'High-speed route matching with typed parameters, route groups, and middleware assignment.',
+        description: 'High-speed route matching with dynamic route parameters and reflection-assisted handler parameter conversion.',
         readTime: '5 min read',
         content: {
           lead: 'FlintPHP features a fast router designed to match routes efficiently.',

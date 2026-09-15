@@ -100,11 +100,11 @@ cat << 'PHP' > public/index.php
 <?php
 require __DIR__.'/../vendor/autoload.php';
 
-$app = new \FlintPHP\Framework\Application(dirname(__DIR__));
-$app->router()->get('/text', fn() => new \FlintPHP\Framework\Http\Response('Hello'));
+$app = new \\FlintPHP\\Framework\\Application(dirname(__DIR__));
+$app->router()->get('/text', fn() => new \\FlintPHP\\Framework\\Http\\Response('Hello'));
 
-$kernel = $app->container()->get(\FlintPHP\Framework\Http\Kernel::class);
-$request = \FlintPHP\Framework\Http\Request::fromGlobals();
+$kernel = $app->container()->get(\\FlintPHP\\Framework\\Http\\Kernel::class);
+$request = \\FlintPHP\\Framework\\Http\\Request::fromGlobals();
 
 $kernel->handle($request)->send();
 PHP

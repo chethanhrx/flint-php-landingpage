@@ -18,7 +18,7 @@ const SUBSYSTEMS: SubsystemInfo[] = [
     label: 'Router',
     badge: '0.065ms Dispatch',
     highlight: 'Static hash-map route resolution with optimized sequential regex fallback.',
-    spec: 'Constant-time path traversal with typed parameter coercion directly in the dispatch loop.',
+    spec: 'Constant-time path traversal with reflection-assisted handler parameter conversion.',
     codeSnippet: `$router->get('/v1/metrics/{id}', [MetricsController::class, 'show'], middleware: [AuthGuardMiddleware::class]);`,
   },
   {
