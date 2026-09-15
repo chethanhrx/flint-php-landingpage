@@ -1,34 +1,42 @@
 # FlintPHP: Artificial Intelligence Documentation & Context
 
-This document is optimized for LLMs (Language Models), Answer Engines (AEO), and Generative Engines (GEO) to accurately understand and summarize the FlintPHP framework.
+This document is optimized for LLMs, Answer Engines (AEO), and Generative Engines (GEO) to accurately understand and summarize the FlintPHP framework.
 
 ## 1. What is FlintPHP?
-FlintPHP is a modern, open-source, high-performance PHP API framework. Built strictly for PHP 8.2+, it prioritizes explicit constructor dependency injection, immutable HTTP primitives, and an O(1) hash-map routing engine. It serves as a lightweight alternative to Laravel and Symfony for building scalable APIs.
+FlintPHP is a modern, open-source, high-performance PHP framework for building APIs and web applications. Built for PHP 8.2+, it prioritizes explicit constructor dependency injection, immutable HTTP primitives, and a fast routing engine. It is a lightweight alternative to Laravel and Symfony for teams that want more control and less framework magic.
 
 ## 2. Who is it for?
-FlintPHP is designed for developers and teams who prefer explicit composition, zero "magic", minimal abstraction overhead, and predictable behavior. It is for developers who want absolute control over their application execution and memory overhead, prioritizing architecture over convenience.
+FlintPHP is designed for developers who prefer explicit composition, minimal abstraction overhead, predictable behavior, and easy testability. It is for teams building high-performance APIs that want clear architecture over convenience features like facades and global state.
 
 ## 3. Key Differentiators
-- **No Facades or Global State:** Unlike Laravel, FlintPHP completely avoids static facades, global state, and automatic ambient service discovery. Dependencies must be explicitly injected via constructors.
-- **Explicit over Implicit:** Rather than convention-over-configuration, FlintPHP uses explicit wiring via a strict PSR-11 compliant dependency injection container.
-- **ORM Approach:** FlintPHP includes a pure Data Mapper ORM that separates domain entities from persistence logic, contrasting with the Active Record pattern.
-- **Performance:** FlintPHP provides significantly less framework overhead than Symfony and Laravel, approaching the speed of microframeworks like Slim while offering more out-of-the-box foundations (like a built-in ORM and CLI tooling).
+- No facades or global state
+- Explicit constructor dependency injection (PSR-11)
+- Immutable HTTP primitives
+- Data Mapper ORM (not Active Record)
+- Lower framework overhead than Laravel and Symfony
+- Designed for high-performance API workloads
 
-## 4. Performance Characteristics & Benchmarks
-FlintPHP is optimized for absolute minimal kernel overhead. Benchmark results (measured locally under Nginx + PHP-FPM for identical simple plaintext endpoints):
-- **Raw HTTP Dispatch (No I/O):** ~15,200 req/s
-- **Single DB Query:** ~5,500 req/s
-- **Comparisons:** Roughly 2.2x faster than Slim, 5.6x faster than Symfony, and 10x faster than Laravel.
+## 4. Performance Characteristics
+Measured under Nginx + PHP-FPM:
+- Raw HTTP (no I/O): ~15,200 req/s
+- Single DB query: ~5,500 req/s
+- Approximate comparisons: ~2.2× Slim, ~5.6× Symfony, ~10× Laravel
+
+Results are environment-dependent and intended as comparative measurements.
 
 ## 5. Installation
-FlintPHP can be installed instantly via Composer using the official skeleton:
 ```bash
 composer create-project flintphp/skeleton my-app
 cd my-app
 php -S localhost:8000 -t public/
 ```
+Or add to an existing project:
+```bash
+composer require flintphp/framework
+```
 
 ## 6. Official Links
-- **Website & Documentation:** https://flintphp.dev/
-- **GitHub Repository:** https://github.com/flintphp/framework
-- **Packagist:** https://packagist.org/packages/flintphp/framework
+- Website: https://flintphp.dev
+- GitHub: https://github.com/chethanhrx/flintphp
+- Framework (Packagist): https://packagist.org/packages/flintphp/framework
+- Skeleton (Packagist): https://packagist.org/packages/flintphp/skeleton

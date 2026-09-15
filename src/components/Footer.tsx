@@ -28,7 +28,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://github.com/flintphp/framework"
+                href="https://github.com/chethanhrx/flintphp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 border border-stone-200 transition-colors shadow-xs"
@@ -148,7 +148,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2 text-xs">
               <li>
                 <a
-                  href="https://github.com/flintphp/framework"
+                  href="https://github.com/chethanhrx/flintphp"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-stone-900 transition-colors inline-flex items-center gap-1"
@@ -159,7 +159,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="https://github.com/flintphp/framework-skeleton"
+                  href="https://packagist.org/packages/flintphp/framework"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-stone-900 transition-colors inline-flex items-center gap-1"
+                >
+                  <span>Framework (Packagist)</span>
+                  <ExternalLink className="w-3 h-3 text-orange-600" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://packagist.org/packages/flintphp/skeleton"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-stone-900 transition-colors inline-flex items-center gap-1"
