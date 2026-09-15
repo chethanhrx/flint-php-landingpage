@@ -19,8 +19,14 @@ export default function App() {
   const [activeDocSlug, setActiveDocSlug] = useState<string>('introduction');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  // Sync with History API for real URLs
+  // Scroll to top on load and sync with History API
   useEffect(() => {
+    // Prevent browser from restoring scroll position on refresh
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     const handleLocationChange = () => {
       const path = window.location.pathname;
       

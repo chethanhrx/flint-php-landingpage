@@ -31,7 +31,7 @@ export const BenchmarkSection: React.FC = () => {
             </div>
             
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-6">
-              Built for speed.
+              Uncompromising speed.
             </h2>
             
             <p className="text-lg text-stone-400 leading-relaxed mb-10">
