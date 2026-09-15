@@ -59,7 +59,7 @@ export const ArchitectureVisualization: React.FC = () => {
       summary: 'Matches incoming HTTP method and URI path against compiled hash-maps and regex patterns with microsecond latency.',
       input: 'HTTP Method (GET/POST/PUT) + URI Path',
       output: 'RouteMatch (Handler + Parameters + Route Middlewares)',
-      codeSnippet: `$router->get('/api/users/{id:int}', [UserController::class, 'show'])\n       ->middleware([RateLimitMiddleware::class]);`,
+      codeSnippet: `$router->get('/api/users/{id:int}', [UserController::class, 'show'], middleware: [RateLimitMiddleware::class]);null, [RateLimitMiddleware::class];`,
       detail: 'Evaluates regex constraints and type casts (e.g. {id:int}) before handing over to the middleware pipeline.',
     },
     {

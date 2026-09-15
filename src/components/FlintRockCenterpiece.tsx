@@ -19,8 +19,7 @@ const SUBSYSTEMS: SubsystemInfo[] = [
     badge: '0.065ms Dispatch',
     highlight: 'Static hash-map route resolution with optimized sequential regex fallback.',
     spec: 'Constant-time path traversal with typed parameter coercion directly in the dispatch loop.',
-    codeSnippet: `$router->get('/v1/metrics/{id:\\d+}', [MetricsController::class, 'show'])
-    ->middleware(AuthGuardMiddleware::class);`,
+    codeSnippet: `$router->get('/v1/metrics/{id:\\d+}', [MetricsController::class, 'show'], middleware: [AuthGuardMiddleware::class]);`,
   },
   {
     id: 'psr15',
@@ -31,7 +30,7 @@ const SUBSYSTEMS: SubsystemInfo[] = [
     spec: 'Full compliance with PSR-7 and PSR-15 standards. Compatible with any PSR-compliant package.',
     codeSnippet: `public function process(Request $request, RequestHandler $handler): Response
 {
-    $token = $request->getHeaderLine('X-API-Key');
+    $token = $request->header('X-API-Key');
     return $handler->handle($request->withAttribute('auth', $token));
 }`,
   },

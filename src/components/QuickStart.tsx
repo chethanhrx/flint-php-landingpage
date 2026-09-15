@@ -12,27 +12,27 @@ export const QuickStart: React.FC<QuickStartProps> = ({ onNavigate }) => {
   const steps = [
     {
       step: 1,
-      title: 'Create project from official skeleton',
-      command: 'composer create-project flintphp/skeleton my-app',
-      desc: 'Downloads flintphp/skeleton v1.0.0 and bootstraps your application directory.',
+      title: 'Initialize project directory',
+      command: 'mkdir my-app && cd my-app',
+      desc: 'Create and enter a new directory for your FlintPHP application.',
     },
     {
       step: 2,
-      title: 'Enter project directory',
-      command: 'cd my-app',
-      desc: 'Navigate into your new FlintPHP codebase.',
+      title: 'Require FlintPHP framework',
+      command: 'composer require flintphp/framework',
+      desc: 'Installs the core framework and PSR-11 container dependencies.',
     },
     {
       step: 3,
-      title: 'Inspect Flint CLI utilities',
-      command: 'php bin/flint',
-      desc: 'Lists built-in console commands for migrations, routes, and testing.',
+      title: 'Create public bootstrap file',
+      command: 'mkdir public && touch public/index.php',
+      desc: 'Creates the web root directory and application entry point.',
     },
     {
       step: 4,
       title: 'Start PHP development server',
       command: 'php -S localhost:8000 -t public',
-      desc: 'Serves the application directly through public/index.php.',
+      desc: 'Serves the application locally using the built-in PHP server.',
     },
   ];
 
@@ -51,7 +51,7 @@ export const QuickStart: React.FC<QuickStartProps> = ({ onNavigate }) => {
             <span>QUICK START WORKFLOW</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-4">
-            Zero to production API in four commands.
+            Zero to development API in four commands.
           </h2>
           <p className="text-base text-stone-600 leading-relaxed">
             Follow the standard FlintPHP CLI workflow to bootstrap and test your first endpoint locally.
@@ -113,7 +113,7 @@ export const QuickStart: React.FC<QuickStartProps> = ({ onNavigate }) => {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-medium">
-                    Real FlintPHP API
+                    Interactive Example
                   </span>
                 </div>
               </div>
@@ -173,7 +173,7 @@ export const QuickStart: React.FC<QuickStartProps> = ({ onNavigate }) => {
             </div>
 
             <div className="mt-4 flex items-center justify-between text-xs text-stone-500">
-              <span>Official skeleton includes tests, migrations, and CLI</span>
+              <span>Core package provides the minimal HTTP and routing foundations.</span>
               <button
                 type="button"
                 onClick={() => onNavigate('docs', 'first-application')}

@@ -144,7 +144,7 @@ final class UserController
     title: 'PSR-15 Middleware',
     category: 'HTTP',
     filename: 'src/Middleware/TimingMiddleware.php',
-    description: 'Standard PSR-15 onion-skin middleware measuring execution time and appending security headers.',
+    description: 'Standard PSR-15 onion-skin middleware measuring execution time and appending custom headers.',
     code: `<?php
 
 declare(strict_types=1);
@@ -368,7 +368,7 @@ final class BearerAuthMiddleware implements MiddlewareInterface
 
     public function process(Request $request, RequestHandlerInterface $handler): Response
     {
-        $header = $request->getHeaderLine('Authorization');
+        $header = $request->header('Authorization');
         if (!preg_match('/^Bearer\\s+(.*)$/i', $header, $matches)) {
             throw new UnauthorizedException('Missing or malformed Bearer token.');
         }
@@ -445,7 +445,7 @@ final class ArticleController
 {
     public function index(Request $request): Response
     {
-        $page = (int) ($request->getQueryParams()['page'] ?? 1);
+        $page = (int) $request->query('page', 1);
         $articles = [
             ['id' => 1, 'title' => 'Building Fast APIs with FlintPHP', 'slug' => 'building-fast-apis'],
             ['id' => 2, 'title' => 'Why We Avoid Facades and Magic', 'slug' => 'why-no-facades'],

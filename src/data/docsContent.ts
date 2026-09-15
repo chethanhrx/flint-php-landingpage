@@ -50,19 +50,16 @@ export const DOCS_DATA: DocCategory[] = [
                 'Predictable & Testable: Every dependency is injected via constructors or request pipelines.',
                 'Zero Facades: No static magic disguising hidden singleton instances.',
                 'Immutable HTTP Primitives: Requests and responses are immutable representations using explicit architecture.',
-                'Minimal Dependencies: Lean, audited core keeping memory footprint below 1.8MB per request cycle.',
-                'Security-by-Default: Automatic cryptographic defenses, strict MIME validation, and security headers built-in.',
+                'Minimal Dependencies: Lean, audited core keeping memory footprint minimal.',
+                'Security-by-Default: Configurable security headers middleware included out of the box.',
               ],
             },
             {
               heading: 'System Requirements',
               text: 'FlintPHP v1.0.0 requires modern runtime environments to guarantee strict type safety and high performance.',
               bulletPoints: [
-                'PHP 8.2.0 or higher (PHP 8.3 recommended)',
-                'PDO PHP Extension with driver for your database (PostgreSQL, MySQL, SQLite)',
-                'Mbstring PHP Extension',
-                'OpenSSL PHP Extension',
-                'Composer 2.4 or higher',
+                'PHP 8.2 or higher',
+                'Composer 2.x',
               ],
             },
           ],
@@ -84,13 +81,11 @@ export const DOCS_DATA: DocCategory[] = [
                 language: 'bash',
                 filename: 'terminal',
                 code: `# Create a new application project
+mkdir my-app && cd my-app
 composer require flintphp/framework
 
-# Enter your project directory
-cd my-app
-
 # Inspect available CLI commands
-php bin/flint`,
+php vendor/bin/flint`,
               },
             },
             {
@@ -144,7 +139,7 @@ use FlintPHP\\Framework\\Http\\Request;
 /** @var Router $router */
 
 $router->get('/api/welcome', function (Request $request): Response {
-    $name = $request->getQueryParams()['name'] ?? 'Developer';
+    $name = $request->query('name', 'Developer');
 
     return Response::json([
         'message' => sprintf('Welcome to FlintPHP, %s!', htmlspecialchars((string) $name)),
@@ -277,9 +272,9 @@ use FlintPHP\\Framework\\Http\\Response;
 function handle(Request $request): Response
 {
     // Inspect query params, JSON body, headers
-    $page = (int) ($request->getQueryParams()['page'] ?? 1);
-    $apiKey = $request->getHeaderLine('X-API-Key');
-    $payload = $request->getParsedBody();
+    $page = (int) $request->query('page', 1);
+    $apiKey = $request->header('X-API-Key');
+    $payload = json_decode($request->body(), true);
 
     // Immutably pass authenticated identity
     $requestWithUser = $request->withAttribute('user_id', 42);
@@ -301,7 +296,7 @@ function handle(Request $request): Response
         description: 'High-speed route matching with typed parameters, route groups, and middleware assignment.',
         readTime: '5 min read',
         content: {
-          lead: 'FlintPHP features a fast router designed to match thousands of routes in microseconds.',
+          lead: 'FlintPHP features a fast router designed to match routes efficiently.',
           sections: [
             {
               heading: 'Route Definitions & Constraints',
@@ -314,17 +309,12 @@ use App\\Middleware\\BearerAuthMiddleware;
 
 /** @var Router $router */
 
-$router->group('/api/v1', function (Router $api) {
-    // Public routes
-    $api->get('/posts', [PostController::class, 'index']);
-    $api->get('/posts/{slug:[a-z0-9-]+}', [PostController::class, 'show']);
+$router->get('/api/v1/posts', [PostController::class, 'index']);
+$router->get('/api/v1/posts/{slug:[a-z0-9-]+}', [PostController::class, 'show']);
 
-    // Protected routes requiring Bearer authentication
-    $api->group('', function (Router $auth) {
-        $auth->post('/posts', [PostController::class, 'store']);
-        $auth->delete('/posts/{id:int}', [PostController::class, 'destroy']);
-    })->middleware([BearerAuthMiddleware::class]);
-});`,
+// Protected routes requiring Bearer authentication
+$router->post('/api/v1/posts', [PostController::class, 'store'], middleware: [BearerAuthMiddleware::class]);
+$router->delete('/api/v1/posts/{id:int}', [PostController::class, 'destroy'], middleware: [BearerAuthMiddleware::class]);`,
               },
             },
           ],
@@ -363,7 +353,7 @@ final class RateLimitMiddleware implements MiddlewareInterface
 
     public function process(Request $request, RequestHandlerInterface $handler): Response
     {
-        $ip = $request->getServerParams()['REMOTE_ADDR'] ?? '127.0.0.1';
+        $ip = $request->server('REMOTE_ADDR', '127.0.0.1');
         $key = 'rate_limit:' . $ip;
 
         $hits = (int) $this->cache->get($key, 0) + 1;
@@ -443,7 +433,7 @@ use FlintPHP\\Framework\\Validation\\Rule;
 
 $validator = $container->get(Validator::class);
 
-$result = $validator->validate($request->getParsedBody(), [
+$result = $validator->validate(json_decode($request->body(), true) ?? [], [
     'email' => [Rule::required(), Rule::email(), Rule::max(255)],
     'age' => [Rule::required(), Rule::integer(), Rule::min(18)],
     'roles' => [Rule::array(), Rule::in(['editor', 'admin', 'viewer'])],

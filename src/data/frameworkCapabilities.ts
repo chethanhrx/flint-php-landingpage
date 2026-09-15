@@ -59,7 +59,7 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
     id: 'security',
     title: 'Security Primitives',
     badge: 'Security-First',
-    description: 'Hardened cryptographic defaults, strict authentication barriers, and defense-in-depth protections.',
+    description: 'Standard authentication and configurable security headers.',
     items: [
       { name: 'Authentication', description: 'Pluggable token, session, and API key guards with constant-time verification.', docPath: '/docs/security/authentication' },
       { name: 'Authorization', description: 'Voter and policy-based authorization gates with granular domain logic.', docPath: '/docs/security/authorization' },

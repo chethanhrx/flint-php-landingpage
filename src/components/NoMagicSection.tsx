@@ -54,7 +54,8 @@ use FlintPHP\\Framework\\Http\\Response;
 // Request is pure immutable value passed directly to handler
 public function handle(Request $request): Response
 {
-    $userId = (int) $request->getParsedBody()['user_id'];
+    $body = json_decode($request->body(), true);
+        $userId = (int) ($body['user_id'] ?? 0);
     
     // Concurrency-safe, worker-friendly, zero ambient mutations
     return Response::json(['user_id' => $userId]);
