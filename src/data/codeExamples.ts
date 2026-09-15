@@ -75,7 +75,7 @@ $router->get('/api/health', function (Request $request): Response {
     title: 'Dynamic Route',
     category: 'Routing',
     filename: 'routes/api.php',
-    description: 'Typed route parameters resolved directly into the handler via reflection-assisted autowiring.',
+    description: 'Typed handler parameter resolved by reflection-assisted dispatch.',
     code: `<?php
 
 declare(strict_types=1);
@@ -86,7 +86,7 @@ use FlintPHP\\Framework\\Http\\Request;
 
 /** @var Router $router */
 
-// Route with typed integer ID constraint resolved by Kernel
+// Typed handler parameter resolved by reflection-assisted dispatch.
 $router->get('/api/users/{id}', function (Request $request, int $id): Response {
     return Response::json([
         'user_id' => $id,
@@ -100,7 +100,7 @@ $router->get('/api/users/{id}', function (Request $request, int $id): Response {
     title: 'Controller',
     category: 'Application',
     filename: 'src/Controllers/UserController.php',
-    description: 'Invokable controller with explicit constructor dependency injection.',
+    description: 'Action-based controller with explicit constructor dependency injection.',
     code: `<?php
 
 declare(strict_types=1);
@@ -157,7 +157,7 @@ final class AuthMiddleware implements MiddlewareInterface
     public function process(Request $request, callable $next): Response
     {
         try {
-            // Explicit boundary: validates bearer token or session
+            // Explicit boundary: validates bearer token
             $identity = $this->authenticator->authenticate($request);
             
             // Pass the identity down the pipeline safely

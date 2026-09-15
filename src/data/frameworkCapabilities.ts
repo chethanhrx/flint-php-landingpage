@@ -20,8 +20,8 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
     badge: 'Foundation',
     description: 'Predictable, immutable HTTP primitives without hidden mutability or ambient global state.',
     items: [
-      { name: 'Request', description: 'Strictly typed, immutable server requests with validated body, query, and server params.', docPath: '/docs/core/request-response', status: 'Stable' },
-      { name: 'Response', description: 'Declarative responses including JSON, JSON builders.', docPath: '/docs/core/request-response', status: 'Stable' },
+      { name: 'Request', description: 'Strictly typed, immutable server request representation with explicit body, query, header, cookie, and server access.', docPath: '/docs/core/request-response', status: 'Stable' },
+      { name: 'Response', description: 'JSON response builders with immutable status, headers, and body updates.', docPath: '/docs/core/request-response', status: 'Stable' },
       { name: 'Headers', description: 'Normalized header bags with case-insensitive inspection and immutability.', docPath: '/docs/core/request-response', status: 'Stable' },
       { name: 'Routing', description: 'Fast routing supporting dynamic path variables and REST verbs.', docPath: '/docs/core/routing', status: 'Stable' },
       { name: 'Middleware', description: 'Composable onion-skin pipeline adhering to simple middleware interfaces.', docPath: '/docs/core/middleware', status: 'Stable' },
@@ -36,7 +36,7 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
     description: 'Explicit dependency wiring, type-safe configuration, and zero ambient static facades.',
     items: [
       { name: 'Application', description: 'Central composition root coordinating container, boot phases, and runtime.', docPath: '/docs/core/application', status: 'Stable' },
-      { name: 'Configuration', description: 'Environment-backed, configurations.', docPath: '/docs/getting-started/configuration', status: 'Stable' },
+      { name: 'Configuration', description: 'Immutable configuration repository with dot-notation and array loaders.', docPath: '/docs/getting-started/configuration', status: 'Stable' },
       { name: 'Bootstrappers', description: 'Discrete lifecycle units for registering providers and services.', docPath: '/docs/core/application', status: 'Stable' },
       { name: 'Request Attributes', description: 'Type-safe request-scoped metadata passing between middleware and handlers.', docPath: '/docs/core/request-response', status: 'Stable' },
       { name: 'Dependency Injection', description: 'Autoreflection container with constructor injection and interface bindings.', docPath: '/docs/core/dependency-injection', status: 'Stable' },

@@ -3,15 +3,11 @@ import { Activity, ShieldCheck, ChevronDown, ChevronUp, Copy, Check } from 'luci
 
 export const BenchmarkSection: React.FC = () => {
   const [showMethodology, setShowMethodology] = useState(false);
-  const [copiedCmd, setCopiedCmd] = useState(false);
   
-  const reproduceCmd = 'php -S localhost:8000 -t public/ & wrk -t4 -c50 -d10s http://localhost:8000/text';
+  
+  
 
-  const copyReproduceCmd = () => {
-    navigator.clipboard.writeText(reproduceCmd).catch(() => alert('Copy failed — select the code manually.'));
-    setCopiedCmd(true);
-    setTimeout(() => setCopiedCmd(false), 2000);
-  };
+  
 
   return (
     <section id="benchmarks" className="py-24 border-t border-stone-800 bg-stone-950 relative overflow-hidden">
@@ -86,21 +82,17 @@ export const BenchmarkSection: React.FC = () => {
 
             {showMethodology && (
               <div className="mt-4 p-5 rounded-2xl bg-stone-950 border border-stone-800 font-mono text-xs text-stone-400 space-y-4">
-                <p>These numbers represent local measurements on a standard development machine using Apache Bench (ab) or wrk, sending requests to the PHP built-in server.</p>
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-2">
-                  <span className="text-[11px] text-stone-500">Reproduce on your own hardware:</span>
-                  <div className="flex items-center gap-2 w-full sm:w-auto">
-                    <code className="px-2.5 py-1 rounded bg-stone-900 border border-stone-800 text-stone-300 text-[11px] truncate">
-                      {reproduceCmd}
-                    </code>
-                    <button
-                      type="button"
-                      onClick={copyReproduceCmd}
-                      className="p-1.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 transition-colors shrink-0 cursor-pointer"
-                      title="Copy benchmark command"
-                    >
-                      {copiedCmd ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                    </button>
+                <div className="space-y-4">
+                  <p>These numbers represent local measurements on a standard development machine using <code className="text-orange-400">wrk</code> against the PHP built-in server.</p>
+                  <p>Because FlintPHP is distributed as a library rather than a heavy skeleton, to reproduce these results you must bootstrap a minimal <code className="text-orange-400">public/index.php</code> routing to a plaintext response.</p>
+                  <div className="p-3 bg-stone-900 border border-stone-800 rounded-xl space-y-2 text-stone-300">
+                    <p className="text-emerald-400 font-bold mb-1">Reproduction steps:</p>
+                    <ol className="list-decimal list-inside space-y-1 ml-1 text-stone-400">
+                      <li><code className="text-stone-300">composer require chethanhrx/flintphp</code></li>
+                      <li>Create an entrypoint returning a simple <code className="text-stone-300">Response('Hello')</code></li>
+                      <li><code className="text-stone-300">php -S localhost:8000 -t public/</code></li>
+                      <li><code className="text-stone-300">wrk -t4 -c50 -d10s http://localhost:8000/text</code></li>
+                    </ol>
                   </div>
                 </div>
               </div>
