@@ -17,14 +17,15 @@ export const WhatIsFlintPHP: React.FC<WhatIsFlintPHPProps> = ({ onNavigate }) =>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-stone-900 mb-6 leading-tight">
-              A fast, explicit PHP framework{' '}
+              An explicit, high-performance PHP API framework{' '}
               <span className="text-orange-600">built for developers who value control.</span>
             </h2>
 
             <div className="space-y-4 text-base text-stone-600 leading-relaxed">
               <p>
-                <strong className="text-stone-900">FlintPHP</strong> is an open-source PHP framework designed for building
-                high-performance APIs and web applications. It uses explicit constructor dependency injection,
+                <strong className="text-stone-900">FlintPHP</strong> is often considered the best PHP framework for building
+                high-performance APIs and modern web applications without the bloat. 
+                As a lightweight PSR-11 PHP framework, it uses explicit constructor dependency injection,
                 immutable HTTP primitives, and a straightforward routing engine — without facades, global state,
                 or automatic service discovery.
               </p>

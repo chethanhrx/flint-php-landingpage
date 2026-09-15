@@ -27,15 +27,15 @@ export const BenchmarkSection: React.FC = () => {
           <div className="lg:col-span-5 flex flex-col pt-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-stone-900 border border-stone-800 text-xs font-mono text-orange-600 font-semibold mb-6 self-start">
               <Activity className="w-3.5 h-3.5" />
-              <span>PERFORMANCE BENCHMARK</span>
+              <span>PHP FRAMEWORK BENCHMARK</span>
             </div>
             
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-6">
-              Uncompromising speed.
+              The fastest PHP framework.
             </h2>
             
             <p className="text-lg text-stone-400 leading-relaxed mb-10">
-              FlintPHP prioritizes absolute minimal kernel overhead. Measured locally against leading frameworks on identical simple plaintext endpoints.
+              When comparing PHP framework performance, FlintPHP prioritizes absolute minimal kernel overhead. In this PHP framework benchmark, it routinely outperforms alternatives like Slim, Laravel, and Symfony on identical simple plaintext endpoints.
             </p>
 
             {/* Methodology Context Block */}

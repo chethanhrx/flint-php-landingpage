@@ -75,16 +75,17 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
             {/* Framework Name & Main Title */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-stone-900 leading-[1.08] mb-4">
-              A fast PHP framework{' '}
+              The modern, fast PHP framework{' '}
               <span className="text-orange-600 block sm:inline">with no hidden magic.</span>
             </h1>
 
             {/* Value Proposition Description */}
             <p className="text-base sm:text-lg text-stone-600 max-w-2xl leading-relaxed mb-6">
-              FlintPHP is a modern PHP framework built around explicit constructor dependency injection,
-              immutable HTTP primitives, and a hash-map routing engine. Designed for developers who want{' '}
-              <span className="font-semibold text-stone-900">predictable behavior</span>, easy testability,{' '}
-              and low abstraction overhead — without facades or global state.
+              FlintPHP is a high-performance, lightweight PHP framework designed for building scalable APIs. 
+              As a powerful Laravel alternative, it features explicit constructor dependency injection,
+              immutable HTTP primitives, and a hash-map routing engine for developers who demand{' '}
+              <span className="font-semibold text-stone-900">maximum speed</span> and predictable behavior — 
+              without facades or global state.
             </p>
 
             {/* Interactive Composer Installation Box */}

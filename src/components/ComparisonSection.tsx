@@ -38,15 +38,15 @@ export const ComparisonSection: React.FC = () => {
         {/* Header */}
         <div className="max-w-3xl mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-xs font-mono text-orange-600 font-semibold mb-4 shadow-xs">
-            <span>FRAMEWORK COMPARISON</span>
+            <span>LARAVEL ALTERNATIVE & FRAMEWORK COMPARISON</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-4">
-            How FlintPHP compares to established frameworks.
+            How FlintPHP compares to Laravel and Slim.
           </h2>
           <p className="text-base text-stone-600 leading-relaxed">
-            An honest comparison of capabilities, design philosophy, and trade-offs.
-            FlintPHP is not trying to replace Laravel — it serves developers who prefer
-            explicit composition and minimal overhead.
+            When evaluating a modern PHP microframework comparison, developers look at capabilities, design philosophy, and trade-offs.
+            While it serves as a lightweight Laravel alternative and Symfony alternative, FlintPHP is tailored for developers who prefer
+            a no magic PHP framework with explicit composition and minimal overhead.
           </p>
         </div>
 

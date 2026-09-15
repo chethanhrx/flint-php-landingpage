@@ -108,17 +108,17 @@ export default function App() {
           {/* 2. What is FlintPHP — AEO/GEO optimized definition */}
           <WhatIsFlintPHP onNavigate={handleNavigate} />
 
-          {/* 3. First 30 Seconds — Quick answers */}
-          <FirstThirtySeconds onNavigate={handleNavigate} />
-
-          {/* 4. Benchmarks — Accurate + trustworthy */}
+          {/* 3. Benchmarks — Accurate + trustworthy */}
           <BenchmarkSection />
 
-          {/* 5. Comparison — Laravel vs Slim vs FlintPHP */}
+          {/* 4. Comparison — Laravel vs Slim vs FlintPHP */}
           <ComparisonSection />
 
-          {/* 6. FAQ — High AEO value */}
+          {/* 5. FAQ — High AEO value */}
           <FaqSection />
+
+          {/* 6. First 30 Seconds — Quick answers */}
+          <FirstThirtySeconds onNavigate={handleNavigate} />
 
           {/* 7. Quick Start — Getting started */}
           <QuickStart onNavigate={handleNavigate} />

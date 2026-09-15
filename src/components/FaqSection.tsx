@@ -58,13 +58,13 @@ export const FaqSection: React.FC = () => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-stone-100 border border-stone-200 text-xs font-mono text-orange-600 font-semibold mb-4">
-            <span>FREQUENTLY ASKED</span>
+            <span>FREQUENTLY ASKED QUESTIONS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-4">
-            Questions developers ask about FlintPHP.
+            FlintPHP framework FAQs.
           </h2>
           <p className="text-base text-stone-600 leading-relaxed">
-            Direct, technical answers — no marketing ambiguity.
+            Direct, technical answers about building with this PHP framework without facades, its explicit dependency injection, and why developers choose it as a lightweight PHP framework.
           </p>
         </div>
 
