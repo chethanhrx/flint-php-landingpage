@@ -66,26 +66,25 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-600/10 hover:bg-orange-600/15 border border-orange-600/30 text-xs font-mono text-orange-700 transition-all cursor-pointer shadow-xs"
               >
                 <Flame className="w-3.5 h-3.5 text-orange-600" />
-                <span className="font-bold">3,964 req/s</span>
+                <span className="font-bold">~15,200 req/s</span>
                 <span className="text-stone-400">•</span>
-                <span className="hidden sm:inline">12.9× faster than Laravel</span>
+                <span className="hidden sm:inline">Nginx + PHP-FPM</span>
                 <ChevronRight className="w-3.5 h-3.5 text-orange-600 transition-transform group-hover:translate-x-0.5" />
               </button>
             </div>
 
             {/* Framework Name & Main Title */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-stone-900 leading-[1.08] mb-4">
-              Zero magic. Zero facades.{' '}
-              <span className="text-orange-600 block sm:inline">Pure, high-speed PHP.</span>
+              A fast PHP framework{' '}
+              <span className="text-orange-600 block sm:inline">with no hidden magic.</span>
             </h1>
 
             {/* Value Proposition Description */}
             <p className="text-base sm:text-lg text-stone-600 max-w-2xl leading-relaxed mb-6">
-              A modern PHP framework engineered for high-throughput APIs and explicit architectures.
-              Built on immutable HTTP foundations, strict dependency injection, and benchmarked at{' '}
-              <span className="font-semibold text-stone-900">3,964 req/s</span> —{' '}
-              <span className="font-semibold text-orange-600">2.08× faster</span> than Slim and{' '}
-              <span className="font-semibold text-orange-600">12.9× faster</span> than Laravel.
+              FlintPHP is a modern PHP framework built around explicit constructor dependency injection,
+              immutable HTTP primitives, and a hash-map routing engine. Designed for developers who want{' '}
+              <span className="font-semibold text-stone-900">predictable behavior</span>, easy testability,{' '}
+              and low abstraction overhead — without facades or global state.
             </p>
 
             {/* Interactive Composer Installation Box */}
@@ -140,7 +139,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <BarChart3 className="w-4 h-4 text-orange-600" />
                 <span>View Benchmarks</span>
                 <span className="text-xs px-1.5 py-0.5 rounded bg-orange-600/10 text-orange-600 font-mono font-bold">
-                  12.9× Faster
+                  ~15k req/s
                 </span>
               </button>
 
@@ -158,11 +157,11 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-stone-200 w-full max-w-xl text-left">
               <div className="p-2.5 rounded-lg bg-white/70 border border-stone-200/80">
                 <div className="text-[10px] font-mono text-stone-500 uppercase font-semibold">THROUGHPUT</div>
-                <div className="text-base font-mono font-bold text-stone-900">3,964 <span className="text-xs text-orange-600">req/s</span></div>
+                <div className="text-base font-mono font-bold text-stone-900">~15,200 <span className="text-xs text-orange-600">req/s</span></div>
               </div>
               <div className="p-2.5 rounded-lg bg-white/70 border border-stone-200/80">
-                <div className="text-[10px] font-mono text-stone-500 uppercase font-semibold">P95 LATENCY</div>
-                <div className="text-base font-mono font-bold text-stone-900">14 <span className="text-xs text-orange-600">ms</span></div>
+                <div className="text-[10px] font-mono text-stone-500 uppercase font-semibold">WITH DB</div>
+                <div className="text-base font-mono font-bold text-stone-900">~5,500 <span className="text-xs text-orange-600">req/s</span></div>
               </div>
               <div className="p-2.5 rounded-lg bg-white/70 border border-stone-200/80">
                 <div className="text-[10px] font-mono text-stone-500 uppercase font-semibold">PHP</div>

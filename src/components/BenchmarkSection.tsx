@@ -39,23 +39,50 @@ export const BenchmarkSection: React.FC = () => {
             </p>
 
             {/* Methodology Context Block */}
-            <div className="p-5 rounded-2xl bg-[#0c0a09] border border-stone-800/80 shadow-inner">
-              <div className="text-sm font-semibold text-stone-300 mb-3">Benchmark Environment</div>
-              <ul className="text-sm font-mono text-stone-500 space-y-2">
-                <li>• Measured locally with PHP built-in server</li>
-                <li>• Concurrency: 50</li>
-                <li className="pt-2 mt-2 border-t border-stone-800/50">
-                  <span className="text-orange-500">FlintPHP:</span> 3,964 req/s · P95 14 ms
-                </li>
-                <li>
-                  <span className="text-stone-400">Slim 4:</span> 1,908 req/s · P95 28 ms
-                </li>
-                <li>
-                  <span className="text-stone-400">Laravel 11:</span> 307 req/s · P95 187 ms
-                </li>
-              </ul>
-              <p className="text-xs text-stone-600 mt-4 leading-relaxed">
-                Note: Results are highly environment-dependent. These represent local comparative measurements, not universal production guarantees.
+            <div className="p-5 rounded-2xl bg-[#0c0a09] border border-stone-800/80 shadow-inner space-y-5">
+              {/* Scenario A: Production-like */}
+              <div>
+                <div className="text-sm font-semibold text-stone-300 mb-2 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-orange-500" />
+                  Scenario A: Nginx + PHP-FPM
+                </div>
+                <ul className="text-sm font-mono text-stone-500 space-y-1.5">
+                  <li className="flex items-center gap-2">
+                    <span className="text-orange-500 font-semibold">FlintPHP:</span>
+                    <span className="text-stone-300">~15,200 req/s</span>
+                    <span className="text-stone-600">(no I/O)</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-orange-500 font-semibold">FlintPHP:</span>
+                    <span className="text-stone-300">~5,500 req/s</span>
+                    <span className="text-stone-600">(single DB query)</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Scenario B: Comparative */}
+              <div className="pt-4 border-t border-stone-800/50">
+                <div className="text-sm font-semibold text-stone-300 mb-2 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-stone-500" />
+                  Scenario B: PHP Built-in Server (Comparative)
+                </div>
+                <ul className="text-sm font-mono text-stone-500 space-y-1.5">
+                  <li>• Concurrency: 50, identical simple plaintext endpoints</li>
+                  <li className="pt-1">
+                    <span className="text-orange-500">FlintPHP:</span> 3,964 req/s · P95 14 ms
+                  </li>
+                  <li>
+                    <span className="text-stone-400">Slim 4:</span> 1,908 req/s · P95 28 ms
+                  </li>
+                  <li>
+                    <span className="text-stone-400">Laravel 11:</span> 307 req/s · P95 187 ms
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-xs text-stone-600 pt-2 border-t border-stone-800/50 leading-relaxed">
+                All results are environment-dependent. Scenario B uses the PHP built-in server for framework-to-framework comparison.
+                Scenario A represents a more production-like stack. Neither guarantees universal production performance.
               </p>
             </div>
           </div>

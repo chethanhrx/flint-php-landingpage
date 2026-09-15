@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { WhatIsFlintPHP } from './components/WhatIsFlintPHP';
 import { FirstThirtySeconds } from './components/FirstThirtySeconds';
+import { BenchmarkSection } from './components/BenchmarkSection';
+import { ComparisonSection } from './components/ComparisonSection';
+import { FaqSection } from './components/FaqSection';
 import { QuickStart } from './components/QuickStart';
 import { NoMagicSection } from './components/NoMagicSection';
 import { ArchitectureVisualization } from './components/ArchitectureVisualization';
@@ -9,7 +13,6 @@ import { RouteMatcherSandbox } from './components/RouteMatcherSandbox';
 import { CapabilitiesSection } from './components/CapabilitiesSection';
 import { CodeExamplesSection } from './components/CodeExamplesSection';
 import { InteractiveTerminal } from './components/InteractiveTerminal';
-import { BenchmarkSection } from './components/BenchmarkSection';
 import { DocumentationView } from './components/DocumentationView';
 import { DocSearchModal } from './components/DocSearchModal';
 import { Footer } from './components/Footer';
@@ -99,34 +102,43 @@ export default function App() {
       {/* Main View Switcher */}
       {currentView === 'home' ? (
         <main className="flex-1">
-          {/* Primary Hero with 3D Flint Rock Asset 1 */}
+          {/* 1. Hero — Clear positioning */}
           <Hero onNavigate={handleNavigate} />
 
-          {/* First 30 Seconds Checklist (9 Essential Questions) */}
+          {/* 2. What is FlintPHP — AEO/GEO optimized definition */}
+          <WhatIsFlintPHP onNavigate={handleNavigate} />
+
+          {/* 3. First 30 Seconds — Quick answers */}
           <FirstThirtySeconds onNavigate={handleNavigate} />
 
-          {/* Head-to-Head Transparent Performance Benchmarks (Authoritative Evidence) */}
+          {/* 4. Benchmarks — Accurate + trustworthy */}
           <BenchmarkSection />
 
-          {/* Quick Start 4-Step Flow & Working API Preview */}
+          {/* 5. Comparison — Laravel vs Slim vs FlintPHP */}
+          <ComparisonSection />
+
+          {/* 6. FAQ — High AEO value */}
+          <FaqSection />
+
+          {/* 7. Quick Start — Getting started */}
           <QuickStart onNavigate={handleNavigate} />
 
-          {/* "No Magic" Core Philosophy & Code Comparison */}
+          {/* 8. Philosophy — No Magic */}
           <NoMagicSection />
 
-          {/* Interactive Architecture Flow (Explicit Composition) */}
+          {/* 9. Architecture — Explicit Composition */}
           <ArchitectureVisualization />
 
-          {/* Route Matcher & Pipeline Dispatcher Sandbox */}
+          {/* 10. Routing — Interactive Sandbox */}
           <RouteMatcherSandbox />
 
-          {/* Core Code Examples (12 Essential PHP Samples) */}
+          {/* 11. Code Examples */}
           <CodeExamplesSection />
 
-          {/* Interactive Flint CLI Terminal (Simulation) */}
+          {/* 12. CLI Terminal */}
           <InteractiveTerminal />
 
-          {/* Structured Framework Capabilities */}
+          {/* 13. Capabilities */}
           <CapabilitiesSection onNavigate={handleNavigate} />
         </main>
       ) : (
