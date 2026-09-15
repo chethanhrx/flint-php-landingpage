@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" fill="none" role="img" aria-label="FlintPHP Official Rock Symbol">
+  <defs>
+    <!-- Lightning & Spark Gradient -->
+    <linearGradient id="flintLightningGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9E2C" />
+      <stop offset="35%" stop-color="#FF6A00" />
+      <stop offset="100%" stop-color="#EA580C" />
+    </linearGradient>
+
+    <!-- Subtle Drop Shadow for High Definition -->
+    <filter id="rockShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.12" />
+    </filter>
+  </defs>
+  
+  <!-- Group of Flint Shards (Color: #0A0A0A / deep obsidian black matching official asset) -->
+  <g id="flint-stone" fill="#0A0A0A" filter="url(#rockShadow)">
+    <!-- Left Facet 1: Top-Left Shard -->
+    <polygon points="494,172 396,346 443,414 494,172" />
+    
+    <!-- Left Facet 2: Mid-Upper-Left Shard -->
+    <polygon points="390,360 376,498 450,568 444,428" />
+    
+    <!-- Left Facet 3: Mid-Lower-Left Shard -->
+    <polygon points="378,512 402,652 463,726 452,582" />
+    
+    <!-- Left Facet 4: Bottom-Left Tip Shard -->
+    <polygon points="405,668 474,822 466,738" />
+    
+    <!-- Right Facet 1: Mid-Right Shard -->
+    <polygon points="586,450 600,488 556,696 504,672 500,642 554,490" />
+    
+    <!-- Right Facet 2: Bottom-Right Tip Shard -->
+    <polygon points="508,686 552,706 488,822 482,780 488,690" />
+  </g>
+
+  <!-- Group of Lightning & Sparks (Color: vivid FlintPHP flame orange) -->
+  <g id="flint-sparks" fill="url(#flintLightningGrad)">
+    <!-- Top Floating Diamond Spark Ember -->
+    <polygon points="560,196 570,228 560,260 550,228" />
+    
+    <!-- Upper-Right Floating Diamond Spark Ember -->
+    <polygon points="606,268 626,292 616,320 596,294" />
+    
+    <!-- Main Lightning Bolt / Fire Core -->
+    <polygon points="602,198 578,348 624,345 494,638 518,465 544,420 514,332" />
+  </g>
+</svg>
