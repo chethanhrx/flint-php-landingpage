@@ -5,7 +5,7 @@ export const BenchmarkSection: React.FC = () => {
   const [showMethodology, setShowMethodology] = useState(false);
   const [copiedCmd, setCopiedCmd] = useState(false);
   
-  const reproduceCmd = 'git clone https://github.com/chethanhrx/flintphp && cd flintphp && php benchmarks/HttpPipelineBench.php';
+  const reproduceCmd = 'php -S localhost:8000 -t public/ & wrk -t4 -c50 -d10s http://localhost:8000/text';
 
   const copyReproduceCmd = () => {
     navigator.clipboard.writeText(reproduceCmd).catch(() => alert('Copy failed — select the code manually.'));

@@ -29,8 +29,8 @@ $app = new Application(dirname(__DIR__));
 
 // Register application routes and middleware
 $app->bootstrapWith([
-    App\\Bootstrappers\\DatabaseBootstrapper::class,
-    App\\Bootstrappers\\RouteBootstrapper::class,
+    new App\\Bootstrappers\\DatabaseBootstrapper(),
+    new App\\Bootstrappers\\RouteBootstrapper(),
 ]);
 
 // Build HTTP request from PHP globals
@@ -42,7 +42,6 @@ $response = $kernel->handle($request);
 
 // Send response headers and body
 $response->send();
-$kernel->terminate($request, $response);
 `,
   },
   {
@@ -76,7 +75,7 @@ $router->get('/api/health', function (Request $request): Response {
     title: 'Dynamic Route',
     category: 'Routing',
     filename: 'routes/api.php',
-    description: 'Typed route parameters with regex constraints and direct handler mapping.',
+    description: 'Typed route parameters resolved directly into the handler via reflection-assisted autowiring.',
     code: `<?php
 
 declare(strict_types=1);
@@ -87,7 +86,7 @@ use FlintPHP\\Framework\\Http\\Request;
 
 /** @var Router $router */
 
-// Route with typed integer ID constraint
+// Route with typed integer ID constraint resolved by Kernel
 $router->get('/api/users/{id}', function (Request $request, int $id): Response {
     return Response::json([
         'user_id' => $id,
@@ -101,7 +100,7 @@ $router->get('/api/users/{id}', function (Request $request, int $id): Response {
     title: 'Controller',
     category: 'Application',
     filename: 'src/Controllers/UserController.php',
-    description: 'Invokable controller with explicit constructor dependency injection and typed request handling.',
+    description: 'Invokable controller with explicit constructor dependency injection.',
     code: `<?php
 
 declare(strict_types=1);
@@ -111,60 +110,61 @@ namespace App\\Controllers;
 use App\\Domain\\UserRepository;
 use FlintPHP\\Framework\\Http\\Response;
 use FlintPHP\\Framework\\Http\\Request;
-use FlintPHP\\Framework\\Http\\Exception\\HttpException;
 
 final class UserController
 {
     public function __construct(
-        private readonly \FlintPHP\Framework\Authentication\AuthenticatorInterface $authenticator
+        private readonly UserRepository $users
     ) {}
 
-    public function process(Request $request, callable $next): Response
+    public function show(Request $request, int $id): Response
     {
-        try {
-            $identity = $this->authenticator->authenticate($request);
-            return $next($request->withAttribute('current_user', $identity));
-        } catch (\FlintPHP\Framework\Authentication\Exception\AuthenticationException $e) {
-            return Response::json(['error' => $e->getMessage()])->withStatus(401);
+        $user = $this->users->find($id);
+
+        if (!$user) {
+            return new Response('Not Found', 404);
         }
+
+        return Response::json(['data' => $user]);
     }
 }
 `,
   },
   {
-    id: 'authorization',
-    title: 'Authorization Policy',
+    id: 'authentication',
+    title: 'Authentication Middleware',
     category: 'Security',
-    filename: 'src/Security/ProjectPolicy.php',
-    description: 'Fine-grained, explicit policy voters checking domain permissions without magic.',
+    filename: 'src/Middleware/AuthMiddleware.php',
+    description: 'Explicit dependency injection of the authenticator, catching strictly typed exceptions.',
     code: `<?php
 
 declare(strict_types=1);
 
-namespace App\\Security;
+namespace App\\Middleware;
 
-use App\\Domain\\User;
-use App\\Domain\\Project;
-use FlintPHP\\Framework\\Authorization\\AuthorizerInterface;
+use FlintPHP\\Framework\\Middleware\\MiddlewareInterface;
+use FlintPHP\\Framework\\Authentication\\AuthenticatorInterface;
+use FlintPHP\\Framework\\Authentication\\Exception\\AuthenticationException;
+use FlintPHP\\Framework\\Http\\Request;
+use FlintPHP\\Framework\\Http\\Response;
 
-final class ProjectPolicy implements PolicyInterface
+final class AuthMiddleware implements MiddlewareInterface
 {
-    public const VIEW = 'project.view';
-    public const EDIT = 'project.edit';
-    public const DELETE = 'project.delete';
+    public function __construct(
+        private readonly AuthenticatorInterface $authenticator
+    ) {}
 
-    public function can(User $user, string $ability, object $subject): bool
+    public function process(Request $request, callable $next): Response
     {
-        if (!$subject instanceof Project) {
-            return false;
+        try {
+            // Explicit boundary: validates bearer token or session
+            $identity = $this->authenticator->authenticate($request);
+            
+            // Pass the identity down the pipeline safely
+            return $next($request->withAttribute('user', $identity));
+        } catch (AuthenticationException $e) {
+            return Response::json(['error' => 'Unauthorized'])->withStatus(401);
         }
-
-        return match ($ability) {
-            self::VIEW => $subject->isPublic || $subject->ownerId === $user->id || $user->hasRole('admin'),
-            self::EDIT => $subject->ownerId === $user->id || $user->hasRole('admin'),
-            self::DELETE => $subject->ownerId === $user->id && !$subject->isArchived,
-            default => false,
-        };
     }
 }
 `,
@@ -190,8 +190,7 @@ final class ArticleController
     {
         $page = (int) $request->query('page', 1);
         $articles = [
-            ['id' => 1, 'title' => 'Building Fast APIs with FlintPHP', 'slug' => 'building-fast-apis'],
-            ['id' => 2, 'title' => 'Why We Avoid Facades and Magic', 'slug' => 'why-no-facades'],
+            ['id' => 1, 'title' => 'Building Fast APIs', 'slug' => 'building-fast-apis'],
         ];
 
         return Response::json([
@@ -199,11 +198,7 @@ final class ArticleController
             'meta' => [
                 'current_page' => $page,
                 'per_page' => 20,
-                'total' => 2,
-            ],
-            'links' => [
-                'self' => '/api/articles?page=' . $page,
-            ],
+            ]
         ], status: 200, headers: [
             'Cache-Control' => 'public, max-age=60',
         ]);

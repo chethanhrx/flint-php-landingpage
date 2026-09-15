@@ -91,7 +91,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
             </div>
             <button
               type="button"
-              onClick={() => onNavigate('docs')}
+              onClick={() => onNavigate('docs', activeGroupData.items[0].docPath.replace('/docs/', ''))}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-xs sm:text-sm font-semibold text-stone-800 border border-stone-200 transition-colors shrink-0 cursor-pointer shadow-xs"
             >
               <span>Explore All in Docs</span>

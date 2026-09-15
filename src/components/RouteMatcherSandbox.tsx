@@ -21,7 +21,7 @@ const REGISTERED_ROUTES: RouteDefinition[] = [
   },
   {
     method: 'GET',
-    pattern: '/api/v1/users/{id:[0-9]+}',
+    pattern: '/api/v1/users/{id}',
     controller: 'App\\Controllers\\Api\\UserController',
     action: 'show',
     middleware: ['CorsMiddleware', 'AuthGuard'],
@@ -29,7 +29,7 @@ const REGISTERED_ROUTES: RouteDefinition[] = [
   },
   {
     method: 'POST',
-    pattern: '/api/v1/users/{id:[0-9]+}/posts',
+    pattern: '/api/v1/users/{id}/posts',
     controller: 'App\\Controllers\\Api\\PostController',
     action: 'store',
     middleware: ['CorsMiddleware', 'AuthGuard', 'CsrfGuard', 'JsonBodyValidator'],

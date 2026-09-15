@@ -310,7 +310,7 @@ use App\\Middleware\\BearerAuthMiddleware;
 /** @var Router $router */
 
 $router->get('/api/v1/posts', [PostController::class, 'index']);
-$router->get('/api/v1/posts/{slug:[a-z0-9-]+}', [PostController::class, 'show']);
+$router->get('/api/v1/posts/{slug}', [PostController::class, 'show']);
 
 // Protected routes requiring Bearer authentication
 $router->post('/api/v1/posts', [PostController::class, 'store'], middleware: [BearerAuthMiddleware::class]);
@@ -336,7 +336,7 @@ $router->delete('/api/v1/posts/{id}', [PostController::class, 'destroy'], middle
                 filename: 'src/Middleware/RateLimitMiddleware.php',
                 code: `namespace App\\Middleware;
 
-use FlintPHP\\Framework\\Http\\MiddlewareInterface;
+use FlintPHP\\Framework\\Middleware\\MiddlewareInterface;
 use FlintPHP\\Framework\\Http\\Response;
 use FlintPHP\\Framework\\Http\\Request;
 use FlintPHP\\Framework\\Cache\\CacheInterface;
@@ -428,7 +428,7 @@ final class PaymentBootstrapper
                 language: 'php',
                 filename: 'Example.php',
                 code: `use FlintPHP\\Framework\\Validation\\Validator;
-use FlintPHP\\Framework\\Validation\\Rule;
+use FlintPHP\\Framework\\Validation\\Rules\\{Required, Email, Max, Integer, Min, In};
 
 $validator = $container->get(Validator::class);
 

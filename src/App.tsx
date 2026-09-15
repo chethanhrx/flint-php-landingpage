@@ -77,7 +77,7 @@ export default function App() {
     setActiveDocSlug(slug);
     setCurrentView('docs');
     setIsSearchOpen(false);
-    window.location.hash = `docs/${slug}`;
+    window.history.pushState({}, '', `/docs/${slug}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
