@@ -123,11 +123,11 @@ export const QuickStart: React.FC<QuickStartProps> = ({ onNavigate }) => {
                 <pre className="text-stone-100">
                   <span className="text-purple-400">&lt;?php</span>{'\n\n'}
                   <span className="text-purple-400">declare</span>(strict_types=1);{'\n\n'}
-                  <span className="text-purple-400">use</span> <span className="text-sky-300">Flint\Routing\Router</span>;{'\n'}
-                  <span className="text-purple-400">use</span> <span className="text-sky-300">Flint\Http\Response</span>;{'\n'}
-                  <span className="text-purple-400">use</span> <span className="text-sky-300">Flint\Http\ServerRequest</span>;{'\n\n'}
+                  <span className="text-purple-400">use</span> <span className="text-sky-300">FlintPHP\Framework\Routing\Router</span>;{'\n'}
+                  <span className="text-purple-400">use</span> <span className="text-sky-300">FlintPHP\Framework\Http\Response</span>;{'\n'}
+                  <span className="text-purple-400">use</span> <span className="text-sky-300">FlintPHP\Framework\Http\Request</span>;{'\n\n'}
                   <span className="text-stone-500">/** @var Router $router */</span>{'\n'}
-                  $router-&gt;<span className="text-emerald-400">get</span>(<span className="text-amber-300">'/api/status'</span>, <span className="text-purple-400">function</span> (<span className="text-sky-300">ServerRequest</span> $request): <span className="text-sky-300">Response</span> &#123;{'\n'}
+                  $router-&gt;<span className="text-emerald-400">get</span>(<span className="text-amber-300">'/api/status'</span>, <span className="text-purple-400">function</span> (<span className="text-sky-300">Request</span> $request): <span className="text-sky-300">Response</span> &#123;{'\n'}
                   {'    '}<span className="text-purple-400">return</span> <span className="text-sky-300">Response</span>::<span className="text-emerald-400">json</span>([
                   {'\n'}
                   {'        '}<span className="text-amber-300">'status'</span> =&gt; <span className="text-amber-300">'operational'</span>,{'\n'}

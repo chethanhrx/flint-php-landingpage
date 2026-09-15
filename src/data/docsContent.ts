@@ -49,7 +49,7 @@ export const DOCS_DATA: DocCategory[] = [
               bulletPoints: [
                 'Predictable & Testable: Every dependency is injected via constructors or request pipelines.',
                 'Zero Facades: No static magic disguising hidden singleton instances.',
-                'Immutable HTTP Primitives: Requests and responses are immutable representations complying with PSR-7 and PSR-15.',
+                'Immutable HTTP Primitives: Requests and responses are immutable representations using explicit architecture.',
                 'Minimal Dependencies: Lean, audited core keeping memory footprint below 1.8MB per request cycle.',
                 'Security-by-Default: Automatic cryptographic defenses, strict MIME validation, and security headers built-in.',
               ],
@@ -72,19 +72,19 @@ export const DOCS_DATA: DocCategory[] = [
         slug: 'installation',
         category: 'Getting Started',
         title: 'Installation & Setup',
-        description: 'Install FlintPHP using the official application skeleton or add the framework package to an existing project.',
+        description: 'Install FlintPHP by adding the framework package to your PHP 8.2+ project.',
         readTime: '3 min read',
         content: {
           lead: 'Getting started with FlintPHP takes less than 30 seconds using Composer.',
           sections: [
             {
-              heading: 'Using the Official Application Skeleton',
-              text: 'The recommended way to start a new FlintPHP application is via the official skeleton repository, which configures the project structure, directory permissions, and initial bootstrappers.',
+              heading: 'Creating a New Project',
+              text: 'To start a new FlintPHP application, initialize a Composer project and require the framework package.',
               codeBlock: {
                 language: 'bash',
                 filename: 'terminal',
                 code: `# Create a new application project
-composer create-project flintphp/skeleton my-app
+composer require flintphp/framework
 
 # Enter your project directory
 cd my-app
@@ -137,13 +137,13 @@ curl http://localhost:8000/api/health`,
 
 declare(strict_types=1);
 
-use Flint\\Routing\\Router;
-use Flint\\Http\\Response;
-use Flint\\Http\\ServerRequest;
+use FlintPHP\\Framework\\Routing\\Router;
+use FlintPHP\\Framework\\Http\\Response;
+use FlintPHP\\Framework\\Http\\Request;
 
 /** @var Router $router */
 
-$router->get('/api/welcome', function (ServerRequest $request): Response {
+$router->get('/api/welcome', function (Request $request): Response {
     $name = $request->getQueryParams()['name'] ?? 'Developer';
 
     return Response::json([
@@ -171,7 +171,7 @@ $router->get('/api/welcome', function (ServerRequest $request): Response {
         slug: 'project-structure',
         category: 'Getting Started',
         title: 'Project Structure',
-        description: 'Tour the files and directories inside the official FlintPHP application skeleton.',
+        description: 'Tour the recommended directory structure for a FlintPHP application.',
         readTime: '4 min read',
         content: {
           lead: 'FlintPHP enforces clean architectural boundaries with an intuitive, modular project layout.',
@@ -188,7 +188,7 @@ $router->get('/api/welcome', function (ServerRequest $request): Response {
                   ['src/Bootstrappers/', 'Lifecycle classes for binding services into the DI container'],
                   ['src/Controllers/', 'HTTP request handlers and controllers'],
                   ['src/Domain/', 'Core business entities and data mappers'],
-                  ['src/Middleware/', 'PSR-15 request/response pipeline middleware'],
+                  ['src/Middleware/', 'Request/response pipeline middleware'],
                   ['storage/', 'Application logs, cache storage, and file uploads'],
                   ['tests/', 'Unit, feature, and integration test suites'],
                 ],
@@ -241,7 +241,7 @@ return [
         description: 'How the Application composition root coordinates the container, bootstrappers, and lifecycle.',
         readTime: '5 min read',
         content: {
-          lead: 'The Flint\\Application instance serves as the composition root of your system.',
+          lead: 'The FlintPHP\\Framework\\Application instance serves as the composition root of your system.',
           sections: [
             {
               heading: 'Lifecycle Phases',
@@ -261,20 +261,20 @@ return [
         slug: 'request-response',
         category: 'Core Architecture',
         title: 'Request & Response Primitives',
-        description: 'Work with immutable, strictly typed HTTP messages adhering to PSR-7 specifications.',
+        description: 'Work with immutable, strictly typed HTTP messages using proprietary immutable representations.',
         readTime: '6 min read',
         content: {
           lead: 'FlintPHP treats HTTP requests and responses as pure, immutable data values.',
           sections: [
             {
-              heading: 'ServerRequest Capabilities',
+              heading: 'Request Capabilities',
               codeBlock: {
                 language: 'php',
                 filename: 'Example.php',
-                code: `use Flint\\Http\\ServerRequest;
-use Flint\\Http\\Response;
+                code: `use FlintPHP\\Framework\\Http\\Request;
+use FlintPHP\\Framework\\Http\\Response;
 
-function handle(ServerRequest $request): Response
+function handle(Request $request): Response
 {
     // Inspect query params, JSON body, headers
     $page = (int) ($request->getQueryParams()['page'] ?? 1);
@@ -297,18 +297,18 @@ function handle(ServerRequest $request): Response
       {
         slug: 'routing',
         category: 'Core Architecture',
-        title: 'Radix Routing Engine',
+        title: 'Fast Routing Engine',
         description: 'High-speed route matching with typed parameters, route groups, and middleware assignment.',
         readTime: '5 min read',
         content: {
-          lead: 'FlintPHP features a compiled radix-tree router designed to match thousands of routes in microseconds.',
+          lead: 'FlintPHP features a fast router designed to match thousands of routes in microseconds.',
           sections: [
             {
               heading: 'Route Definitions & Constraints',
               codeBlock: {
                 language: 'php',
                 filename: 'routes/api.php',
-                code: `use Flint\\Routing\\Router;
+                code: `use FlintPHP\\Framework\\Routing\\Router;
 use App\\Controllers\\PostController;
 use App\\Middleware\\BearerAuthMiddleware;
 
@@ -333,11 +333,11 @@ $router->group('/api/v1', function (Router $api) {
       {
         slug: 'middleware',
         category: 'Core Architecture',
-        title: 'PSR-15 Middleware Pipeline',
+        title: 'Middleware Pipeline',
         description: 'Compose request-processing layers with onion-architecture predictability.',
         readTime: '4 min read',
         content: {
-          lead: 'Middleware in FlintPHP follows the standard PSR-15 specification without magic shortcuts.',
+          lead: 'Middleware in FlintPHP follows a standard onion-skin architecture without magic shortcuts.',
           sections: [
             {
               heading: 'Creating Custom Middleware',
@@ -346,12 +346,12 @@ $router->group('/api/v1', function (Router $api) {
                 filename: 'src/Middleware/RateLimitMiddleware.php',
                 code: `namespace App\\Middleware;
 
-use Flint\\Http\\MiddlewareInterface;
-use Flint\\Http\\RequestHandlerInterface;
-use Flint\\Http\\Response;
-use Flint\\Http\\ServerRequest;
-use Flint\\Cache\\CacheInterface;
-use Flint\\Exceptions\\TooManyRequestsException;
+use FlintPHP\\Framework\\Http\\MiddlewareInterface;
+use FlintPHP\\Framework\\Http\\RequestHandlerInterface;
+use FlintPHP\\Framework\\Http\\Response;
+use FlintPHP\\Framework\\Http\\Request;
+use FlintPHP\\Framework\\Cache\\CacheInterface;
+use FlintPHP\\Framework\\Exceptions\\TooManyRequestsException;
 
 final class RateLimitMiddleware implements MiddlewareInterface
 {
@@ -361,7 +361,7 @@ final class RateLimitMiddleware implements MiddlewareInterface
         private readonly int $decaySeconds = 60,
     ) {}
 
-    public function process(ServerRequest $request, RequestHandlerInterface $handler): Response
+    public function process(Request $request, RequestHandlerInterface $handler): Response
     {
         $ip = $request->getServerParams()['REMOTE_ADDR'] ?? '127.0.0.1';
         $key = 'rate_limit:' . $ip;
@@ -396,7 +396,7 @@ final class RateLimitMiddleware implements MiddlewareInterface
               codeBlock: {
                 language: 'php',
                 filename: 'src/Bootstrappers/PaymentBootstrapper.php',
-                code: `use Flint\\Container\\Container;
+                code: `use FlintPHP\\Framework\\Container\\Container;
 use App\\Services\\PaymentGateway;
 use App\\Services\\StripeGateway;
 
@@ -438,8 +438,8 @@ final class PaymentBootstrapper
               codeBlock: {
                 language: 'php',
                 filename: 'Example.php',
-                code: `use Flint\\Validation\\Validator;
-use Flint\\Validation\\Rule;
+                code: `use FlintPHP\\Framework\\Validation\\Validator;
+use FlintPHP\\Framework\\Validation\\Rule;
 
 $validator = $container->get(Validator::class);
 
@@ -471,7 +471,7 @@ if ($result->fails()) {
               codeBlock: {
                 language: 'php',
                 filename: 'TransferService.php',
-                code: `use Flint\\Database\\Connection;
+                code: `use FlintPHP\\Framework\\Database\\ConnectionInterface;
 
 final class TransferService
 {
@@ -506,7 +506,7 @@ final class TransferService
           lead: 'Unlike Active Record frameworks, FlintPHP separates domain models from database queries.',
           sections: [
             {
-              heading: 'Entity & DataMapper Pattern',
+              heading: 'Entity & OrmManager Pattern',
               codeBlock: {
                 language: 'php',
                 filename: 'src/Domain/Order.php',
@@ -553,7 +553,7 @@ final class Order
               codeBlock: {
                 language: 'php',
                 filename: 'src/Security/Hasher.php',
-                code: `use Flint\\Security\\PasswordHasher;
+                code: `use FlintPHP\\Framework\\Security\\PasswordHasher;
 
 $hasher = new PasswordHasher(algo: PASSWORD_ARGON2ID, options: [
     'memory_cost' => 65536,
@@ -575,7 +575,7 @@ $valid = $hasher->verify('super-secret-password', $hash);`,
         description: 'Automatic CSP, HSTS, X-Content-Type-Options, and Clickjacking mitigation.',
         readTime: '4 min read',
         content: {
-          lead: 'FlintPHP includes configurable security header middleware enabled by default in skeleton projects.',
+          lead: 'FlintPHP includes configurable security header middleware that you can attach to your request pipeline.',
           sections: [
             {
               heading: 'Headers Enforced',
@@ -600,7 +600,7 @@ $valid = $hasher->verify('super-secret-password', $hash);`,
         slug: 'cache',
         category: 'Infrastructure',
         title: 'Caching Subsystem',
-        description: 'PSR-16 and PSR-6 compliant cache drivers supporting Redis, Memcached, and in-memory stores.',
+        description: 'In-memory array and file cache drivers.',
         readTime: '4 min read',
         content: {
           lead: 'Fast multi-driver caching with atomic increments, tags, and TTL support.',
@@ -610,7 +610,7 @@ $valid = $hasher->verify('super-secret-password', $hash);`,
               codeBlock: {
                 language: 'php',
                 filename: 'CacheExample.php',
-                code: `use Flint\\Cache\\CacheInterface;
+                code: `use FlintPHP\\Framework\\Cache\\CacheInterface;
 
 $cache = $container->get(CacheInterface::class);
 
@@ -639,8 +639,8 @@ $stats = $cache->remember('dashboard:metrics', ttl: 300, callback: function () u
                 filename: 'src/Jobs/SendWelcomeEmailJob.php',
                 code: `namespace App\\Jobs;
 
-use Flint\\Queue\\JobInterface;
-use Flint\\Mail\\MailerInterface;
+use FlintPHP\\Framework\\Queue\\JobInterface;
+use FlintPHP\\Framework\\Mail\\MailerInterface;
 
 final class SendWelcomeEmailJob implements JobInterface
 {
@@ -677,8 +677,8 @@ final class SendWelcomeEmailJob implements JobInterface
               codeBlock: {
                 language: 'php',
                 filename: 'src/WebSockets/ChatHandler.php',
-                code: `use Flint\\WebSockets\\WebSocketHandlerInterface;
-use Flint\\WebSockets\\Connection;
+                code: `use FlintPHP\\Framework\\WebSockets\\WebSocketHandlerInterface;
+use FlintPHP\\Framework\\WebSockets\\Connection;
 
 final class ChatHandler implements WebSocketHandlerInterface
 {
@@ -750,7 +750,7 @@ final class ChatHandler implements WebSocketHandlerInterface
                 code: `namespace Tests\\Feature;
 
 use PHPUnit\\Framework\\TestCase;
-use Flint\\Testing\\TestClient;
+use FlintPHP\\Framework\\Testing\\TestClient;
 
 final class HealthTest extends TestCase
 {
@@ -791,9 +791,9 @@ final class HealthTest extends TestCase
             {
               heading: 'v1.0.0 — Initial Stable Release',
               bulletPoints: [
-                'Production-ready release of flintphp/framework and flintphp/skeleton.',
-                'PSR-7, PSR-11, PSR-14, PSR-15, PSR-16 compliance.',
-                'Compiled Radix-tree router with typed parameter constraints.',
+                'Production-ready release of flintphp/framework.',
+                'PSR-11 Container compliance.',
+                'Fast router with typed parameter constraints.',
                 'Explicit Data Mapper ORM and transactional PDO layer.',
                 'Argon2id password hashing and security header enforcement.',
                 'CLI test runner and OpenAPI 3.1 generator.',

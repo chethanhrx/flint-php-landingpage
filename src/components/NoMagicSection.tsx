@@ -21,7 +21,7 @@ class UserAnalytics
 }`,
       magicCaveat: 'Hidden dependencies, tight coupling, impossible to reason about without IDE plugins.',
       flintTitle: 'FlintPHP (Explicit Dependency Injection)',
-      flintCode: `use Flint\\Cache\\CacheInterface;
+      flintCode: `use FlintPHP\\Framework\\Cache\\CacheInterface;
 
 final class UserAnalytics
 {
@@ -32,7 +32,7 @@ final class UserAnalytics
 
     public function getMetrics(): array
     {
-        // 100% testable by passing any PSR-16 cache implementation
+        // 100% testable by passing any Cache implementation
         return $this->cache->get('metrics', []);
     }
 }`,
@@ -48,11 +48,11 @@ $userId = request()->input('user_id');
 app()->instance('tenant_id', 42);`,
       magicCaveat: 'Global state leaks memory in Swoole, RoadRunner, FrankenPHP, and worker loops.',
       flintTitle: 'FlintPHP (Immutable HTTP Foundations)',
-      flintCode: `use Flint\\Http\\ServerRequest;
-use Flint\\Http\\Response;
+      flintCode: `use FlintPHP\\Framework\\Http\\Request;
+use FlintPHP\\Framework\\Http\\Response;
 
 // Request is pure immutable value passed directly to handler
-public function handle(ServerRequest $request): Response
+public function handle(Request $request): Response
 {
     $userId = (int) $request->getParsedBody()['user_id'];
     

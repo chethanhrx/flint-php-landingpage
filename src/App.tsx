@@ -101,13 +101,13 @@ export default function App() {
           {/* Interactive Architecture Flow (Explicit Composition) */}
           <ArchitectureVisualization />
 
-          {/* Radix Tree Route Matcher & Pipeline Dispatcher Sandbox */}
+          {/* Route Matcher & Pipeline Dispatcher Sandbox */}
           <RouteMatcherSandbox />
 
-          {/* Real Code Examples (12 Essential PHP Samples) */}
+          {/* Core Code Examples (12 Essential PHP Samples) */}
           <CodeExamplesSection />
 
-          {/* Live Interactive Flint CLI Terminal */}
+          {/* Interactive Flint CLI Terminal (Simulation) */}
           <InteractiveTerminal />
 
           {/* Structured Framework Capabilities */}

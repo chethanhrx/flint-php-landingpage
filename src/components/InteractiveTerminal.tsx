@@ -60,7 +60,7 @@ export const InteractiveTerminal: React.FC = () => {
           'Usage: php flint <command> [options] [arguments]',
           '',
           'Available Commands:',
-          '  \x1b[32mroute:list\x1b[0m           List all registered Radix-tree routes and middleware stacks',
+          '  \x1b[32mroute:list\x1b[0m           List all registered routes and middleware stacks',
           '  \x1b[32mmake:controller\x1b[0m      Generate a strictly-typed PSR-15 HTTP controller',
           '  \x1b[32mmake:migration\x1b[0m       Generate a deterministic SQL migration file',
           '  \x1b[32mdb:migrate\x1b[0m            Run pending schema migrations against PDO connection',
@@ -75,13 +75,13 @@ export const InteractiveTerminal: React.FC = () => {
           '\x1b[38;5;208mFlintPHP Framework Console\x1b[0m v1.0.0',
           '',
           '\x1b[33mRouting & HTTP:\x1b[0m',
-          '  \x1b[32mroute:list\x1b[0m             Inspect Radix tree path table and assigned middleware',
-          '  \x1b[32mroute:cache\x1b[0m            Compile Radix tree into static PHP array for O(1) boot',
+          '  \x1b[32mroute:list\x1b[0m             Inspect route table and assigned middleware',
+          '  \x1b[32mroute:cache\x1b[0m            Cache routes into static PHP array for O(1) boot',
           '',
           '\x1b[33mCode Generators:\x1b[0m',
           '  \x1b[32mmake:controller\x1b[0m        Create a new PSR-15 RequestHandlerInterface controller',
           '  \x1b[32mmake:middleware\x1b[0m        Create an explicit PSR-15 MiddlewareInterface',
-          '  \x1b[32mmake:entity\x1b[0m            Create a DataMapper entity with typed readonly properties',
+          '  \x1b[32mmake:entity\x1b[0m            Create a OrmManager entity with typed readonly properties',
           '  \x1b[32mmake:repository\x1b[0m        Create a typed repository with PDO prepared statements',
           '',
           '\x1b[33mDatabase:\x1b[0m',
@@ -108,7 +108,7 @@ export const InteractiveTerminal: React.FC = () => {
           '| \x1b[31mDELETE\x1b[0m | /api/v1/users/{id:[0-9]+}     | App\\Controllers\\UserController@del| [Cors, AuthGuard, CsrfCheck]   |',
           '| \x1b[33mPOST\x1b[0m   | /api/v1/auth/login            | App\\Controllers\\AuthController@lgn| [Cors, RateLimit:5/min]        |',
           '+--------+-------------------------------+-----------------------------------+--------------------------------+',
-          'Total registered routes: \x1b[32m7 routes\x1b[0m (Radix tree compiled in \x1b[36m0.014ms\x1b[0m)',
+          'Total registered routes: \x1b[32m7 routes\x1b[0m (Routes cached in \x1b[36m0.014ms\x1b[0m)',
         ];
         break;
 
@@ -158,10 +158,10 @@ export const InteractiveTerminal: React.FC = () => {
           '\x1b[38;5;208mFlintPHP Verified Performance Benchmark Suite\x1b[0m',
           'Platform: AMD EPYC 7763 16-Core | Linux 6.8 | PHP 8.3.8 OPcache=1 JIT=1205',
           '----------------------------------------------------------------------',
-          '1. Raw HTTP Dispatch (No-I/O Radix Match + PSR-7 Response):',
+          '1. Raw HTTP Dispatch (No-I/O Route Match + PSR-7 Response):',
           '   Throughput: \x1b[32m15,240 req/sec\x1b[0m | Avg: \x1b[36m0.065 ms\x1b[0m | P99: \x1b[36m0.120 ms\x1b[0m (10.0× vs Laravel)',
           '',
-          '2. Single DB Query (Prepared PDO + Typed DataMapper Hydration):',
+          '2. Single DB Query (Prepared PDO + Typed OrmManager Hydration):',
           '   Throughput: \x1b[32m5,540 req/sec\x1b[0m  | Avg: \x1b[36m0.180 ms\x1b[0m | P99: \x1b[36m0.350 ms\x1b[0m (5.6× vs Symfony)',
           '',
           '3. Production REST API (8 Middlewares: CORS, HMAC, JWT, RateLimit):',
@@ -252,7 +252,7 @@ export const InteractiveTerminal: React.FC = () => {
             Try the Flint Console right now.
           </h2>
           <p className="mt-3 text-stone-600 text-sm sm:text-base leading-relaxed">
-            Flint ships with a lightning-fast CLI tool with zero external baggage. Test commands, inspect route tables, and run live micro-benchmarks directly in your browser.
+            Flint ships with a lightning-fast CLI tool with zero external baggage. Test commands, inspect route tables, and run simulated micro-benchmarks in this interactive example.
           </p>
         </div>
 

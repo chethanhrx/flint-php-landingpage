@@ -98,13 +98,13 @@ export const RouteMatcherSandbox: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-xs font-mono text-stone-700 font-semibold mb-3 shadow-xs">
             <Network className="w-3.5 h-3.5 text-orange-600" />
-            <span>RADIX TREE ROUTING ENGINE</span>
+            <span>ROUTING ENGINE</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
-            Zero-regex Radix tree dispatching.
+            O(1) hash-map dispatching for static routes.
           </h2>
           <p className="mt-3 text-stone-600 text-sm sm:text-base leading-relaxed">
-            FlintPHP compiles routes into a prefix-compressed radix tree that resolves incoming URIs in constant O(k) time. Test the live matcher below.
+            FlintPHP resolves static incoming URIs in constant O(1) time using a hash-map, with sequential dynamic regex fallback. Test the interactive example below.
           </p>
         </div>
 
@@ -202,7 +202,7 @@ export const RouteMatcherSandbox: React.FC = () => {
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span>ROUTE MATCHED IN {match.timeMs}ms</span>
                   <span className="text-emerald-500">•</span>
-                  <span>Radix O(k) Depth: 4 Nodes</span>
+                  <span>Match Strategy: Regex</span>
                 </div>
                 <div className="text-emerald-700">
                   Status: <span className="font-bold">200 OK</span> (PSR-7 Response)
@@ -264,7 +264,7 @@ export const RouteMatcherSandbox: React.FC = () => {
                     ))}
                     <div className="flex items-center gap-2 p-2 rounded-lg bg-orange-600/10 border border-orange-600/20 text-orange-600 font-semibold">
                       <CornerDownRight className="w-3.5 h-3.5" />
-                      <span>{match.route.action}() Handler executed</span>
+                      <span>{match.route.action}() Handler resolved</span>
                     </div>
                   </div>
                 </div>

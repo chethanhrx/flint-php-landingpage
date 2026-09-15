@@ -18,9 +18,9 @@ export const CODE_EXAMPLES: CodeExample[] = [
 
 declare(strict_types=1);
 
-use Flint\\Application;
-use Flint\\Http\\Kernel;
-use Flint\\Http\\ServerRequest;
+use FlintPHP\\Framework\\Application;
+use FlintPHP\\Framework\\Http\\Kernel;
+use FlintPHP\\Framework\\Http\\Request;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -34,7 +34,7 @@ $app->bootstrapWith([
 ]);
 
 // Build HTTP request from PHP globals
-$request = ServerRequest::fromGlobals();
+$request = Request::fromGlobals();
 
 // Process through explicit HTTP Kernel
 $kernel = $app->getContainer()->get(Kernel::class);
@@ -55,13 +55,13 @@ $kernel->terminate($request, $response);
 
 declare(strict_types=1);
 
-use Flint\\Routing\\Router;
-use Flint\\Http\\Response;
-use Flint\\Http\\ServerRequest;
+use FlintPHP\\Framework\\Routing\\Router;
+use FlintPHP\\Framework\\Http\\Response;
+use FlintPHP\\Framework\\Http\\Request;
 
 /** @var Router $router */
 
-$router->get('/api/health', function (ServerRequest $request): Response {
+$router->get('/api/health', function (Request $request): Response {
     return Response::json([
         'status' => 'healthy',
         'framework' => 'FlintPHP',
@@ -81,14 +81,14 @@ $router->get('/api/health', function (ServerRequest $request): Response {
 
 declare(strict_types=1);
 
-use Flint\\Routing\\Router;
-use Flint\\Http\\Response;
-use Flint\\Http\\ServerRequest;
+use FlintPHP\\Framework\\Routing\\Router;
+use FlintPHP\\Framework\\Http\\Response;
+use FlintPHP\\Framework\\Http\\Request;
 
 /** @var Router $router */
 
 // Route with typed integer ID constraint
-$router->get('/api/users/{id:int}', function (ServerRequest $request, int $id): Response {
+$router->get('/api/users/{id:int}', function (Request $request, int $id): Response {
     return Response::json([
         'user_id' => $id,
         'requested_at' => (new DateTimeImmutable())->format(DATE_ATOM),
@@ -109,9 +109,9 @@ declare(strict_types=1);
 namespace App\\Controllers;
 
 use App\\Domain\\UserRepository;
-use Flint\\Http\\Response;
-use Flint\\Http\\ServerRequest;
-use Flint\\Exceptions\\NotFoundException;
+use FlintPHP\\Framework\\Http\\Response;
+use FlintPHP\\Framework\\Http\\Request;
+use FlintPHP\\Framework\\Http\\Exception\\HttpException;
 
 final class UserController
 {
@@ -119,7 +119,7 @@ final class UserController
         private readonly UserRepository $users,
     ) {}
 
-    public function show(ServerRequest $request, int $id): Response
+    public function show(Request $request, int $id): Response
     {
         $user = $this->users->findById($id);
 
@@ -151,14 +151,14 @@ declare(strict_types=1);
 
 namespace App\\Middleware;
 
-use Flint\\Http\\MiddlewareInterface;
-use Flint\\Http\\RequestHandlerInterface;
-use Flint\\Http\\Response;
-use Flint\\Http\\ServerRequest;
+use FlintPHP\\Framework\\Http\\MiddlewareInterface;
+use FlintPHP\\Framework\\Http\\RequestHandlerInterface;
+use FlintPHP\\Framework\\Http\\Response;
+use FlintPHP\\Framework\\Http\\Request;
 
 final class TimingMiddleware implements MiddlewareInterface
 {
-    public function process(ServerRequest $request, RequestHandlerInterface $handler): Response
+    public function process(Request $request, RequestHandlerInterface $handler): Response
     {
         $startTime = microtime(true);
 
@@ -190,9 +190,9 @@ namespace App\\Bootstrappers;
 
 use App\\Domain\\UserRepository;
 use App\\Infrastructure\\SqlUserRepository;
-use Flint\\Container\\Container;
-use Flint\\Database\\Connection;
-use Flint\\Config\\Repository as Config;
+use FlintPHP\\Framework\\Container\\Container;
+use FlintPHP\\Framework\\Database\\ConnectionInterface;
+use FlintPHP\\Framework\\Config\\ConfigRepository as Config;
 
 final class DatabaseBootstrapper
 {
@@ -231,8 +231,8 @@ declare(strict_types=1);
 
 namespace App\\Requests;
 
-use Flint\\Validation\\Validator;
-use Flint\\Validation\\Rule;
+use FlintPHP\\Framework\\Validation\\Validator;
+use FlintPHP\\Framework\\Validation\\Rule;
 
 final class CreateUserRequest
 {
@@ -273,7 +273,7 @@ namespace App\\Infrastructure;
 
 use App\\Domain\\User;
 use App\\Domain\\UserRepository;
-use Flint\\Database\\Connection;
+use FlintPHP\\Framework\\Database\\ConnectionInterface;
 
 final class SqlUserRepository implements UserRepository
 {
@@ -318,10 +318,10 @@ declare(strict_types=1);
 
 namespace App\\Domain;
 
-use Flint\\ORM\\DataMapper;
-use Flint\\ORM\\EntitySet;
+use FlintPHP\\Framework\\Orm\\OrmManager;
+use FlintPHP\\Framework\\Orm\\Model;
 
-final class UserMapper extends DataMapper
+final class UserMapper extends OrmManager
 {
     protected string $table = 'users';
     protected string $primaryKey = 'id';
@@ -353,12 +353,12 @@ declare(strict_types=1);
 
 namespace App\\Middleware;
 
-use Flint\\Http\\MiddlewareInterface;
-use Flint\\Http\\RequestHandlerInterface;
-use Flint\\Http\\Response;
-use Flint\\Http\\ServerRequest;
-use Flint\\Security\\TokenManager;
-use Flint\\Exceptions\\UnauthorizedException;
+use FlintPHP\\Framework\\Http\\MiddlewareInterface;
+use FlintPHP\\Framework\\Http\\RequestHandlerInterface;
+use FlintPHP\\Framework\\Http\\Response;
+use FlintPHP\\Framework\\Http\\Request;
+use FlintPHP\\Framework\\Authentication\\BearerTokenAuthenticator;
+use FlintPHP\\Framework\\Authentication\\Exception\\AuthenticationException;
 
 final class BearerAuthMiddleware implements MiddlewareInterface
 {
@@ -366,7 +366,7 @@ final class BearerAuthMiddleware implements MiddlewareInterface
         private readonly TokenManager $tokens,
     ) {}
 
-    public function process(ServerRequest $request, RequestHandlerInterface $handler): Response
+    public function process(Request $request, RequestHandlerInterface $handler): Response
     {
         $header = $request->getHeaderLine('Authorization');
         if (!preg_match('/^Bearer\\s+(.*)$/i', $header, $matches)) {
@@ -402,7 +402,7 @@ namespace App\\Security;
 
 use App\\Domain\\User;
 use App\\Domain\\Project;
-use Flint\\Security\\PolicyInterface;
+use FlintPHP\\Framework\\Authorization\\AuthorizerInterface;
 
 final class ProjectPolicy implements PolicyInterface
 {
@@ -438,12 +438,12 @@ declare(strict_types=1);
 
 namespace App\\Controllers;
 
-use Flint\\Http\\Response;
-use Flint\\Http\\ServerRequest;
+use FlintPHP\\Framework\\Http\\Response;
+use FlintPHP\\Framework\\Http\\Request;
 
 final class ArticleController
 {
-    public function index(ServerRequest $request): Response
+    public function index(Request $request): Response
     {
         $page = (int) ($request->getQueryParams()['page'] ?? 1);
         $articles = [

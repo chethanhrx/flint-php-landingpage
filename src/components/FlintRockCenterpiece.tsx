@@ -14,10 +14,10 @@ interface SubsystemInfo {
 const SUBSYSTEMS: SubsystemInfo[] = [
   {
     id: 'router',
-    name: 'Radix Router',
+    name: 'Router',
     label: 'Router',
     badge: '0.065ms Dispatch',
-    highlight: 'Pre-compiled Radix tree route resolution with zero runtime regular expression scans.',
+    highlight: 'Static hash-map route resolution with optimized sequential regex fallback.',
     spec: 'Constant-time path traversal with typed parameter coercion directly in the dispatch loop.',
     codeSnippet: `$router->get('/v1/metrics/{id:\\d+}', [MetricsController::class, 'show'])
     ->middleware(AuthGuardMiddleware::class);`,
@@ -29,7 +29,7 @@ const SUBSYSTEMS: SubsystemInfo[] = [
     badge: 'Zero Magic',
     highlight: 'Pure immutable request/response pipeline. No global state bleed in FrankenPHP or RoadRunner.',
     spec: 'Full compliance with PSR-7 and PSR-15 standards. Compatible with any PSR-compliant package.',
-    codeSnippet: `public function process(ServerRequest $request, RequestHandler $handler): Response
+    codeSnippet: `public function process(Request $request, RequestHandler $handler): Response
 {
     $token = $request->getHeaderLine('X-API-Key');
     return $handler->handle($request->withAttribute('auth', $token));
@@ -119,7 +119,7 @@ export const FlintRockCenterpiece: React.FC = () => {
               ZERO-REFLECTION DISPATCH ENGINE
             </span>
             <p className="text-[11px] text-stone-500 max-w-xs mx-auto mt-0.5">
-              Radix path routing • Immutable PSR-7 • Strict constructor injection
+              Fast path routing • Immutable PSR-7 • Strict constructor injection
             </p>
           </div>
         </div>

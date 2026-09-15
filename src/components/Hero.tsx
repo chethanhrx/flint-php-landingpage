@@ -20,7 +20,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const [copied, setCopied] = useState(false);
-  const installCmd = 'composer create-project flintphp/skeleton my-app';
+  const installCmd = 'composer require flintphp/framework';
 
   const handleCopy = () => {
     navigator.clipboard.writeText(installCmd).catch(console.error);
@@ -82,7 +82,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             {/* Value Proposition Description */}
             <p className="text-base sm:text-lg text-stone-600 max-w-2xl leading-relaxed mb-6">
               A modern PHP framework engineered for microsecond APIs and explicit architectures.
-              Built on immutable PSR-7/15 foundations, strict dependency injection, and benchmarked at{' '}
+              Built on immutable immutable HTTP foundations, strict dependency injection, and benchmarked at{' '}
               <span className="font-semibold text-stone-900">~15,200 req/s</span> with a lean{' '}
               <span className="font-semibold text-stone-900">1.4 MB memory footprint</span> — up to{' '}
               <span className="font-semibold text-orange-600">10× faster</span> than legacy full-stack frameworks.
@@ -92,7 +92,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <div className="w-full max-w-xl mb-7">
               <div className="flex items-center justify-between text-xs font-mono text-stone-500 mb-1.5 px-1">
                 <span className="font-semibold text-stone-700">QUICK INSTALL</span>
-                <span className="text-stone-400">composer create-project</span>
+                <span className="text-stone-400">composer require</span>
               </div>
               <div className="relative flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-white border border-stone-200 hover:border-stone-300 transition-all font-mono text-sm shadow-xs group">
                 <div className="flex items-center gap-2.5 overflow-x-auto py-0.5 text-stone-900">

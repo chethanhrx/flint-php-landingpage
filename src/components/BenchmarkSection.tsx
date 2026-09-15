@@ -49,8 +49,8 @@ const SCENARIOS: BenchmarkScenario[] = [
     shortLabel: 'No-I/O (15.2k req/s)',
     badge: '10× vs Laravel',
     description:
-      'Direct Radix tree route resolution, zero reflection dispatch, and immutable PSR-7 response emission. Measures pure framework kernel overhead.',
-    pipeline: 'Kernel Boot → Radix Match → 1 Middleware → JSON Response',
+      'Direct static route resolution, zero reflection dispatch, and immutable PSR-7 response emission. Measures pure framework kernel overhead.',
+    pipeline: 'Kernel Boot → Route Match → 1 Middleware → JSON Response',
     maxRps: 18000,
     metrics: [
       {
@@ -61,7 +61,7 @@ const SCENARIOS: BenchmarkScenario[] = [
         avgLatencyMs: 0.065,
         p99LatencyMs: 0.120,
         memoryMb: 1.4,
-        architecture: 'Compiled Radix Tree • No Facades • Strict DI',
+        architecture: 'Hash-Map & Regex Router • No Facades • Strict DI',
         isFlint: true,
       },
       {
@@ -103,7 +103,7 @@ const SCENARIOS: BenchmarkScenario[] = [
     badge: '5.6× vs Symfony',
     description:
       'Realistic database API endpoint. Incoming request executes a prepared PDO SELECT query by primary key, hydrating into a typed entity.',
-    pipeline: 'Radix Match → PDO Prepared Query → Typed Hydration → JSON',
+    pipeline: 'Route Match → PDO Prepared Query → Typed Hydration → JSON',
     maxRps: 7000,
     metrics: [
       {
@@ -114,7 +114,7 @@ const SCENARIOS: BenchmarkScenario[] = [
         avgLatencyMs: 0.180,
         p99LatencyMs: 0.350,
         memoryMb: 2.1,
-        architecture: 'DataMapper • Native PDO Prepared • Zero Magic',
+        architecture: 'OrmManager • Native PDO Prepared • Zero Magic',
         isFlint: true,
       },
       {
@@ -291,7 +291,7 @@ export const BenchmarkSection: React.FC = () => {
               <span className="text-base font-mono font-bold text-orange-600">req/s</span>
             </div>
             <p className="mt-2 text-xs text-stone-400 leading-relaxed">
-              No-I/O dispatch over Radix tree. 0.065ms avg latency across 100 concurrent workers.
+              Measures pure framework kernel overhead including static and dynamic routes.
             </p>
           </div>
 
@@ -310,7 +310,7 @@ export const BenchmarkSection: React.FC = () => {
               <span className="text-base font-mono font-bold text-amber-400">req/s</span>
             </div>
             <p className="mt-2 text-xs text-stone-400 leading-relaxed">
-              Native PDO prepared statements + zero-reflection DataMapper typed entity hydration.
+              Native PDO prepared statements + zero-reflection OrmManager typed entity hydration.
             </p>
           </div>
 
@@ -399,7 +399,7 @@ export const BenchmarkSection: React.FC = () => {
                     : 'text-stone-400 hover:text-stone-200'
                 }`}
               >
-                Throughput (req/s)
+                Pipeline (req/s)
               </button>
               <button
                 type="button"
@@ -633,7 +633,7 @@ export const BenchmarkSection: React.FC = () => {
                 </div>
                 <div className="text-stone-300 text-xs leading-relaxed space-y-1">
                   <div>✓ Zero runtime reflection</div>
-                  <div>✓ Pre-compiled Radix route tree</div>
+                  <div>✓ Hash-map static routes</div>
                   <div>✓ Pure immutable PSR-7 requests</div>
                   <div>✓ Zero static facades / globals</div>
                 </div>

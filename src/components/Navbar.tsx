@@ -192,14 +192,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => handleNavClick('home', 'routing')}
             className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
           >
-            Radix Router Sandbox
+            Router Sandbox
           </button>
           <button
             type="button"
             onClick={() => handleNavClick('home', 'terminal')}
             className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
           >
-            Interactive CLI Terminal
+            Interactive CLI Terminal (Simulation)
           </button>
           <button
             type="button"

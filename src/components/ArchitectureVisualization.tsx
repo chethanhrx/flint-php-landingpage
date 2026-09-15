@@ -36,7 +36,7 @@ export const ArchitectureVisualization: React.FC = () => {
       icon: Settings,
       summary: 'Reads typed configuration files into an immutable repository; validates environment variables.',
       input: '.env files and config/*.php arrays',
-      output: 'Flint\\Config\\Repository (Read-Only)',
+      output: 'FlintPHP\\Framework\\Config\\ConfigRepository (Read-Only)',
       codeSnippet: `return [\n    'db' => env('DB_DSN', 'pgsql:host=localhost;dbname=flint'),\n    'security' => ['hashing_cost' => 12],\n];`,
       detail: 'Configuration values are read once and frozen. Changing configuration at runtime is strictly disallowed.',
     },
@@ -54,9 +54,9 @@ export const ArchitectureVisualization: React.FC = () => {
     {
       id: 3,
       name: 'Router',
-      subtitle: 'Radix-Tree Engine',
+      subtitle: 'Hash-Map Engine',
       icon: Share2,
-      summary: 'Matches incoming HTTP method and URI path against compiled radix trees with microsecond latency.',
+      summary: 'Matches incoming HTTP method and URI path against compiled hash-maps and regex patterns with microsecond latency.',
       input: 'HTTP Method (GET/POST/PUT) + URI Path',
       output: 'RouteMatch (Handler + Parameters + Route Middlewares)',
       codeSnippet: `$router->get('/api/users/{id:int}', [UserController::class, 'show'])\n       ->middleware([RateLimitMiddleware::class]);`,
@@ -68,9 +68,9 @@ export const ArchitectureVisualization: React.FC = () => {
       subtitle: 'PSR-15 Onion Pipeline',
       icon: Filter,
       summary: 'Processes incoming request through layers: Security Headers, CORS, Rate Limiting, Authentication.',
-      input: 'ServerRequestInterface',
+      input: 'Request',
       output: 'Processed Request or Early Response',
-      codeSnippet: `public function process(ServerRequest $req, RequestHandlerInterface $handler): Response {\n    // pre-processing\n    $res = $handler->handle($req);\n    // post-processing\n    return $res->withHeader('X-Security', 'Enforced');\n}`,
+      codeSnippet: `public function process(Request $req, RequestHandlerInterface $handler): Response {\n    // pre-processing\n    $res = $handler->handle($req);\n    // post-processing\n    return $res->withHeader('X-Security', 'Enforced');\n}`,
       detail: 'Standard onion architecture: each middleware can inspect the request, pass it deeper, or terminate early.',
     },
     {
@@ -79,7 +79,7 @@ export const ArchitectureVisualization: React.FC = () => {
       subtitle: 'Request Lifecycle Coordinator',
       icon: Cpu,
       summary: 'Dispatches request to matched controller, wraps execution in exception handlers, and emits RFC 7807 on errors.',
-      input: 'ServerRequest + Pipeline',
+      input: 'Request + Pipeline',
       output: 'PSR-7 Response',
       codeSnippet: `$kernel = $app->getContainer()->get(Kernel::class);\n$response = $kernel->handle($request);\n$response->send();`,
       detail: 'Handles uncaught exceptions uniformly, converts errors to structured JSON, and coordinates clean termination.',
@@ -90,9 +90,9 @@ export const ArchitectureVisualization: React.FC = () => {
       subtitle: 'Domain Action Handler',
       icon: Terminal,
       summary: 'Pure PHP class receiving injected dependencies and typed request data; returns a Response object.',
-      input: 'ServerRequest + Route Params',
-      output: 'Flint\\Http\\Response::json(...)',
-      codeSnippet: `final class OrderController {\n    public function __construct(private readonly OrderService $orders) {}\n    public function store(ServerRequest $req): Response { ... }\n}`,
+      input: 'Request + Route Params',
+      output: 'FlintPHP\\Framework\\Http\\Response::json(...)',
+      codeSnippet: `final class OrderController {\n    public function __construct(private readonly OrderService $orders) {}\n    public function store(Request $req): Response { ... }\n}`,
       detail: 'Thin, focused controllers with zero base class lock-in. Ideal for clean domain-driven architecture.',
     },
     {
@@ -221,7 +221,7 @@ export const ArchitectureVisualization: React.FC = () => {
                 </div>
               </div>
 
-              {/* Real PHP Implementation Snippet */}
+              {/* Framework Implementation Snippet */}
               <div>
                 <span className="text-xs font-mono text-stone-600 block mb-2 font-medium">PHP Implementation</span>
                 <div className="p-4 rounded-xl bg-stone-900 border border-stone-800 font-mono text-xs text-stone-100 overflow-x-auto shadow-inner">
