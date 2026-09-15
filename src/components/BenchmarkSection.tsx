@@ -81,22 +81,44 @@ export const BenchmarkSection: React.FC = () => {
             </button>
 
             {showMethodology && (
-              <div className="mt-4 p-5 rounded-2xl bg-stone-950 border border-stone-800 font-mono text-xs text-stone-400 space-y-4">
-                <div className="space-y-4">
-                  <p>These numbers represent local measurements on a standard development machine using <code className="text-orange-400">wrk</code> against the PHP built-in server.</p>
-                  <p>Because FlintPHP is distributed as a library rather than a heavy skeleton, to reproduce these results you must bootstrap a minimal <code className="text-orange-400">public/index.php</code> routing to a plaintext response.</p>
-                  <div className="p-3 bg-stone-900 border border-stone-800 rounded-xl space-y-2 text-stone-300">
-                    <p className="text-emerald-400 font-bold mb-1">Reproduction steps:</p>
-                    <ol className="list-decimal list-inside space-y-1 ml-1 text-stone-400">
-                      <li><code className="text-stone-300">composer require chethanhrx/flintphp</code></li>
-                      <li>Create an entrypoint returning a simple <code className="text-stone-300">Response('Hello')</code></li>
-                      <li><code className="text-stone-300">php -S localhost:8000 -t public/</code></li>
-                      <li><code className="text-stone-300">wrk -t4 -c50 -d10s http://localhost:8000/text</code></li>
-                    </ol>
+              
+              <div className="mt-4 p-5 rounded-2xl bg-stone-950 border border-stone-800 font-mono text-xs text-stone-400 space-y-4 text-left">
+                <p>These numbers represent local measurements on a standard development machine using <code className="text-orange-400">wrk</code> against the PHP built-in server.</p>
+                <p>Because FlintPHP is distributed as a minimal library, to reproduce these results you must bootstrap a simple <code className="text-orange-400">public/index.php</code> routing to a plaintext response.</p>
+                
+                <div className="p-4 bg-black border border-stone-800 rounded-xl space-y-3 relative overflow-hidden group">
+                  <div className="flex items-center justify-between text-[10px] uppercase font-bold text-stone-500 mb-2">
+                    <span>bash</span>
                   </div>
+                  <pre className="text-stone-300 text-[11px] leading-relaxed overflow-x-auto">
+                    <code>{
+`mkdir flint-bench && cd flint-bench
+composer require flintphp/framework
+
+mkdir public
+cat << 'PHP' > public/index.php
+<?php
+require __DIR__.'/../vendor/autoload.php';
+
+$app = new \FlintPHP\Framework\Application(dirname(__DIR__));
+$app->router()->get('/text', fn() => new \FlintPHP\Framework\Http\Response('Hello'));
+
+$kernel = $app->container()->get(\FlintPHP\Framework\Http\Kernel::class);
+$request = \FlintPHP\Framework\Http\Request::fromGlobals();
+
+$kernel->handle($request)->send();
+PHP
+
+# Run the server in the background
+php -S localhost:8000 -t public/ &
+
+# Benchmark with wrk
+wrk -t4 -c50 -d10s http://localhost:8000/text
+`}</code>
+                  </pre>
                 </div>
               </div>
-            )}
+)}
           </div>
         </div>
       </div>
