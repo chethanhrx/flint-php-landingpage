@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
-import { Copy, Check, ArrowRight, BookOpen, ShieldCheck, Zap, Layers } from 'lucide-react';
+import {
+  Copy,
+  Check,
+  ArrowRight,
+  BookOpen,
+  ShieldCheck,
+  Zap,
+  Layers,
+  BarChart3,
+  Flame,
+  ChevronRight,
+  Cpu,
+} from 'lucide-react';
 import { FlintRockCenterpiece } from './FlintRockCenterpiece';
 
 interface HeroProps {
@@ -16,54 +28,71 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const scrollToBenchmarks = () => {
+    const el = document.getElementById('benchmarks');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      onNavigate('home', 'benchmarks');
+    }
+  };
+
   return (
-    <section className="relative overflow-hidden pt-10 pb-16 lg:pt-16 lg:pb-24 border-b border-stone-200 bg-grid-boxes">
+    <section className="relative overflow-hidden pt-8 pb-16 lg:pt-14 lg:pb-24 border-b border-stone-200 bg-grid-boxes">
       {/* Background ambient lighting and grid fade */}
       <div className="absolute inset-0 bg-gradient-to-b from-stone-50/40 via-transparent to-stone-50 pointer-events-none -z-10" />
-      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-tr from-orange-500/10 via-amber-500/5 to-transparent blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-gradient-to-tr from-orange-500/12 via-amber-500/6 to-transparent blur-[130px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Technical Positioning & CTAs */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Release Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 shadow-xs text-xs text-stone-600 mb-6">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EA580C] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#EA580C]" />
-              </span>
-              <span className="text-stone-900 font-mono font-semibold">FlintPHP v1.0.0</span>
-              <span className="text-stone-300">|</span>
-              <span className="text-stone-500">Stable Release</span>
-              <span className="text-stone-300">|</span>
-              <span className="text-[#EA580C] font-mono font-medium">PHP 8.2+</span>
+            {/* Top Row: Release Badge + Prominent Performance Telemetry Pill */}
+            <div className="flex flex-wrap items-center gap-2.5 mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 shadow-xs text-xs text-stone-600">
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EA580C] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#EA580C]" />
+                </span>
+                <span className="text-stone-900 font-mono font-semibold">FlintPHP v1.0.0</span>
+                <span className="text-stone-300">|</span>
+                <span className="text-stone-500">PHP 8.2+</span>
+              </div>
+
+              {/* Clickable Performance Banner Pill */}
+              <button
+                type="button"
+                onClick={scrollToBenchmarks}
+                className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EA580C]/10 hover:bg-[#EA580C]/15 border border-[#EA580C]/30 text-xs font-mono text-[#C2410C] transition-all cursor-pointer shadow-xs"
+              >
+                <Flame className="w-3.5 h-3.5 text-[#EA580C]" />
+                <span className="font-bold">15,200 req/s</span>
+                <span className="text-stone-400">•</span>
+                <span className="hidden sm:inline">10× faster than Laravel</span>
+                <ChevronRight className="w-3.5 h-3.5 text-[#EA580C] transition-transform group-hover:translate-x-0.5" />
+              </button>
             </div>
 
             {/* Framework Name & Main Title */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-stone-900 leading-[1.1] mb-4">
-              Build PHP without the <span className="text-[#EA580C]">magic.</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-stone-900 leading-[1.08] mb-4">
+              Zero magic. Zero facades.{' '}
+              <span className="text-[#EA580C] block sm:inline">Pure, high-speed PHP.</span>
             </h1>
 
-            {/* Core Value Pillars */}
-            <div className="flex items-center gap-3 text-lg sm:text-xl font-mono font-bold text-stone-800 mb-5">
-              <span className="text-[#EA580C]">Fast.</span>
-              <span className="text-stone-300">•</span>
-              <span>Secure.</span>
-              <span className="text-stone-300">•</span>
-              <span className="text-[#EA580C]">Explicit.</span>
-            </div>
-
-            {/* Description */}
-            <p className="text-base sm:text-lg text-stone-600 max-w-2xl leading-relaxed mb-8">
-              A modern PHP framework for building production-ready APIs and web applications.
-              Built on explicit composition, immutable HTTP foundations, and zero global static facades.
+            {/* Value Proposition Description */}
+            <p className="text-base sm:text-lg text-stone-600 max-w-2xl leading-relaxed mb-6">
+              A modern PHP framework engineered for microsecond APIs and explicit architectures.
+              Built on immutable PSR-7/15 foundations, strict dependency injection, and benchmarked at{' '}
+              <span className="font-semibold text-stone-900">~15,200 req/s</span> with a lean{' '}
+              <span className="font-semibold text-stone-900">1.4 MB memory footprint</span> — up to{' '}
+              <span className="font-semibold text-[#EA580C]">10× faster</span> than legacy full-stack frameworks.
             </p>
 
             {/* Interactive Composer Installation Box */}
-            <div className="w-full max-w-xl mb-8">
+            <div className="w-full max-w-xl mb-7">
               <div className="flex items-center justify-between text-xs font-mono text-stone-500 mb-1.5 px-1">
                 <span className="font-semibold text-stone-700">QUICK INSTALL</span>
-                <span className="text-stone-400">skeleton v1.0.0</span>
+                <span className="text-stone-400">composer create-project</span>
               </div>
               <div className="relative flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-white border border-stone-200 hover:border-stone-300 transition-all font-mono text-sm shadow-xs group">
                 <div className="flex items-center gap-2.5 overflow-x-auto py-0.5 text-stone-900">
@@ -92,12 +121,12 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Action CTAs */}
-            <div className="flex flex-wrap items-center gap-4">
+            {/* Action CTAs: Enhanced Hierarchy */}
+            <div className="flex flex-wrap items-center gap-3.5 mb-8">
               <button
                 type="button"
                 onClick={() => onNavigate('docs', 'installation')}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#EA580C] hover:bg-[#C2410C] text-white text-sm sm:text-base font-semibold shadow-[0_2px_10px_rgba(234,88,12,0.25)] transition-all duration-200 cursor-pointer group"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#EA580C] hover:bg-[#C2410C] text-white text-sm sm:text-base font-semibold shadow-[0_4px_16px_rgba(234,88,12,0.3)] hover:shadow-[0_6px_20px_rgba(234,88,12,0.4)] transition-all duration-200 cursor-pointer group"
               >
                 <span>Get Started</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -105,27 +134,43 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
               <button
                 type="button"
-                onClick={() => onNavigate('docs')}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-stone-100 text-stone-800 text-sm sm:text-base font-semibold border border-stone-200 shadow-xs transition-colors cursor-pointer"
+                onClick={scrollToBenchmarks}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-stone-50 text-stone-800 hover:text-stone-900 text-sm sm:text-base font-semibold border-2 border-[#EA580C]/30 hover:border-[#EA580C] shadow-xs transition-all cursor-pointer group"
               >
-                <BookOpen className="w-4 h-4 text-[#EA580C]" />
-                <span>Documentation</span>
+                <BarChart3 className="w-4 h-4 text-[#EA580C]" />
+                <span>View Benchmarks</span>
+                <span className="text-xs px-1.5 py-0.5 rounded bg-[#EA580C]/10 text-[#EA580C] font-mono font-bold">
+                  10× Faster
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => onNavigate('docs')}
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white hover:bg-stone-50 text-stone-600 hover:text-stone-900 text-sm sm:text-base font-medium border border-stone-200 shadow-xs transition-colors cursor-pointer"
+              >
+                <BookOpen className="w-4 h-4 text-stone-500" />
+                <span>Docs</span>
               </button>
             </div>
 
-            {/* Micro Feature Indicators */}
-            <div className="grid grid-cols-3 gap-4 pt-8 mt-8 border-t border-stone-200 w-full max-w-xl text-xs text-stone-600">
-              <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-[#EA580C] shrink-0" />
-                <span className="font-medium">Radix-Tree Routing</span>
+            {/* 4 Standout Micro Telemetry Highlights */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-stone-200 w-full max-w-xl text-left">
+              <div className="p-2.5 rounded-lg bg-white/70 border border-stone-200/80">
+                <div className="text-[10px] font-mono text-stone-500 uppercase font-semibold">THROUGHPUT</div>
+                <div className="text-base font-mono font-bold text-stone-900">~15,200 <span className="text-xs text-[#EA580C]">req/s</span></div>
               </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#EA580C] shrink-0" />
-                <span className="font-medium">Argon2id & Security</span>
+              <div className="p-2.5 rounded-lg bg-white/70 border border-stone-200/80">
+                <div className="text-[10px] font-mono text-stone-500 uppercase font-semibold">DB FETCH</div>
+                <div className="text-base font-mono font-bold text-stone-900">~5,500 <span className="text-xs text-[#EA580C]">req/s</span></div>
               </div>
-              <div className="flex items-center gap-2">
-                <Layers className="w-4 h-4 text-[#EA580C] shrink-0" />
-                <span className="font-medium">Data Mapper ORM</span>
+              <div className="p-2.5 rounded-lg bg-white/70 border border-stone-200/80">
+                <div className="text-[10px] font-mono text-stone-500 uppercase font-semibold">BASE RAM</div>
+                <div className="text-base font-mono font-bold text-emerald-600">1.4 MB</div>
+              </div>
+              <div className="p-2.5 rounded-lg bg-white/70 border border-stone-200/80">
+                <div className="text-[10px] font-mono text-stone-500 uppercase font-semibold">ROUTING</div>
+                <div className="text-base font-mono font-bold text-stone-900">0.065 ms</div>
               </div>
             </div>
           </div>

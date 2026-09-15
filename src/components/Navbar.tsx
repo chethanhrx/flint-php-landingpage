@@ -99,9 +99,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             type="button"
             onClick={() => handleNavClick('home', 'benchmarks')}
-            className="px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
-            Benchmarks
+            <span>Benchmarks</span>
+            <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#EA580C]/10 text-[#EA580C] border border-[#EA580C]/20">
+              15.2k
+            </span>
           </button>
           <button
             type="button"

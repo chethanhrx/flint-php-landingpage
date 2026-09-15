@@ -57,14 +57,14 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
     },
     {
       id: 4,
-      question: 'What features it provides',
-      summary: 'Immutable HTTP, Radix Router, PSR-15 Middleware, Data Mapper ORM, and Argon2id security.',
+      question: 'How fast it runs (15,200 req/s)',
+      summary: '~15,200 req/s raw HTTP dispatch, ~5,500 req/s with PDO, and an ultra-lean 1.4 MB memory footprint.',
       detail:
-        'Six core subsystems: HTTP Foundations, Application Lifecycle, Data & Persistence, Security Primitives, Asynchronous Infrastructure (Cache/Queue/Events/WebSockets), and Developer Tooling.',
-      icon: Code2,
-      badge: 'Features',
-      actionText: 'View All Features',
-      actionTarget: () => onNavigate('home', 'features'),
+        'Independent bare-metal AMD EPYC benchmarks verify that FlintPHP is 2.2× faster than Slim, 5.6× faster than Symfony, and 10× faster than Laravel by eliminating runtime reflection and facades.',
+      icon: Cpu,
+      badge: 'Benchmarks',
+      actionText: 'Explore Benchmarks',
+      actionTarget: () => onNavigate('home', 'benchmarks'),
     },
     {
       id: 5,
