@@ -63,10 +63,10 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
     description: 'Standard authentication and configurable security headers.',
     items: [
       { name: 'Authentication', description: 'Pluggable bearer token authenticator with secure password hashing.', docPath: '/docs/authentication', status: 'Stable' },
-      { name: 'Authorization', description: 'Voter and policy-based authorization gates with granular domain logic.', docPath: '/docs/authorization', status: 'Deferred' },
+      { name: 'Authorization', description: 'Authorization interface and middleware (application provides implementation).', docPath: '/docs/authorization', status: 'Deferred' },
       { name: 'Password Hashing', description: 'Password hashing using PASSWORD_DEFAULT (Argon2id or Bcrypt depending on PHP version).', docPath: '/docs/authentication', status: 'Stable' },
       { name: 'Security Headers', description: 'Basic configurable security headers middleware.', docPath: '/docs/security-headers', status: 'Stable' },
-      { name: 'Trusted Proxy Support', description: 'Strict IP/CIDR verification for reverse proxies and load balancers.', docPath: '/docs/trusted-proxies', status: 'Deferred' },
+      { name: 'Trusted Proxy Support', description: 'Strict IP/CIDR verification for reverse proxies and load balancers.', docPath: '/docs/trusted-proxies', status: 'Stable' },
     ],
   },
   {
@@ -90,7 +90,8 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
     description: 'Fast CLI commands, zero-dependency test fixtures.',
     items: [
       { name: 'CLI Tooling (bin/flint)', description: 'Foundation for building custom console commands.', docPath: '/docs/cli', status: 'Foundation' },
-      { name: 'Testing Suite', description: 'Basic testing utilities and Foundation TestCase base classes.', docPath: '/docs/testing', status: 'Foundation' },
+      { name: 'Testing Suite', description: 'Base TestCase with HTTP helpers and fluent response assertions.', docPath: '/docs/testing', status: 'Foundation' },
+      { name: 'OpenAPI', description: 'Programmatic OpenAPI 3.1 document construction and serialization.', docPath: '/docs/openapi', status: 'Stable' },
 
     ],
   },

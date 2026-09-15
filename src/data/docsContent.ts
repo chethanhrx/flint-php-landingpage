@@ -248,7 +248,7 @@ return [
                 '2. Container Initialization: Dependency injection container is instantiated.',
                 '3. Bootstrapper Execution: Registered bootstrappers bind providers, services, and repositories.',
                 '4. Kernel Execution: Request passes through the middleware onion into routing.',
-                '5. Termination: Cleanup, log flushes, and background queue workers.',
+                '5. Termination: Cleanup and log flushes.',
               ],
             },
           ],
@@ -541,7 +541,7 @@ final class Order
           lead: 'Security primitives are baked directly into the framework core with hardened defaults.',
           sections: [
             {
-              heading: 'Argon2id Password Hashing',
+              heading: 'Password Hashing',
               codeBlock: {
                 language: 'php',
                 filename: 'src/Security/Hasher.php',
@@ -771,6 +771,46 @@ final class HealthTest extends TestCase
         ]);
     }
 }`,
+              },
+            },
+          ],
+        },
+      },
+      {
+        slug: 'openapi',
+        category: 'Developer Tools',
+        title: 'OpenAPI Document Builder',
+        description: 'Programmatic OpenAPI 3.1 document construction and JSON serialization.',
+        readTime: '4 min read',
+        content: {
+          lead: 'FlintPHP includes a programmatic OpenAPI 3.1 document builder for constructing API specifications.',
+          sections: [
+            {
+              heading: 'Building an OpenAPI Document',
+              codeBlock: {
+                language: 'php',
+                filename: 'docs.php',
+                code: `use FlintPHP\\Framework\\OpenApi\\OpenApiDocument;
+use FlintPHP\\Framework\\OpenApi\\Info;
+use FlintPHP\\Framework\\OpenApi\\PathItem;
+use FlintPHP\\Framework\\OpenApi\\Operation;
+use FlintPHP\\Framework\\OpenApi\\Response;
+use FlintPHP\\Framework\\OpenApi\\Schema;
+use FlintPHP\\Framework\\OpenApi\\OpenApiSerializer;
+
+$doc = new OpenApiDocument(
+    info: new Info(title: 'My API', version: '1.0.0'),
+    paths: [
+        '/api/users' => new PathItem(
+            get: new Operation(
+                responses: ['200' => new Response(description: 'Success')]
+            )
+        ),
+    ]
+);
+
+$serializer = new OpenApiSerializer();
+$json = $serializer->toJson($doc);`,
               },
             },
           ],

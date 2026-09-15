@@ -145,7 +145,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('docs', 'authentication')}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
-                  Argon2id Security
+                  Password Hashing
                 </button>
               </li>
             </ul>
