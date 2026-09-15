@@ -36,7 +36,7 @@ composer require flintphp/framework
 ```
 
 ## 6. Official Links
-- Website: https://flintphp.dev
+- Website: https://flintphp.netlify.app
 - GitHub: https://github.com/chethanhrx/flintphp
 - Framework (Packagist): https://packagist.org/packages/flintphp/framework
 - Skeleton (Packagist): https://packagist.org/packages/flintphp/skeleton

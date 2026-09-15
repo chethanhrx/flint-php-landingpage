@@ -58,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <nav className="hidden lg:flex items-center gap-1 text-sm font-medium text-stone-600">
           <a href="/docs"
             onClick={(e) => { e.preventDefault(); handleNavClick('docs'); }}
-            className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+            className={`block px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
               currentView === 'docs'
                 ? 'bg-stone-100 text-orange-600 font-semibold'
                 : 'hover:text-stone-900 hover:bg-stone-100/70'
@@ -68,25 +68,25 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
           <a href="/#quick-start"
             onClick={(e) => { e.preventDefault(); handleNavClick('home', 'quick-start'); }}
-            className="px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
+            className="block px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
             Quick Start
           </a>
           <a href="/#architecture"
             onClick={(e) => { e.preventDefault(); handleNavClick('home', 'architecture'); }}
-            className="px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
+            className="block px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
             Architecture
           </a>
           <a href="/#routing"
             onClick={(e) => { e.preventDefault(); handleNavClick('home', 'routing'); }}
-            className="px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
+            className="block px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
             Router
           </a>
           <a href="/#terminal"
             onClick={(e) => { e.preventDefault(); handleNavClick('home', 'terminal'); }}
-            className="px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
+            className="block px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
             CLI Console
           </a>
@@ -101,7 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
           <a href="/#no-magic"
             onClick={(e) => { e.preventDefault(); handleNavClick('home', 'no-magic'); }}
-            className="px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
+            className="block px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
             Philosophy
           </a>
@@ -166,37 +166,37 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <a href="/docs"
             onClick={(e) => { e.preventDefault(); handleNavClick('docs'); }}
-            className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-900 hover:bg-stone-100"
+            className="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-900 hover:bg-stone-100"
           >
             Documentation
           </a>
           <a href="/#quick-start"
             onClick={(e) => { e.preventDefault(); handleNavClick('home', 'quick-start'); }}
-            className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
+            className="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
           >
             Quick Start
           </a>
           <a href="/#routing"
             onClick={(e) => { e.preventDefault(); handleNavClick('home', 'routing'); }}
-            className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
+            className="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
           >
             Router Sandbox
           </a>
           <a href="/#terminal"
             onClick={(e) => { e.preventDefault(); handleNavClick('home', 'terminal'); }}
-            className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
+            className="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
           >
             Interactive CLI Terminal (Simulation)
           </a>
           <a href="/#benchmarks"
             onClick={(e) => { e.preventDefault(); handleNavClick('home', 'benchmarks'); }}
-            className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
+            className="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
           >
             Performance Benchmarks
           </a>
           <a href="/#no-magic"
             onClick={(e) => { e.preventDefault(); handleNavClick('home', 'no-magic'); }}
-            className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
+            className="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
           >
             Philosophy (No Magic)
           </a>
@@ -212,7 +212,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
             <a href="/docs/installation"
               onClick={(e) => { e.preventDefault(); handleNavClick('docs', 'installation'); }}
-              className="px-3 py-1.5 rounded-lg bg-orange-600 text-white text-xs font-semibold"
+              className="block px-3 py-1.5 rounded-lg bg-orange-600 text-white text-xs font-semibold"
             >
               Get Started
             </a>

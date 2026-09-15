@@ -855,7 +855,7 @@ $json = $serializer->toJson($doc);`,
           sections: [
             {
               heading: 'Reporting Vulnerabilities',
-              text: 'If you discover a security vulnerability in FlintPHP, please report it confidentially to security@flintphp.dev rather than opening a public issue.',
+              text: 'If you discover a security vulnerability in FlintPHP, please report it confidentially to security@flintphp.netlify.app rather than opening a public issue.',
             },
           ],
         },

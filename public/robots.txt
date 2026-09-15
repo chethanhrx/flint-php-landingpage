@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://flintphp.dev/sitemap.xml
+Sitemap: https://flintphp.netlify.app/sitemap.xml
