@@ -67,7 +67,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
   };
 
   const handleCopyCode = (code: string, idx: number) => {
-    navigator.clipboard.writeText(code).catch(console.error);
+    navigator.clipboard.writeText(code).catch(() => alert('Copy failed — select the code manually.'));
     setCopiedCodeIndex(idx);
     setTimeout(() => setCopiedCodeIndex(null), 2000);
   };

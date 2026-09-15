@@ -49,7 +49,7 @@ const SCENARIOS: BenchmarkScenario[] = [
     shortLabel: 'No-I/O (15.2k req/s)',
     badge: '10× vs Laravel',
     description:
-      'Direct static route resolution, zero reflection dispatch, and immutable PSR-7 response emission. Measures pure framework kernel overhead.',
+      'Direct static route resolution, reflection-based dispatch, and immutable HTTP response emission. Measures pure framework kernel overhead.',
     pipeline: 'Kernel Boot → Route Match → 1 Middleware → JSON Response',
     maxRps: 18000,
     metrics: [
@@ -72,7 +72,7 @@ const SCENARIOS: BenchmarkScenario[] = [
         avgLatencyMs: 0.144,
         p99LatencyMs: 0.290,
         memoryMb: 3.2,
-        architecture: 'FastRoute Dispatcher • Minimalist PSR-15 Stack',
+        architecture: 'FastRoute Dispatcher • Minimalist Middleware Stack',
       },
       {
         name: 'Symfony',
@@ -155,7 +155,7 @@ const SCENARIOS: BenchmarkScenario[] = [
     shortLabel: 'Full Middleware Stack',
     badge: '2.2× vs Slim',
     description:
-      'Production API pipeline under real enterprise load: CORS, HMAC validation, JWT claims extraction, Rate Limiter (Token Bucket), and JSON body parsing.',
+      'API pipeline under typical backend load: CORS, HMAC validation, JWT claims extraction, Rate Limiter (Token Bucket), and JSON body parsing.',
     pipeline: 'CORS → RateLimit → HMAC → AuthGuard → Router → JSON',
     maxRps: 15000,
     metrics: [
@@ -167,7 +167,7 @@ const SCENARIOS: BenchmarkScenario[] = [
         avgLatencyMs: 0.084,
         p99LatencyMs: 0.170,
         memoryMb: 1.8,
-        architecture: 'PSR-15 Onion Middleware • Zero Dynamic Callbacks',
+        architecture: 'Onion Middleware • Explicit Dynamic Callbacks',
         isFlint: true,
       },
       {
@@ -235,10 +235,10 @@ export const BenchmarkSection: React.FC = () => {
     return Number((metric.p99LatencyMs * multiplier).toFixed(3));
   };
 
-  const reproduceCmd = 'git clone https://github.com/flintphp/benchmarks && cd benchmarks && ./run.sh';
+  const reproduceCmd = 'git clone https://github.com/chethanhrx/flintphp && cd flintphp && php benchmarks/HttpPipelineBench.php';
 
   const copyReproduceCmd = () => {
-    navigator.clipboard.writeText(reproduceCmd);
+    navigator.clipboard.writeText(reproduceCmd).catch(() => alert('Copy failed — select the code manually.'));
     setCopiedCmd(true);
     setTimeout(() => setCopiedCmd(false), 2000);
   };
@@ -270,7 +270,7 @@ export const BenchmarkSection: React.FC = () => {
           </h2>
 
           <p className="mt-5 text-stone-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            Independent, reproducible benchmarks under real Linux Nginx + PHP-FPM production environments. Zero reflection, pre-compiled routes, and strict dependency injection deliver raw throughput with a lean 1.4 MB memory footprint.
+            Independent, reproducible benchmarks under real Linux Nginx + PHP-FPM production environments. reflection-based, pre-compiled routes, and strict dependency injection deliver raw throughput with a lean 1.4 MB memory footprint.
           </p>
         </div>
 
@@ -634,7 +634,7 @@ export const BenchmarkSection: React.FC = () => {
                 <div className="text-stone-300 text-xs leading-relaxed space-y-1">
                   <div>✓ Zero runtime reflection</div>
                   <div>✓ Hash-map static routes</div>
-                  <div>✓ Pure immutable PSR-7 requests</div>
+                  <div>✓ Pure immutable HTTP requests</div>
                   <div>✓ Zero static facades / globals</div>
                 </div>
                 <div className="pt-2 border-t border-stone-800/80 text-[11px] text-emerald-400 font-semibold">

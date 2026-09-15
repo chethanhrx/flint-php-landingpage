@@ -41,7 +41,7 @@ export const DOCS_DATA: DocCategory[] = [
         description: 'Understand the design philosophy, explicit composition principles, and why FlintPHP rejects framework magic.',
         readTime: '4 min read',
         content: {
-          lead: 'FlintPHP is a fast, secure, modern PHP framework designed from first principles for building production-ready APIs and robust web applications without framework magic.',
+          lead: 'FlintPHP is a fast, secure, modern PHP framework designed from first principles for building fast APIs and robust web applications without framework magic.',
           sections: [
             {
               heading: 'The FlintPHP Philosophy: Explicit Composition Over Magic',
@@ -314,7 +314,7 @@ $router->get('/api/v1/posts/{slug:[a-z0-9-]+}', [PostController::class, 'show'])
 
 // Protected routes requiring Bearer authentication
 $router->post('/api/v1/posts', [PostController::class, 'store'], middleware: [BearerAuthMiddleware::class]);
-$router->delete('/api/v1/posts/{id:int}', [PostController::class, 'destroy'], middleware: [BearerAuthMiddleware::class]);`,
+$router->delete('/api/v1/posts/{id}', [PostController::class, 'destroy'], middleware: [BearerAuthMiddleware::class]);`,
               },
             },
           ],
@@ -337,7 +337,6 @@ $router->delete('/api/v1/posts/{id:int}', [PostController::class, 'destroy'], mi
                 code: `namespace App\\Middleware;
 
 use FlintPHP\\Framework\\Http\\MiddlewareInterface;
-use FlintPHP\\Framework\\Http\\RequestHandlerInterface;
 use FlintPHP\\Framework\\Http\\Response;
 use FlintPHP\\Framework\\Http\\Request;
 use FlintPHP\\Framework\\Cache\\CacheInterface;
@@ -351,7 +350,7 @@ final class RateLimitMiddleware implements MiddlewareInterface
         private readonly int $decaySeconds = 60,
     ) {}
 
-    public function process(Request $request, RequestHandlerInterface $handler): Response
+    public function process(Request $request, callable $next): Response
     {
         $ip = $request->server('REMOTE_ADDR', '127.0.0.1');
         $key = 'rate_limit:' . $ip;
@@ -363,7 +362,7 @@ final class RateLimitMiddleware implements MiddlewareInterface
 
         $this->cache->set($key, $hits, $this->decaySeconds);
 
-        $response = $handler->handle($request);
+        $response = $next($request);
         return $response->withHeader('X-RateLimit-Remaining', (string) ($this->maxRequests - $hits));
     }
 }`,
@@ -434,9 +433,9 @@ use FlintPHP\\Framework\\Validation\\Rule;
 $validator = $container->get(Validator::class);
 
 $result = $validator->validate(json_decode($request->body(), true) ?? [], [
-    'email' => [Rule::required(), Rule::email(), Rule::max(255)],
-    'age' => [Rule::required(), Rule::integer(), Rule::min(18)],
-    'roles' => [Rule::array(), Rule::in(['editor', 'admin', 'viewer'])],
+    'email' => [new Required(), new Email(), new Max(255)],
+    'age' => [new Required(), new Integer(), new Min(18)],
+    'roles' => [new Required(), new In(['editor', 'admin', 'viewer'])],
 ]);
 
 if ($result->fails()) {
@@ -451,7 +450,7 @@ if ($result->fails()) {
         slug: 'database',
         category: 'Data & Persistence',
         title: 'Database & Transactions',
-        description: 'Robust PDO wrapper with connection pooling, transaction boundaries, and prepared statements.',
+        description: 'Robust PDO wrapper with transaction boundaries and prepared statements.',
         readTime: '5 min read',
         content: {
           lead: 'Execute parameterized queries and nested transactions with explicit PDO safety.',
@@ -716,8 +715,7 @@ final class ChatHandler implements WebSocketHandlerInterface
                   ['php bin/flint make:controller', 'Scaffolds an invokable or action-based controller with strict types'],
                   ['php bin/flint migrate', 'Applies pending database migrations inside transactions'],
                   ['php bin/flint cache:clear', 'Flushes application config, routing, and data caches'],
-                  ['php bin/flint openapi:generate', 'Exports OpenAPI 3.1 schema JSON/YAML from route definitions'],
-                ],
+                                  ],
               },
             },
           ],
@@ -786,8 +784,7 @@ final class HealthTest extends TestCase
                 'Fast router with typed parameter constraints.',
                 'Explicit Data Mapper ORM and transactional PDO layer.',
                 'Argon2id password hashing and security header enforcement.',
-                'CLI test runner and OpenAPI 3.1 generator.',
-              ],
+                              ],
             },
           ],
         },

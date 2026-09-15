@@ -111,9 +111,15 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
                     <h4 className="text-sm font-bold text-stone-900 group-hover:text-orange-600 transition-colors">
                       {item.name}
                     </h4>
-                    <span className="text-[10px] font-mono text-stone-500 px-1.5 py-0.5 rounded bg-white border border-stone-200">
-                      v1.0.0
-                    </span>
+                    {item.status && (
+    <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border ${
+      item.status === 'Stable' ? 'bg-emerald-50 text-emerald-600 border-emerald-200' :
+      item.status === 'Foundation' ? 'bg-amber-50 text-amber-600 border-amber-200' :
+      'bg-stone-50 text-stone-500 border-stone-200'
+    }`}>
+      {item.status.toUpperCase()}
+    </span>
+  )}
                   </div>
                   <p className="text-xs text-stone-600 leading-relaxed mb-4">
                     {item.description}
@@ -122,10 +128,10 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
 
                 <button
                   type="button"
-                  onClick={() => onNavigate('docs')}
+                  onClick={() => onNavigate('docs', item.docPath.split('/').pop())}
                   className="inline-flex items-center gap-1 text-xs font-mono text-orange-600 hover:text-orange-700 font-semibold pt-2 border-t border-stone-200/80 cursor-pointer"
                 >
-                  <span>Read technical spec</span>
+                  <span>{item.name} docs</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>

@@ -37,7 +37,7 @@ export const QuickStart: React.FC<QuickStartProps> = ({ onNavigate }) => {
   ];
 
   const handleCopy = (text: string, stepNum: number) => {
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).catch(() => alert('Copy failed — select the code manually.'));
     setCopiedStep(stepNum);
     setTimeout(() => setCopiedStep(null), 2000);
   };

@@ -133,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* GitHub Link */}
           <a
-            href="https://github.com/flintphp/framework"
+            href="https://github.com/chethanhrx/flintphp"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-1.5 p-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100 border border-transparent hover:border-stone-200 transition-colors"
@@ -217,13 +217,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
           <div className="pt-2 border-t border-stone-200 flex items-center justify-between">
             <a
-              href="https://github.com/flintphp/framework"
+              href="https://github.com/chethanhrx/flintphp"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-xs text-stone-600 hover:text-stone-900"
             >
               <Github className="w-4 h-4" />
-              <span>GitHub (flintphp/framework)</span>
+              <span>GitHub (chethanhrx/flintphp)</span>
             </a>
             <button
               type="button"

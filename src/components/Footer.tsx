@@ -29,7 +29,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://github.com/flintphp/framework"
+                href="https://github.com/chethanhrx/flintphp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 border border-stone-200 transition-colors shadow-xs"
@@ -118,7 +118,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('docs', 'middleware')}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
-                  PSR-15 Middleware
+                  Middleware
                 </button>
               </li>
               <li>
@@ -159,7 +159,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2 text-xs">
               <li>
                 <a
-                  href="https://github.com/flintphp/framework"
+                  href="https://github.com/chethanhrx/flintphp"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-stone-900 transition-colors inline-flex items-center gap-1"
@@ -170,7 +170,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="https://github.com/flintphp/skeleton"
+                  href="https://github.com/chethanhrx/flintphp"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-stone-900 transition-colors inline-flex items-center gap-1"
@@ -219,7 +219,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="flex items-center gap-4">
             <span>Requires PHP 8.2+</span>
             <span>•</span>
-            <span>PSR-7, PSR-11, PSR-15</span>
+            <span>PSR-11</span>
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const installCmd = 'composer require flintphp/framework';
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(installCmd).catch(console.error);
+    navigator.clipboard.writeText(installCmd).catch(() => alert('Copy failed — select the code manually.'));
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

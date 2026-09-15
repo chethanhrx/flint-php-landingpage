@@ -10,7 +10,7 @@ export const CodeExamplesSection: React.FC = () => {
     CODE_EXAMPLES.find((e) => e.id === selectedExampleId) || CODE_EXAMPLES[0];
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(activeExample.code);
+    navigator.clipboard.writeText(activeExample.code).catch(() => alert('Copy failed — select the code manually.'));
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

@@ -60,11 +60,11 @@ export const InteractiveTerminal: React.FC = () => {
           'Usage: php flint <command> [options] [arguments]',
           '',
           'Available Commands:',
-          '  \x1b[32mroute:list\x1b[0m           List all registered routes and middleware stacks',
-          '  \x1b[32mmake:controller\x1b[0m      Generate a strictly-typed PSR-15 HTTP controller',
+          
+          
           '  \x1b[32mmake:migration\x1b[0m       Generate a deterministic SQL migration file',
-          '  \x1b[32mdb:migrate\x1b[0m            Run pending schema migrations against PDO connection',
-          '  \x1b[32mbenchmark:run\x1b[0m         Run high-resolution router and DI container micro-benchmarks',
+          
+          
           '  \x1b[32mserve\x1b[0m                 Start local PHP development server with hot-reload',
           '  \x1b[32mcache:clear\x1b[0m           Purge compiled container and route cache artifacts',
         ];
@@ -75,23 +75,23 @@ export const InteractiveTerminal: React.FC = () => {
           '\x1b[38;5;208mFlintPHP Framework Console\x1b[0m v1.0.0',
           '',
           '\x1b[33mRouting & HTTP:\x1b[0m',
-          '  \x1b[32mroute:list\x1b[0m             Inspect route table and assigned middleware',
-          '  \x1b[32mroute:cache\x1b[0m            Cache routes into static PHP array for O(1) boot',
+          
+          
           '',
           '\x1b[33mCode Generators:\x1b[0m',
-          '  \x1b[32mmake:controller\x1b[0m        Create a new PSR-15 RequestHandlerInterface controller',
-          '  \x1b[32mmake:middleware\x1b[0m        Create an explicit PSR-15 MiddlewareInterface',
-          '  \x1b[32mmake:entity\x1b[0m            Create a OrmManager entity with typed readonly properties',
+          
+          
+          
           '  \x1b[32mmake:repository\x1b[0m        Create a typed repository with PDO prepared statements',
           '',
-          '\x1b[33mDatabase:\x1b[0m',
-          '  \x1b[32mdb:migrate\x1b[0m             Execute pending migrations within atomic transactions',
-          '  \x1b[32mdb:rollback\x1b[0m            Rollback the last batch of database migrations',
-          '  \x1b[32mdb:seed\x1b[0m                Populate database using deterministic seeders',
+          '  \x1b[32mapp:sync\x1b[0m               Sync application data\n  \x1b[32mapp:report\x1b[0m             Generate reports',
+          
+          
+          
           '',
-          '\x1b[33mDiagnostics:\x1b[0m',
-          '  \x1b[32mbenchmark:run\x1b[0m          Execute 100,000 iterations of router dispatching',
-          '  \x1b[32mcontainer:check\x1b[0m        Validate full DI graph for unresolvable dependencies',
+          '',
+          
+          
         ];
         break;
 
@@ -118,7 +118,7 @@ export const InteractiveTerminal: React.FC = () => {
           '\x1b[32m✓ Controller created successfully:\x1b[0m',
           '  → \x1b[36msrc/Controllers/Api/OrderController.php\x1b[0m',
           '',
-          '\x1b[90m// Interface: Psr\\Http\\Server\\RequestHandlerInterface',
+          '\x1b[90m',
           '// Type Coverage: 100% PHP 8.2+ Typed Parameters',
           '// Zero static facades. Injected dependencies: OrderRepository, EventDispatcher\x1b[0m',
           '',
@@ -158,7 +158,7 @@ export const InteractiveTerminal: React.FC = () => {
           '\x1b[38;5;208mFlintPHP Verified Performance Benchmark Suite\x1b[0m',
           'Platform: AMD EPYC 7763 16-Core | Linux 6.8 | PHP 8.3.8 OPcache=1 JIT=1205',
           '----------------------------------------------------------------------',
-          '1. Raw HTTP Dispatch (No-I/O Route Match + PSR-7 Response):',
+          '1. Raw HTTP Dispatch (No-I/O Route Match + Immutable Response):',
           '   Throughput: \x1b[32m15,240 req/sec\x1b[0m | Avg: \x1b[36m0.065 ms\x1b[0m | P99: \x1b[36m0.120 ms\x1b[0m (10.0× vs Laravel)',
           '',
           '2. Single DB Query (Prepared PDO + Typed OrmManager Hydration):',
@@ -234,7 +234,7 @@ export const InteractiveTerminal: React.FC = () => {
     const text = history
       .map((h) => `$ ${h.command}\n${h.output.map((l) => l.replace(/\x1b\[[0-9;]*m/g, '')).join('\n')}`)
       .join('\n\n');
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).catch(() => alert('Copy failed — select the code manually.'));
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -252,7 +252,7 @@ export const InteractiveTerminal: React.FC = () => {
             Try the Flint Console right now.
           </h2>
           <p className="mt-3 text-stone-600 text-sm sm:text-base leading-relaxed">
-            Flint ships with a lightning-fast CLI tool with zero external baggage. Test commands, inspect route tables, and run simulated micro-benchmarks in this interactive example.
+            FlintPHP provides a minimal CLI foundation. You can build your own custom commands with zero external baggage.
           </p>
         </div>
 

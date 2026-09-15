@@ -19,15 +19,15 @@ const SUBSYSTEMS: SubsystemInfo[] = [
     badge: '0.065ms Dispatch',
     highlight: 'Static hash-map route resolution with optimized sequential regex fallback.',
     spec: 'Constant-time path traversal with typed parameter coercion directly in the dispatch loop.',
-    codeSnippet: `$router->get('/v1/metrics/{id:\\d+}', [MetricsController::class, 'show'], middleware: [AuthGuardMiddleware::class]);`,
+    codeSnippet: `$router->get('/v1/metrics/{id}', [MetricsController::class, 'show'], middleware: [AuthGuardMiddleware::class]);`,
   },
   {
     id: 'psr15',
-    name: 'PSR-15 Onion Pipeline',
+    name: 'Middleware Pipeline',
     label: 'Middleware',
     badge: 'Zero Magic',
     highlight: 'Pure immutable request/response pipeline. No global state bleed in FrankenPHP or RoadRunner.',
-    spec: 'Full compliance with PSR-7 and PSR-15 standards. Compatible with any PSR-compliant package.',
+    spec: 'Built with explicit composition and strict immutability.',
     codeSnippet: `public function process(Request $request, RequestHandler $handler): Response
 {
     $token = $request->header('X-API-Key');
@@ -69,7 +69,7 @@ export const FlintRockCenterpiece: React.FC = () => {
   const activeSubsystem = SUBSYSTEMS.find((s) => s.id === activeSubsystemId) || SUBSYSTEMS[0];
 
   const handleCopyCode = () => {
-    navigator.clipboard.writeText(activeSubsystem.codeSnippet);
+    navigator.clipboard.writeText(activeSubsystem.codeSnippet).catch(() => alert('Copy failed — select the code manually.'));
     setCopiedCode(true);
     setTimeout(() => setCopiedCode(false), 2000);
   };
@@ -118,7 +118,7 @@ export const FlintRockCenterpiece: React.FC = () => {
               ZERO-REFLECTION DISPATCH ENGINE
             </span>
             <p className="text-[11px] text-stone-500 max-w-xs mx-auto mt-0.5">
-              Fast path routing • Immutable PSR-7 • Strict constructor injection
+              Fast path routing • Immutable HTTP Primitives • Strict constructor injection
             </p>
           </div>
         </div>

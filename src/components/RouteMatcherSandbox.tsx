@@ -205,7 +205,7 @@ export const RouteMatcherSandbox: React.FC = () => {
                   <span>Match Strategy: Regex</span>
                 </div>
                 <div className="text-emerald-700">
-                  Status: <span className="font-bold">200 OK</span> (PSR-7 Response)
+                  Status: <span className="font-bold">200 OK</span> (Immutable Response)
                 </div>
               </div>
 
@@ -215,7 +215,7 @@ export const RouteMatcherSandbox: React.FC = () => {
                 <div className="p-4 rounded-xl bg-stone-50 border border-stone-200 space-y-3">
                   <div className="text-xs font-mono uppercase tracking-wider font-bold text-stone-900 flex items-center justify-between">
                     <span>DISPATCH TARGET</span>
-                    <span className="text-orange-600 text-[10px] font-mono">PSR-15 HANDLER</span>
+                    <span className="text-orange-600 text-[10px] font-mono">MIDDLEWARE HANDLER</span>
                   </div>
 
                   <div className="space-y-2 text-xs font-mono">

@@ -25,7 +25,7 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
     {
       id: 1,
       question: 'What FlintPHP is',
-      summary: 'A fast, secure, modern PHP framework for building production-ready APIs and web services.',
+      summary: 'A fast, secure, modern PHP framework for building fast APIs and web services.',
       detail:
         'FlintPHP provides an explicit, typed foundation for modern PHP 8.2+ developers who need raw speed, strict architecture, and maintainability without relying on framework magic.',
       icon: Cpu,
@@ -116,19 +116,19 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
     {
       id: 9,
       question: 'Where the source code is',
-      summary: 'Open source under the permissive MIT license on GitHub (flintphp/framework).',
+      summary: 'Open source under the permissive MIT license on GitHub (chethanhrx/flintphp).',
       detail:
-        'Official repository: github.com/flintphp/framework and official project skeleton: github.com/flintphp/skeleton.',
+        'Official repository: github.com/chethanhrx/flintphp and official project skeleton: github.com/chethanhrx/flintphp.',
       icon: FolderGit2,
       badge: 'Open Source',
       actionText: 'GitHub Repository',
-      externalUrl: 'https://github.com/flintphp/framework',
+      externalUrl: 'https://github.com/chethanhrx/flintphp',
     },
   ];
 
   const handleCopy = (code: string, index: number, e: React.MouseEvent) => {
     e.stopPropagation();
-    navigator.clipboard.writeText(code).catch(console.error);
+    navigator.clipboard.writeText(code).catch(() => alert('Copy failed — select the code manually.'));
     setCopiedIndex(index);
     setTimeout(() => setCopiedIndex(null), 2000);
   };

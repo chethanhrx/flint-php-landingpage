@@ -53,7 +53,8 @@ export const DocSearchModal: React.FC<DocSearchModalProps> = ({
         const matchesSection = page.content.sections.some(
           (s) =>
             s.heading.toLowerCase().includes(q) ||
-            (s.text && s.text.toLowerCase().includes(q))
+            (s.text && s.text.toLowerCase().includes(q)) ||
+            (s.codeBlock && s.codeBlock.code.toLowerCase().includes(q))
         );
         return matchesTitle || matchesDesc || matchesCategory || matchesSection;
       });
