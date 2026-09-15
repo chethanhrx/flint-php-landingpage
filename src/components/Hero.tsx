@@ -20,7 +20,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const [copied, setCopied] = useState(false);
-  const installCmd = 'composer require flintphp/framework';
+  const installCmd = 'composer create-project flintphp/skeleton my-app';
 
   const handleCopy = () => {
     navigator.clipboard.writeText(installCmd).catch(() => alert('Copy failed — select the code manually.'));

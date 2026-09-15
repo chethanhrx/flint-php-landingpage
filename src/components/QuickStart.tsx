@@ -1,101 +1,128 @@
 import React, { useState } from 'react';
-import { Terminal, Copy, Check, Play, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Terminal, Copy, Check, Play, ArrowRight, Server, Apple, Monitor } from 'lucide-react';
 
 interface QuickStartProps {
   onNavigate: (view: 'home' | 'docs', docSlug?: string) => void;
 }
 
 export const QuickStart: React.FC<QuickStartProps> = ({ onNavigate }) => {
-  const [copiedStep, setCopiedStep] = useState<number | null>(null);
+  const [copiedSection, setCopiedSection] = useState<string | null>(null);
+  const [activeOS, setActiveOS] = useState<'linux' | 'macos' | 'windows'>('linux');
   const [apiExecuted, setApiExecuted] = useState(false);
 
-  const steps = [
-    {
-      step: 1,
-      title: 'Initialize project directory',
-      command: 'mkdir my-app && cd my-app',
-      desc: 'Create and enter a new directory for your FlintPHP application.',
-    },
-    {
-      step: 2,
-      title: 'Require FlintPHP framework',
-      command: 'composer require flintphp/framework',
-      desc: 'Installs the core framework and PSR-11 container dependencies.',
-    },
-    {
-      step: 3,
-      title: 'Create public bootstrap file',
-      command: 'mkdir public && touch public/index.php',
-      desc: 'Creates the web root directory and application entry point.',
-    },
-    {
-      step: 4,
-      title: 'Start PHP development server',
-      command: 'php -S localhost:8000 -t public',
-      desc: 'Serves the application locally using the built-in PHP server.',
-    },
-  ];
+  const handleCopy = (text: string, id: string) => {
+    navigator.clipboard.writeText(text).catch(() => alert('Copy failed.'));
+    setCopiedSection(id);
+    setTimeout(() => setCopiedSection(null), 2000);
+  };
 
-  const handleCopy = (text: string, stepNum: number) => {
-    navigator.clipboard.writeText(text).catch(() => alert('Copy failed — select the code manually.'));
-    setCopiedStep(stepNum);
-    setTimeout(() => setCopiedStep(null), 2000);
+  const getOsCommand = () => {
+    if (activeOS === 'windows') {
+      return 'composer create-project flintphp/skeleton my-app; cd my-app; php bin/flint';
+    }
+    return 'composer create-project flintphp/skeleton my-app && cd my-app && php bin/flint';
   };
 
   return (
-    <section id="quick-start" className="py-16 sm:py-24 border-b border-stone-200 bg-white relative">
+    <section id="quickstart" className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-stone-100 border border-stone-200 text-xs font-mono text-orange-600 font-semibold mb-3">
-            <span>QUICK START WORKFLOW</span>
-          </div>
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-4">
-            Zero to development API in four commands.
+            Create your first FlintPHP app
           </h2>
           <p className="text-base text-stone-600 leading-relaxed">
-            Follow the standard FlintPHP CLI workflow to bootstrap and test your first endpoint locally.
+            Start with the official Skeleton. One command creates a ready-to-develop application.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: 4 Steps in Modular Stone Boxes */}
-          <div className="lg:col-span-6 space-y-4">
-            {steps.map((s) => (
-              <div
-                key={s.step}
-                className="p-4 rounded-xl bg-stone-50/80 border border-stone-200 hover:border-stone-300 transition-all flex flex-col gap-2.5 shadow-xs"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-orange-50 text-orange-600 font-mono text-xs font-bold border border-orange-200">
-                      {s.step}
-                    </span>
-                    <h3 className="text-sm font-semibold text-stone-900">{s.title}</h3>
-                  </div>
-                  <span className="text-[11px] font-mono text-stone-500">{s.desc}</span>
-                </div>
-
-                <div className="relative flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-lg bg-white border border-stone-200 font-mono text-xs text-stone-900 shadow-xs">
-                  <div className="flex items-center gap-2 overflow-x-auto">
-                    <span className="text-orange-600 select-none font-bold">$</span>
-                    <code className="text-stone-800 font-medium">{s.command}</code>
-                  </div>
+          {/* Left Column: Installation Flow */}
+          <div className="lg:col-span-6 space-y-6">
+            
+            {/* Primary Installation: Skeleton */}
+            <div className="bg-stone-50 rounded-xl border border-stone-200 overflow-hidden shadow-xs">
+              <div className="flex items-center justify-between border-b border-stone-200 px-4 py-3 bg-white">
+                <span className="font-semibold text-stone-900 text-sm">1. Create Project & Run CLI</span>
+                <div className="flex bg-stone-100 rounded-md p-0.5">
                   <button
-                    type="button"
-                    onClick={() => handleCopy(s.command, s.step)}
-                    className="p-1 rounded bg-stone-100 hover:bg-stone-200 text-stone-600 hover:text-stone-900 border border-stone-200 transition-colors shrink-0 cursor-pointer"
-                    title="Copy command"
+                    onClick={() => setActiveOS('linux')}
+                    className={`px-3 py-1 text-[11px] font-bold uppercase rounded-sm transition-colors ${activeOS === 'linux' ? 'bg-white shadow-xs text-orange-600' : 'text-stone-500 hover:text-stone-700'}`}
+                    aria-label="Linux installation command"
+                    aria-pressed={activeOS === 'linux'}
                   >
-                    {copiedStep === s.step ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-600" />
-                    ) : (
-                      <Copy className="w-3.5 h-3.5" />
-                    )}
+                    Linux
+                  </button>
+                  <button
+                    onClick={() => setActiveOS('macos')}
+                    className={`px-3 py-1 text-[11px] font-bold uppercase rounded-sm transition-colors ${activeOS === 'macos' ? 'bg-white shadow-xs text-orange-600' : 'text-stone-500 hover:text-stone-700'}`}
+                    aria-label="macOS installation command"
+                    aria-pressed={activeOS === 'macos'}
+                  >
+                    macOS
+                  </button>
+                  <button
+                    onClick={() => setActiveOS('windows')}
+                    className={`px-3 py-1 text-[11px] font-bold uppercase rounded-sm transition-colors ${activeOS === 'windows' ? 'bg-white shadow-xs text-orange-600' : 'text-stone-500 hover:text-stone-700'}`}
+                    aria-label="Windows PowerShell installation command"
+                    aria-pressed={activeOS === 'windows'}
+                  >
+                    Windows
                   </button>
                 </div>
               </div>
-            ))}
+              <div className="p-4 bg-[#18181B] relative group">
+                <pre className="font-mono text-xs sm:text-[13px] text-stone-300 whitespace-pre-wrap break-all pr-8 leading-relaxed">
+                  <span className="text-orange-500 font-bold select-none">$</span> {getOsCommand()}
+                </pre>
+                <button
+                  type="button"
+                  aria-label="Copy installation command"
+                  onClick={() => handleCopy(getOsCommand(), 'install')}
+                  className="absolute top-4 right-4 p-1.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-400 hover:text-stone-200 transition-colors cursor-pointer"
+                >
+                  {copiedSection === 'install' ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            {/* Step 2: Dev Server */}
+            <div className="bg-stone-50 rounded-xl border border-stone-200 overflow-hidden shadow-xs">
+              <div className="px-4 py-3 bg-white border-b border-stone-200">
+                <span className="font-semibold text-stone-900 text-sm">2. Start development server</span>
+              </div>
+              <div className="p-4 bg-[#18181B] relative group">
+                <pre className="font-mono text-xs sm:text-[13px] text-stone-300 whitespace-pre-wrap break-all pr-8 leading-relaxed">
+                  <span className="text-orange-500 font-bold select-none">$</span> php -S localhost:8000 -t public/
+                </pre>
+                <button
+                  type="button"
+                  aria-label="Copy development server command"
+                  onClick={() => handleCopy('php -S localhost:8000 -t public/', 'server')}
+                  className="absolute top-4 right-4 p-1.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-400 hover:text-stone-200 transition-colors cursor-pointer"
+                >
+                  {copiedSection === 'server' ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            {/* Secondary Installation: Framework */}
+            <div className="pt-4 border-t border-stone-200">
+              <span className="text-sm font-semibold text-stone-700 mb-2 block">Existing Composer project</span>
+              <div className="relative flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-lg bg-white border border-stone-200 font-mono text-xs text-stone-900 shadow-xs">
+                <div className="flex items-center gap-2 overflow-x-auto">
+                  <span className="text-orange-600 select-none font-bold">$</span>
+                  <code className="text-stone-800 font-medium whitespace-nowrap">composer require flintphp/framework</code>
+                </div>
+                <button
+                  type="button"
+                  aria-label="Copy framework package command"
+                  onClick={() => handleCopy('composer require flintphp/framework', 'framework')}
+                  className="p-1.5 rounded bg-stone-100 hover:bg-stone-200 text-stone-600 hover:text-stone-900 border border-stone-200 transition-colors shrink-0 cursor-pointer"
+                >
+                  {copiedSection === 'framework' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Right Column: Minimal Working FlintPHP Route / API Example */}
@@ -128,12 +155,9 @@ export const QuickStart: React.FC<QuickStartProps> = ({ onNavigate }) => {
                   <span className="text-purple-400">use</span> <span className="text-sky-300">FlintPHP\Framework\Http\Request</span>;{'\n\n'}
                   <span className="text-stone-500">/** @var Router $router */</span>{'\n'}
                   $router-&gt;<span className="text-emerald-400">get</span>(<span className="text-amber-300">'/api/status'</span>, <span className="text-purple-400">function</span> (<span className="text-sky-300">Request</span> $request): <span className="text-sky-300">Response</span> &#123;{'\n'}
-                  {'    '}<span className="text-purple-400">return</span> <span className="text-sky-300">Response</span>::<span className="text-emerald-400">json</span>([
-                  {'\n'}
+                  {'    '}<span className="text-purple-400">return</span> <span className="text-sky-300">Response</span>::<span className="text-emerald-400">json</span>([{'\n'}
                   {'        '}<span className="text-amber-300">'status'</span> =&gt; <span className="text-amber-300">'operational'</span>,{'\n'}
                   {'        '}<span className="text-amber-300">'framework'</span> =&gt; <span className="text-amber-300">'FlintPHP'</span>,{'\n'}
-                  {'        '}<span className="text-amber-300">'version'</span> =&gt; <span className="text-amber-300">'1.0.0'</span>,{'\n'}
-                  {'        '}<span className="text-amber-300">'php_version'</span> =&gt; PHP_VERSION,{'\n'}
                   {'        '}<span className="text-amber-300">'time'</span> =&gt; time(),{'\n'}
                   {'    '}]);{'\n'}
                   &#125;);
@@ -163,8 +187,6 @@ export const QuickStart: React.FC<QuickStartProps> = ({ onNavigate }) => {
                     <pre>{`{
   "status": "operational",
   "framework": "FlintPHP",
-  "version": "1.0.0",
-  "php_version": "8.3.4",
   "time": ${Math.floor(Date.now() / 1000)}
 }`}</pre>
                   </div>
@@ -172,14 +194,14 @@ export const QuickStart: React.FC<QuickStartProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            <div className="mt-4 flex items-center justify-between text-xs text-stone-500">
-              <span>Core package provides the minimal HTTP and routing foundations.</span>
+            <div className="mt-4 flex items-center justify-between text-xs text-stone-500 px-1">
+              <span>Skeleton includes routing, middleware, and standard folder structure.</span>
               <button
                 type="button"
-                onClick={() => onNavigate('docs', 'first-application')}
+                onClick={() => onNavigate('docs', 'routing')}
                 className="text-orange-600 hover:text-orange-700 font-semibold inline-flex items-center gap-1 cursor-pointer"
               >
-                <span>Read First Application Guide</span>
+                <span>Read Routing Docs</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

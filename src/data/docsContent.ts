@@ -76,16 +76,18 @@ export const DOCS_DATA: DocCategory[] = [
           sections: [
             {
               heading: 'Creating a New Project',
-              text: 'To start a new FlintPHP application, initialize a Composer project and require the framework package.',
+              text: 'The recommended way to start a new FlintPHP application is using the official Skeleton. This provides a complete directory structure and development setup instantly.',
               codeBlock: {
                 language: 'bash',
                 filename: 'terminal',
-                code: `# Create a new application project
-mkdir my-app && cd my-app
-composer require flintphp/framework
+                code: `# Create a new application project using the skeleton
+composer create-project flintphp/skeleton my-app
+
+# Enter the project directory
+cd my-app
 
 # Inspect available CLI commands
-php vendor/bin/flint`,
+php bin/flint`,
               },
             },
             {
@@ -176,7 +178,7 @@ $router->get('/api/welcome', function (Request $request): Response {
               table: {
                 headers: ['Directory / File', 'Purpose & Responsibility'],
                 rows: [
-                  ['bin/flint', 'Executable CLI command runner for migrations, tests, and generators'],
+                  ['bin/flint', 'Console foundation for registering and executing custom application tasks'],
                   ['config/', 'Immutable configuration files returning typed arrays'],
                   ['public/index.php', 'Single web entry point; initializes Application & executes HTTP Kernel'],
                   ['routes/', 'Explicit route registration definitions (api.php, web.php)'],
@@ -710,10 +712,8 @@ final class ChatHandler implements WebSocketHandlerInterface
               table: {
                 headers: ['Command', 'Action'],
                 rows: [
-                  ['php bin/flint routes:list', 'Displays all registered HTTP routes, parameters, and assigned middlewares'],
-                  ['php bin/flint make:controller', 'Scaffolds an invokable or action-based controller with strict types'],
-                  ['php bin/flint migrate', 'Applies pending database migrations inside transactions'],
-                  ['php bin/flint cache:clear', 'Flushes application config, routing, and data caches'],
+                  ['php bin/flint list', 'Lists all registered console commands'],
+                  ['php bin/flint help', 'Displays help information for a specific command'],
                                   ],
               },
             },
