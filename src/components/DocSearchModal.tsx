@@ -27,17 +27,9 @@ export const DocSearchModal: React.FC<DocSearchModalProps> = ({
     }
   }, [isOpen]);
 
-  // Handle Cmd+K & Escape shortcuts
+  // Handle Escape shortcut
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        if (isOpen) {
-          onClose();
-        } else {
-          // Open from parent
-        }
-      }
       if (e.key === 'Escape' && isOpen) {
         onClose();
       }
@@ -80,7 +72,7 @@ export const DocSearchModal: React.FC<DocSearchModalProps> = ({
       <div className="relative w-full max-w-2xl bg-white rounded-2xl border border-stone-200 shadow-2xl overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-150">
         {/* Search Input Bar */}
         <div className="flex items-center gap-3 px-4 py-3.5 border-b border-stone-200 bg-stone-50/70">
-          <Search className="w-5 h-5 text-[#EA580C] shrink-0" />
+          <Search className="w-5 h-5 text-orange-600 shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -118,14 +110,14 @@ export const DocSearchModal: React.FC<DocSearchModalProps> = ({
               >
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#EA580C] px-1.5 py-0.5 rounded bg-orange-50 border border-orange-200 font-semibold">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-orange-600 px-1.5 py-0.5 rounded bg-orange-50 border border-orange-200 font-semibold">
                       {page.category}
                     </span>
                     <span className="text-xs text-stone-500 font-mono">
                       {page.readTime}
                     </span>
                   </div>
-                  <h4 className="text-sm font-semibold text-stone-900 group-hover:text-[#EA580C] transition-colors">
+                  <h4 className="text-sm font-semibold text-stone-900 group-hover:text-orange-600 transition-colors">
                     {page.title}
                   </h4>
                   <p className="text-xs text-stone-500 truncate mt-0.5">

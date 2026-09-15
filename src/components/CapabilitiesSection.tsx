@@ -31,11 +31,11 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
   const activeGroupData = CAPABILITY_GROUPS.find((g) => g.id === selectedGroup) || CAPABILITY_GROUPS[0];
 
   return (
-    <section id="features" className="py-16 sm:py-24 border-b border-stone-200 bg-[#FAFAF9] relative">
+    <section id="features" className="py-16 sm:py-24 border-b border-stone-200 bg-stone-50 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-xs font-mono text-[#EA580C] font-semibold mb-3 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-xs font-mono text-orange-600 font-semibold mb-3 shadow-xs">
             <span>WHAT FLINTPHP PROVIDES</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-4">
@@ -59,7 +59,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
                 onClick={() => setSelectedGroup(group.id)}
                 className={`flex items-center gap-2.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all shrink-0 cursor-pointer shadow-xs ${
                   isSelected
-                    ? 'bg-[#EA580C] text-white shadow-sm font-semibold'
+                    ? 'bg-orange-600 text-white shadow-sm font-semibold'
                     : 'bg-white text-stone-700 hover:text-stone-900 hover:bg-stone-100 border border-stone-200'
                 }`}
               >
@@ -83,7 +83,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
         <div className="rounded-2xl bg-white border border-stone-200 p-6 sm:p-8 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-stone-200 mb-6">
             <div>
-              <span className="text-xs font-mono text-[#EA580C] uppercase tracking-wider block mb-1 font-semibold">
+              <span className="text-xs font-mono text-orange-600 uppercase tracking-wider block mb-1 font-semibold">
                 Subsystem: {activeGroupData.badge}
               </span>
               <h3 className="text-2xl font-bold text-stone-900">{activeGroupData.title}</h3>
@@ -95,7 +95,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-xs sm:text-sm font-semibold text-stone-800 border border-stone-200 transition-colors shrink-0 cursor-pointer shadow-xs"
             >
               <span>Explore All in Docs</span>
-              <ArrowRight className="w-4 h-4 text-[#EA580C]" />
+              <ArrowRight className="w-4 h-4 text-orange-600" />
             </button>
           </div>
 
@@ -104,11 +104,11 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
             {activeGroupData.items.map((item, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-xl bg-stone-50/70 border border-stone-200 hover:border-[#EA580C]/40 hover:bg-white transition-all flex flex-col justify-between group shadow-xs"
+                className="p-4 rounded-xl bg-stone-50/70 border border-stone-200 hover:border-orange-600/40 hover:bg-white transition-all flex flex-col justify-between group shadow-xs"
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-sm font-bold text-stone-900 group-hover:text-[#EA580C] transition-colors">
+                    <h4 className="text-sm font-bold text-stone-900 group-hover:text-orange-600 transition-colors">
                       {item.name}
                     </h4>
                     <span className="text-[10px] font-mono text-stone-500 px-1.5 py-0.5 rounded bg-white border border-stone-200">
@@ -123,7 +123,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
                 <button
                   type="button"
                   onClick={() => onNavigate('docs')}
-                  className="inline-flex items-center gap-1 text-xs font-mono text-[#EA580C] hover:text-[#C2410C] font-semibold pt-2 border-t border-stone-200/80 cursor-pointer"
+                  className="inline-flex items-center gap-1 text-xs font-mono text-orange-600 hover:text-orange-700 font-semibold pt-2 border-t border-stone-200/80 cursor-pointer"
                 >
                   <span>Read technical spec</span>
                   <ChevronRight className="w-3.5 h-3.5" />

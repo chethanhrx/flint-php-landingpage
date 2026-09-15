@@ -23,7 +23,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const installCmd = 'composer create-project flintphp/skeleton my-app';
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(installCmd);
+    navigator.clipboard.writeText(installCmd).catch(console.error);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -51,8 +51,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <div className="flex flex-wrap items-center gap-2.5 mb-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 shadow-xs text-xs text-stone-600">
                 <span className="flex h-2 w-2 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EA580C] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#EA580C]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-600 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-600" />
                 </span>
                 <span className="text-stone-900 font-mono font-semibold">FlintPHP v1.0.0</span>
                 <span className="text-stone-300">|</span>
@@ -63,20 +63,20 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               <button
                 type="button"
                 onClick={scrollToBenchmarks}
-                className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EA580C]/10 hover:bg-[#EA580C]/15 border border-[#EA580C]/30 text-xs font-mono text-[#C2410C] transition-all cursor-pointer shadow-xs"
+                className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-600/10 hover:bg-orange-600/15 border border-orange-600/30 text-xs font-mono text-orange-700 transition-all cursor-pointer shadow-xs"
               >
-                <Flame className="w-3.5 h-3.5 text-[#EA580C]" />
+                <Flame className="w-3.5 h-3.5 text-orange-600" />
                 <span className="font-bold">15,200 req/s</span>
                 <span className="text-stone-400">•</span>
                 <span className="hidden sm:inline">10× faster than Laravel</span>
-                <ChevronRight className="w-3.5 h-3.5 text-[#EA580C] transition-transform group-hover:translate-x-0.5" />
+                <ChevronRight className="w-3.5 h-3.5 text-orange-600 transition-transform group-hover:translate-x-0.5" />
               </button>
             </div>
 
             {/* Framework Name & Main Title */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-stone-900 leading-[1.08] mb-4">
               Zero magic. Zero facades.{' '}
-              <span className="text-[#EA580C] block sm:inline">Pure, high-speed PHP.</span>
+              <span className="text-orange-600 block sm:inline">Pure, high-speed PHP.</span>
             </h1>
 
             {/* Value Proposition Description */}
@@ -85,7 +85,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               Built on immutable PSR-7/15 foundations, strict dependency injection, and benchmarked at{' '}
               <span className="font-semibold text-stone-900">~15,200 req/s</span> with a lean{' '}
               <span className="font-semibold text-stone-900">1.4 MB memory footprint</span> — up to{' '}
-              <span className="font-semibold text-[#EA580C]">10× faster</span> than legacy full-stack frameworks.
+              <span className="font-semibold text-orange-600">10× faster</span> than legacy full-stack frameworks.
             </p>
 
             {/* Interactive Composer Installation Box */}
@@ -96,7 +96,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               </div>
               <div className="relative flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-white border border-stone-200 hover:border-stone-300 transition-all font-mono text-sm shadow-xs group">
                 <div className="flex items-center gap-2.5 overflow-x-auto py-0.5 text-stone-900">
-                  <span className="text-[#EA580C] select-none font-bold">$</span>
+                  <span className="text-orange-600 select-none font-bold">$</span>
                   <span className="whitespace-nowrap font-medium">{installCmd}</span>
                 </div>
                 <button
@@ -126,7 +126,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               <button
                 type="button"
                 onClick={() => onNavigate('docs', 'installation')}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#EA580C] hover:bg-[#C2410C] text-white text-sm sm:text-base font-semibold shadow-[0_4px_16px_rgba(234,88,12,0.3)] hover:shadow-[0_6px_20px_rgba(234,88,12,0.4)] transition-all duration-200 cursor-pointer group"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-orange-600 hover:bg-orange-700 text-white text-sm sm:text-base font-semibold shadow-[0_4px_16px_rgba(234,88,12,0.3)] hover:shadow-[0_6px_20px_rgba(234,88,12,0.4)] transition-all duration-200 cursor-pointer group"
               >
                 <span>Get Started</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -135,11 +135,11 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               <button
                 type="button"
                 onClick={scrollToBenchmarks}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-stone-50 text-stone-800 hover:text-stone-900 text-sm sm:text-base font-semibold border-2 border-[#EA580C]/30 hover:border-[#EA580C] shadow-xs transition-all cursor-pointer group"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-stone-50 text-stone-800 hover:text-stone-900 text-sm sm:text-base font-semibold border-2 border-orange-600/30 hover:border-orange-600 shadow-xs transition-all cursor-pointer group"
               >
-                <BarChart3 className="w-4 h-4 text-[#EA580C]" />
+                <BarChart3 className="w-4 h-4 text-orange-600" />
                 <span>View Benchmarks</span>
-                <span className="text-xs px-1.5 py-0.5 rounded bg-[#EA580C]/10 text-[#EA580C] font-mono font-bold">
+                <span className="text-xs px-1.5 py-0.5 rounded bg-orange-600/10 text-orange-600 font-mono font-bold">
                   10× Faster
                 </span>
               </button>
@@ -158,11 +158,11 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-stone-200 w-full max-w-xl text-left">
               <div className="p-2.5 rounded-lg bg-white/70 border border-stone-200/80">
                 <div className="text-[10px] font-mono text-stone-500 uppercase font-semibold">THROUGHPUT</div>
-                <div className="text-base font-mono font-bold text-stone-900">~15,200 <span className="text-xs text-[#EA580C]">req/s</span></div>
+                <div className="text-base font-mono font-bold text-stone-900">~15,200 <span className="text-xs text-orange-600">req/s</span></div>
               </div>
               <div className="p-2.5 rounded-lg bg-white/70 border border-stone-200/80">
                 <div className="text-[10px] font-mono text-stone-500 uppercase font-semibold">DB FETCH</div>
-                <div className="text-base font-mono font-bold text-stone-900">~5,500 <span className="text-xs text-[#EA580C]">req/s</span></div>
+                <div className="text-base font-mono font-bold text-stone-900">~5,500 <span className="text-xs text-orange-600">req/s</span></div>
               </div>
               <div className="p-2.5 rounded-lg bg-white/70 border border-stone-200/80">
                 <div className="text-[10px] font-mono text-stone-500 uppercase font-semibold">BASE RAM</div>

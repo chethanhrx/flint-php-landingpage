@@ -245,7 +245,7 @@ export const InteractiveTerminal: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 border border-stone-200 text-xs font-mono text-stone-700 font-semibold mb-3">
-            <TerminalIcon className="w-3.5 h-3.5 text-[#EA580C]" />
+            <TerminalIcon className="w-3.5 h-3.5 text-orange-600" />
             <span>INTERACTIVE CLI ENGINE</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
@@ -266,7 +266,7 @@ export const InteractiveTerminal: React.FC = () => {
               onClick={() => executeCommand(cmd)}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-stone-50 hover:bg-stone-100 text-xs font-mono text-stone-700 hover:text-stone-900 border border-stone-200 transition-all cursor-pointer shadow-xs active:scale-95"
             >
-              <Play className="w-3 h-3 text-[#EA580C]" />
+              <Play className="w-3 h-3 text-orange-600" />
               <span>{cmd}</span>
             </button>
           ))}
@@ -312,7 +312,7 @@ export const InteractiveTerminal: React.FC = () => {
             {history.map((item, idx) => (
               <div key={idx} className="space-y-1">
                 <div className="flex items-center gap-2 text-stone-300">
-                  <span className="text-[#EA580C] font-bold">➜</span>
+                  <span className="text-orange-600 font-bold">➜</span>
                   <span className="text-sky-400 font-semibold">flint-app</span>
                   <span className="text-stone-500 font-bold">$</span>
                   <span className="text-white font-medium">{item.command}</span>
@@ -328,7 +328,7 @@ export const InteractiveTerminal: React.FC = () => {
 
             {/* Active Command Input Line */}
             <div className="flex items-center gap-2 pt-2 text-stone-200">
-              <span className="text-[#EA580C] font-bold select-none">➜</span>
+              <span className="text-orange-600 font-bold select-none">➜</span>
               <span className="text-sky-400 font-semibold select-none">flint-app</span>
               <span className="text-stone-500 font-bold select-none">$</span>
               <input
@@ -355,7 +355,7 @@ export const InteractiveTerminal: React.FC = () => {
               <span>•</span>
               <span>Memory: 1.38 MB</span>
             </div>
-            <div className="flex items-center gap-1 text-[#EA580C]">
+            <div className="flex items-center gap-1 text-orange-600">
               <Sparkles className="w-3 h-3" />
               <span>Flint CLI v1.0.0</span>
             </div>

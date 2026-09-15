@@ -50,37 +50,35 @@ export const RouteMatcherSandbox: React.FC = () => {
   const [path, setPath] = useState('/api/v1/users/428');
   const [activePreset, setActivePreset] = useState(1);
 
-  // Matcher logic
   const findMatch = () => {
-    if (path === '/health' && method === 'GET') {
-      return {
-        route: REGISTERED_ROUTES[3],
-        params: {},
-        timeMs: '0.008',
-      };
-    }
-    if (path === '/api/v1/users' && method === 'GET') {
-      return {
-        route: REGISTERED_ROUTES[0],
-        params: {},
-        timeMs: '0.012',
-      };
-    }
-    const userMatch = path.match(/^\/api\/v1\/users\/([0-9]+)$/);
-    if (userMatch && method === 'GET') {
-      return {
-        route: REGISTERED_ROUTES[1],
-        params: { id: userMatch[1] },
-        timeMs: '0.016',
-      };
-    }
-    const postMatch = path.match(/^\/api\/v1\/users\/([0-9]+)\/posts$/);
-    if (postMatch && method === 'POST') {
-      return {
-        route: REGISTERED_ROUTES[2],
-        params: { id: postMatch[1] },
-        timeMs: '0.019',
-      };
+    for (const route of REGISTERED_ROUTES) {
+      if (route.method !== method) continue;
+      
+      let paramNames: string[] = [];
+      let regexPattern = route.pattern.replace(/{([a-zA-Z0-9_]+):([^}]+)}/g, (_, name, regex) => {
+        paramNames.push(name);
+        return `(${regex})`;
+      });
+      regexPattern = regexPattern.replace(/{([a-zA-Z0-9_]+)}/g, (_, name) => {
+        paramNames.push(name);
+        return `([^/]+)`;
+      });
+      
+      const regex = new RegExp(`^${regexPattern}$`);
+      const match = path.match(regex);
+      
+      if (match) {
+        const params: Record<string, string> = {};
+        paramNames.forEach((name, i) => {
+          params[name] = match[i + 1];
+        });
+        
+        return {
+          route,
+          params,
+          timeMs: (Math.random() * 0.02 + 0.01).toFixed(3),
+        };
+      }
     }
     return null;
   };
@@ -94,12 +92,12 @@ export const RouteMatcherSandbox: React.FC = () => {
   };
 
   return (
-    <section id="routing" className="py-16 bg-[#FAFAF9] border-b border-stone-200 bg-grid-boxes-faint scroll-mt-16">
+    <section id="routing" className="py-16 bg-stone-50 border-b border-stone-200 bg-grid-boxes-faint scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-xs font-mono text-stone-700 font-semibold mb-3 shadow-xs">
-            <Network className="w-3.5 h-3.5 text-[#EA580C]" />
+            <Network className="w-3.5 h-3.5 text-orange-600" />
             <span>RADIX TREE ROUTING ENGINE</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
@@ -121,7 +119,7 @@ export const RouteMatcherSandbox: React.FC = () => {
                 onClick={() => handleSelectPreset(0, 'GET', '/api/v1/users')}
                 className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                   activePreset === 0
-                    ? 'bg-[#EA580C] text-white font-semibold shadow-xs'
+                    ? 'bg-orange-600 text-white font-semibold shadow-xs'
                     : 'bg-stone-50 hover:bg-stone-100 text-stone-700 border border-stone-200'
                 }`}
               >
@@ -132,7 +130,7 @@ export const RouteMatcherSandbox: React.FC = () => {
                 onClick={() => handleSelectPreset(1, 'GET', '/api/v1/users/428')}
                 className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                   activePreset === 1
-                    ? 'bg-[#EA580C] text-white font-semibold shadow-xs'
+                    ? 'bg-orange-600 text-white font-semibold shadow-xs'
                     : 'bg-stone-50 hover:bg-stone-100 text-stone-700 border border-stone-200'
                 }`}
               >
@@ -143,7 +141,7 @@ export const RouteMatcherSandbox: React.FC = () => {
                 onClick={() => handleSelectPreset(2, 'POST', '/api/v1/users/99/posts')}
                 className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                   activePreset === 2
-                    ? 'bg-[#EA580C] text-white font-semibold shadow-xs'
+                    ? 'bg-orange-600 text-white font-semibold shadow-xs'
                     : 'bg-stone-50 hover:bg-stone-100 text-stone-700 border border-stone-200'
                 }`}
               >
@@ -154,7 +152,7 @@ export const RouteMatcherSandbox: React.FC = () => {
                 onClick={() => handleSelectPreset(3, 'GET', '/health')}
                 className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                   activePreset === 3
-                    ? 'bg-[#EA580C] text-white font-semibold shadow-xs'
+                    ? 'bg-orange-600 text-white font-semibold shadow-xs'
                     : 'bg-stone-50 hover:bg-stone-100 text-stone-700 border border-stone-200'
                 }`}
               >
@@ -169,10 +167,10 @@ export const RouteMatcherSandbox: React.FC = () => {
             <select
               value={method}
               onChange={(e) => {
-                setMethod(e.target.value as any);
+                setMethod(e.target.value as 'GET' | 'POST' | 'PUT' | 'DELETE');
                 setActivePreset(-1);
               }}
-              className="w-full sm:w-28 px-3 py-2 rounded-lg bg-white border border-stone-200 font-mono font-bold text-xs sm:text-sm text-stone-900 focus:outline-none focus:border-[#EA580C] shadow-xs cursor-pointer"
+              className="w-full sm:w-28 px-3 py-2 rounded-lg bg-white border border-stone-200 font-mono font-bold text-xs sm:text-sm text-stone-900 focus:outline-none focus:border-orange-600 shadow-xs cursor-pointer"
             >
               <option value="GET">GET</option>
               <option value="POST">POST</option>
@@ -189,7 +187,7 @@ export const RouteMatcherSandbox: React.FC = () => {
                   setPath(e.target.value);
                   setActivePreset(-1);
                 }}
-                className="w-full px-3.5 py-2 rounded-lg bg-white border border-stone-200 font-mono text-xs sm:text-sm text-stone-900 focus:outline-none focus:border-[#EA580C] shadow-xs"
+                className="w-full px-3.5 py-2 rounded-lg bg-white border border-stone-200 font-mono text-xs sm:text-sm text-stone-900 focus:outline-none focus:border-orange-600 shadow-xs"
                 placeholder="/api/v1/..."
               />
             </div>
@@ -217,7 +215,7 @@ export const RouteMatcherSandbox: React.FC = () => {
                 <div className="p-4 rounded-xl bg-stone-50 border border-stone-200 space-y-3">
                   <div className="text-xs font-mono uppercase tracking-wider font-bold text-stone-900 flex items-center justify-between">
                     <span>DISPATCH TARGET</span>
-                    <span className="text-[#EA580C] text-[10px] font-mono">PSR-15 HANDLER</span>
+                    <span className="text-orange-600 text-[10px] font-mono">PSR-15 HANDLER</span>
                   </div>
 
                   <div className="space-y-2 text-xs font-mono">
@@ -228,7 +226,7 @@ export const RouteMatcherSandbox: React.FC = () => {
 
                     <div className="p-2.5 rounded-lg bg-white border border-stone-200">
                       <div className="text-stone-500 text-[10px]">Action Method</div>
-                      <div className="text-[#EA580C] font-semibold">{match.route.action}()</div>
+                      <div className="text-orange-600 font-semibold">{match.route.action}()</div>
                     </div>
 
                     <div className="p-2.5 rounded-lg bg-white border border-stone-200">
@@ -264,7 +262,7 @@ export const RouteMatcherSandbox: React.FC = () => {
                         <span className="ml-auto text-[10px] text-emerald-600 font-medium">Passed</span>
                       </div>
                     ))}
-                    <div className="flex items-center gap-2 p-2 rounded-lg bg-[#EA580C]/10 border border-[#EA580C]/20 text-[#EA580C] font-semibold">
+                    <div className="flex items-center gap-2 p-2 rounded-lg bg-orange-600/10 border border-orange-600/20 text-orange-600 font-semibold">
                       <CornerDownRight className="w-3.5 h-3.5" />
                       <span>{match.route.action}() Handler executed</span>
                     </div>

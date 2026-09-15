@@ -67,13 +67,13 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
   };
 
   const handleCopyCode = (code: string, idx: number) => {
-    navigator.clipboard.writeText(code);
+    navigator.clipboard.writeText(code).catch(console.error);
     setCopiedCodeIndex(idx);
     setTimeout(() => setCopiedCodeIndex(null), 2000);
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAF9] text-stone-900 flex flex-col">
+    <div className="min-h-screen bg-stone-50 text-stone-900 flex flex-col">
       {/* Docs Top Action Bar (Mobile Hamburger + Breadcrumb bar) */}
       <div className="lg:hidden sticky top-16 z-30 flex items-center justify-between px-4 py-2.5 bg-white border-b border-stone-200 shadow-xs">
         <button
@@ -81,7 +81,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
           onClick={() => setMobileSidebarOpen(true)}
           className="flex items-center gap-2 text-xs font-semibold text-stone-700 hover:text-stone-900 cursor-pointer"
         >
-          <Menu className="w-4 h-4 text-[#EA580C]" />
+          <Menu className="w-4 h-4 text-orange-600" />
           <span>Documentation Menu</span>
         </button>
         <button
@@ -89,7 +89,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
           onClick={onOpenSearch}
           className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-stone-100 text-xs font-medium text-stone-700 border border-stone-200 cursor-pointer shadow-xs"
         >
-          <Search className="w-3.5 h-3.5 text-[#EA580C]" />
+          <Search className="w-3.5 h-3.5 text-orange-600" />
           <span>Search</span>
         </button>
       </div>
@@ -105,7 +105,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
               className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-white border border-stone-200 hover:border-stone-300 text-xs text-stone-500 hover:text-stone-900 transition-all cursor-pointer group shadow-xs"
             >
               <div className="flex items-center gap-2">
-                <Search className="w-3.5 h-3.5 text-[#EA580C]" />
+                <Search className="w-3.5 h-3.5 text-orange-600" />
                 <span>Search docs...</span>
               </div>
               <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-stone-100 rounded border border-stone-200 text-stone-600">
@@ -131,13 +131,13 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
                           onClick={() => handleSelectPage(page.slug)}
                           className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-between cursor-pointer ${
                             isActive
-                              ? 'bg-orange-50 text-[#EA580C] font-semibold border-l-2 border-[#EA580C]'
+                              ? 'bg-orange-50 text-orange-600 font-semibold border-l-2 border-orange-600'
                               : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'
                           }`}
                         >
                           <span className="truncate">{page.title}</span>
                           {isActive && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#EA580C] shrink-0" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-orange-600 shrink-0" />
                           )}
                         </button>
                       </li>
@@ -172,7 +172,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
                 <div className="space-y-6">
                   {DOCS_DATA.map((category) => (
                     <div key={category.id}>
-                      <h4 className="text-[11px] font-mono uppercase tracking-wider text-[#EA580C] font-bold mb-2">
+                      <h4 className="text-[11px] font-mono uppercase tracking-wider text-orange-600 font-bold mb-2">
                         {category.name}
                       </h4>
                       <ul className="space-y-1">
@@ -185,7 +185,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
                                 onClick={() => handleSelectPage(page.slug)}
                                 className={`w-full text-left px-2 py-1.5 rounded-lg text-xs transition-colors ${
                                   isActive
-                                    ? 'bg-[#EA580C] text-white font-semibold'
+                                    ? 'bg-orange-600 text-white font-semibold'
                                     : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'
                                 }`}
                               >
@@ -221,13 +221,13 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
             <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
             <span className="text-stone-600">{currentPage.category}</span>
             <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
-            <span className="text-[#EA580C] font-semibold">{currentPage.title}</span>
+            <span className="text-orange-600 font-semibold">{currentPage.title}</span>
           </nav>
 
           {/* Page Title & Meta */}
           <div className="border-b border-stone-200 pb-6 mb-8">
             <div className="flex flex-wrap items-center gap-3 mb-3">
-              <span className="inline-flex items-center gap-1 text-[11px] font-mono text-[#EA580C] bg-orange-50 px-2.5 py-0.5 rounded-md border border-orange-200 font-semibold shadow-xs">
+              <span className="inline-flex items-center gap-1 text-[11px] font-mono text-orange-600 bg-orange-50 px-2.5 py-0.5 rounded-md border border-orange-200 font-semibold shadow-xs">
                 <Tag className="w-3 h-3" />
                 <span>v1.0.0</span>
               </span>
@@ -252,7 +252,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
             {currentPage.content.sections.map((section, sIdx) => (
               <section key={sIdx} className="space-y-4">
                 <h2 className="text-xl sm:text-2xl font-bold text-stone-900 flex items-center gap-2 group">
-                  <Hash className="w-4 h-4 text-[#EA580C] opacity-70 group-hover:opacity-100" />
+                  <Hash className="w-4 h-4 text-orange-600 opacity-70 group-hover:opacity-100" />
                   <span>{section.heading}</span>
                 </h2>
 
@@ -267,7 +267,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
                   <ul className="space-y-2 text-sm text-stone-600 pl-2">
                     {section.bulletPoints.map((bp, bIdx) => (
                       <li key={bIdx} className="flex items-start gap-2.5">
-                        <span className="text-[#EA580C] font-mono mt-0.5 font-bold">•</span>
+                        <span className="text-orange-600 font-mono mt-0.5 font-bold">•</span>
                         <span className="leading-relaxed">{bp}</span>
                       </li>
                     ))}
@@ -276,10 +276,10 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
 
                 {/* Code Block with Copy Button */}
                 {section.codeBlock && (
-                  <div className="rounded-xl bg-[#1C1917] border border-stone-800 overflow-hidden shadow-lg my-4">
+                  <div className="rounded-xl bg-stone-900 border border-stone-800 overflow-hidden shadow-lg my-4">
                     <div className="flex items-center justify-between px-4 py-2.5 bg-[#18181B] border-b border-stone-800">
                       <div className="flex items-center gap-2 text-xs font-mono text-stone-300">
-                        <Code2 className="w-3.5 h-3.5 text-[#EA580C]" />
+                        <Code2 className="w-3.5 h-3.5 text-orange-600" />
                         <span>{section.codeBlock.filename || section.codeBlock.language}</span>
                       </div>
                       <button
@@ -327,7 +327,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
                                 key={cIdx}
                                 className={`p-3.5 ${
                                   cIdx === 0
-                                    ? 'text-[#EA580C] font-bold'
+                                    ? 'text-orange-600 font-bold'
                                     : 'text-stone-600 font-sans'
                                 }`}
                               >
@@ -356,7 +356,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
                   <ChevronLeft className="w-3 h-3 group-hover:-translate-x-0.5 transition-transform" />
                   <span>PREVIOUS</span>
                 </div>
-                <div className="text-sm font-semibold text-stone-900 group-hover:text-[#EA580C] transition-colors truncate">
+                <div className="text-sm font-semibold text-stone-900 group-hover:text-orange-600 transition-colors truncate">
                   {prevPage.title}
                 </div>
               </button>
@@ -372,7 +372,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
                   <span>NEXT</span>
                   <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                 </div>
-                <div className="text-sm font-semibold text-stone-900 group-hover:text-[#EA580C] transition-colors truncate">
+                <div className="text-sm font-semibold text-stone-900 group-hover:text-orange-600 transition-colors truncate">
                   {nextPage.title}
                 </div>
               </button>

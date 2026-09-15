@@ -39,6 +39,17 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const handleNavigate = (view: 'home' | 'docs', docSlug?: string) => {
     setCurrentView(view);
     if (view === 'docs') {
@@ -55,12 +66,13 @@ export default function App() {
   const handleSelectDocFromSearch = (slug: string) => {
     setActiveDocSlug(slug);
     setCurrentView('docs');
+    setIsSearchOpen(false);
     window.location.hash = `docs/${slug}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAF9] text-[#1C1917] font-sans antialiased selection:bg-[#EA580C]/20 selection:text-[#9A3412] flex flex-col">
+    <div className="min-h-screen flex flex-col">
       {/* Universal Top Navigation */}
       <Navbar
         currentView={currentView}

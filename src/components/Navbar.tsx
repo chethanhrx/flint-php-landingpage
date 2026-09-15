@@ -35,7 +35,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             type="button"
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA580C] rounded-md transition-transform"
+            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 rounded-md transition-transform"
             aria-label="FlintPHP Home"
           >
             {/* Official Logo Asset 2 */}
@@ -48,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Version Badge */}
           <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-stone-100 border border-stone-200 text-xs font-mono text-stone-600">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#EA580C] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-600 animate-pulse" />
             <span className="text-stone-900 font-semibold">v1.0.0</span>
             <span className="text-stone-300">•</span>
             <span className="text-[11px] text-stone-500">PHP 8.2+</span>
@@ -62,7 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => handleNavClick('docs')}
             className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
               currentView === 'docs'
-                ? 'bg-stone-100 text-[#EA580C] font-semibold'
+                ? 'bg-stone-100 text-orange-600 font-semibold'
                 : 'hover:text-stone-900 hover:bg-stone-100/70'
             }`}
           >
@@ -102,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
             <span>Benchmarks</span>
-            <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#EA580C]/10 text-[#EA580C] border border-[#EA580C]/20">
+            <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-orange-600/10 text-orange-600 border border-orange-600/20">
               15.2k
             </span>
           </button>
@@ -124,7 +124,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-200/70 border border-stone-200 text-xs text-stone-600 hover:text-stone-900 transition-all group cursor-pointer"
             aria-label="Search documentation"
           >
-            <Search className="w-3.5 h-3.5 text-[#EA580C]" />
+            <Search className="w-3.5 h-3.5 text-orange-600" />
             <span className="hidden sm:inline">Search docs...</span>
             <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-white border border-stone-200 rounded text-stone-500 shadow-xs">
               ⌘K
@@ -147,7 +147,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             type="button"
             onClick={() => handleNavClick('docs', 'installation')}
-            className="hidden sm:inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-lg bg-[#EA580C] hover:bg-[#C2410C] text-white text-xs sm:text-sm font-semibold shadow-[0_1px_3px_rgba(234,88,12,0.3)] transition-all duration-200 cursor-pointer"
+            className="hidden sm:inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-xs sm:text-sm font-semibold shadow-[0_1px_3px_rgba(234,88,12,0.3)] transition-all duration-200 cursor-pointer"
           >
             <span>Get Started</span>
           </button>
@@ -156,7 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100 border border-stone-200"
+            className="lg:hidden p-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100 border border-stone-200"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -166,10 +166,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-stone-200 bg-white px-4 pt-3 pb-5 space-y-2 shadow-lg">
+        <div className="lg:hidden border-b border-stone-200 bg-white px-4 pt-3 pb-5 space-y-2 shadow-lg">
           <div className="flex items-center justify-between pb-2 border-b border-stone-200">
             <span className="text-xs font-mono font-medium text-stone-600">FlintPHP Framework</span>
-            <span className="text-xs font-mono text-[#EA580C] bg-orange-50 border border-orange-200/80 px-2 py-0.5 rounded-md font-semibold">
+            <span className="text-xs font-mono text-orange-600 bg-orange-50 border border-orange-200/80 px-2 py-0.5 rounded-md font-semibold">
               v1.0.0 Stable
             </span>
           </div>
@@ -228,7 +228,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={() => handleNavClick('docs', 'installation')}
-              className="px-3 py-1.5 rounded-lg bg-[#EA580C] text-white text-xs font-semibold"
+              className="px-3 py-1.5 rounded-lg bg-orange-600 text-white text-xs font-semibold"
             >
               Get Started
             </button>

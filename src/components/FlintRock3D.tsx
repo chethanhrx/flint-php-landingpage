@@ -366,15 +366,15 @@ export const FlintRock3D: React.FC<FlintRock3DProps> = ({
           >
             {viewMode === '3d' ? (
               <>
-                <Rotate3d className="w-3.5 h-3.5 text-[#EA580C] animate-pulse" />
+                <Rotate3d className="w-3.5 h-3.5 text-orange-600 animate-pulse" />
                 <span className="font-medium">3D Flint</span>
-                <span className="text-[10px] text-[#EA580C] bg-orange-50 px-1.5 py-0.5 rounded font-mono font-semibold">
+                <span className="text-[10px] text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded font-mono font-semibold">
                   Obsidian
                 </span>
               </>
             ) : (
               <>
-                <ImageIcon className="w-3.5 h-3.5 text-[#EA580C]" />
+                <ImageIcon className="w-3.5 h-3.5 text-orange-600" />
                 <span className="font-medium">2D Vector</span>
               </>
             )}
@@ -384,7 +384,7 @@ export const FlintRock3D: React.FC<FlintRock3DProps> = ({
 
       {/* Subtle Hint on first hover */}
       <div className="absolute top-4 left-4 pointer-events-none hidden sm:flex items-center gap-1.5 text-[11px] font-mono text-stone-400 uppercase tracking-wider">
-        <Sparkles className="w-3 h-3 text-[#EA580C]/80" />
+        <Sparkles className="w-3 h-3 text-orange-600/80" />
         <span>Asset 1 • Official Flint Symbol</span>
       </div>
     </div>

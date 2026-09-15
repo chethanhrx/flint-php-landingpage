@@ -128,17 +128,17 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
 
   const handleCopy = (code: string, index: number, e: React.MouseEvent) => {
     e.stopPropagation();
-    navigator.clipboard.writeText(code);
+    navigator.clipboard.writeText(code).catch(console.error);
     setCopiedIndex(index);
     setTimeout(() => setCopiedIndex(null), 2000);
   };
 
   return (
-    <section className="py-16 sm:py-20 border-b border-stone-200 bg-[#FAFAF9]">
+    <section className="py-16 sm:py-20 border-b border-stone-200 bg-stone-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-xs font-mono text-[#EA580C] font-semibold mb-3 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-xs font-mono text-orange-600 font-semibold mb-3 shadow-xs">
             <span>30-SECOND ESSENTIALS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-4">
@@ -161,14 +161,14 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
                 onClick={() => setActiveItem(idx)}
                 className={`p-5 rounded-xl border transition-all duration-200 cursor-pointer flex flex-col justify-between ${
                   isSelected
-                    ? 'bg-stone-50/80 border-[#EA580C] shadow-sm ring-1 ring-[#EA580C]/20'
+                    ? 'bg-stone-50/80 border-orange-600 shadow-sm ring-1 ring-orange-600/20'
                     : 'bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm'
                 }`}
               >
                 <div>
                   {/* Top metadata */}
                   <div className="flex items-center justify-between mb-3">
-                    <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-stone-100 border border-stone-200 text-[#EA580C] text-xs font-mono font-bold">
+                    <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-stone-100 border border-stone-200 text-orange-600 text-xs font-mono font-bold">
                       0{item.id}
                     </span>
                     <span className="text-[11px] font-mono uppercase tracking-wider text-stone-600 px-2 py-0.5 rounded bg-stone-100 border border-stone-200 font-medium">
@@ -178,7 +178,7 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
 
                   {/* Question */}
                   <h3 className="text-base font-semibold text-stone-900 mb-2 flex items-center gap-2">
-                    <Icon className="w-4 h-4 text-[#EA580C] shrink-0" />
+                    <Icon className="w-4 h-4 text-orange-600 shrink-0" />
                     <span>{item.question}</span>
                   </h3>
 
@@ -189,7 +189,7 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
 
                   {/* Code snippet if applicable */}
                   {item.isCode && item.code && (
-                    <div className="relative mb-4 bg-[#1C1917] p-3 rounded-lg border border-stone-800 font-mono text-xs text-stone-100 overflow-x-auto group/code">
+                    <div className="relative mb-4 bg-stone-900 p-3 rounded-lg border border-stone-800 font-mono text-xs text-stone-100 overflow-x-auto group/code">
                       <pre className="text-xs text-orange-400">{item.code}</pre>
                       <button
                         type="button"
@@ -214,7 +214,7 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
                       href={item.externalUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#EA580C] hover:text-[#C2410C]"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-600 hover:text-orange-700"
                     >
                       <span>{item.actionText}</span>
                       <ChevronRight className="w-3.5 h-3.5" />
@@ -226,7 +226,7 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
                         e.stopPropagation();
                         item.actionTarget?.();
                       }}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#EA580C] hover:text-[#C2410C] cursor-pointer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-600 hover:text-orange-700 cursor-pointer"
                     >
                       <span>{item.actionText}</span>
                       <ChevronRight className="w-3.5 h-3.5" />

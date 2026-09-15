@@ -20,7 +20,7 @@ export const CodeExamplesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-stone-100 border border-stone-200 text-xs font-mono text-[#EA580C] font-semibold mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-stone-100 border border-stone-200 text-xs font-mono text-orange-600 font-semibold mb-3">
             <span>PRODUCTION-READY PHP</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-4">
@@ -45,14 +45,14 @@ export const CodeExamplesSection: React.FC = () => {
                   onClick={() => setSelectedExampleId(example.id)}
                   className={`w-full text-left p-3 rounded-xl border transition-all duration-150 flex items-center justify-between cursor-pointer ${
                     isSelected
-                      ? 'bg-stone-50 border-[#EA580C] shadow-xs ring-1 ring-[#EA580C]/20'
+                      ? 'bg-stone-50 border-orange-600 shadow-xs ring-1 ring-orange-600/20'
                       : 'bg-white border-stone-200 hover:border-stone-300 hover:bg-stone-50/60'
                   }`}
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
                     <FileCode
                       className={`w-4 h-4 shrink-0 ${
-                        isSelected ? 'text-[#EA580C]' : 'text-stone-400'
+                        isSelected ? 'text-orange-600' : 'text-stone-400'
                       }`}
                     />
                     <div className="truncate">
@@ -75,7 +75,7 @@ export const CodeExamplesSection: React.FC = () => {
 
           {/* Right Column: Code Editor & Runner */}
           <div className="lg:col-span-8">
-            <div className="rounded-2xl bg-[#1C1917] border border-stone-800 overflow-hidden shadow-xl">
+            <div className="rounded-2xl bg-stone-900 border border-stone-800 overflow-hidden shadow-xl">
               {/* Header */}
               <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3.5 bg-[#18181B] border-b border-stone-800">
                 <div className="flex items-center gap-3">

@@ -104,16 +104,16 @@ final class UserAnalyticsTest extends TestCase
   const current = comparisons[activeTab];
 
   return (
-    <section id="no-magic" className="py-16 sm:py-24 border-b border-stone-200 bg-[#FAFAF9] relative">
+    <section id="no-magic" className="py-16 sm:py-24 border-b border-stone-200 bg-stone-50 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Headline */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-xs font-mono text-[#EA580C] font-semibold mb-4 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-stone-200 text-xs font-mono text-orange-600 font-semibold mb-4 shadow-xs">
             <Shield className="w-3.5 h-3.5" />
             <span>CORE PHILOSOPHY</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-stone-900 mb-4">
-            Less magic. <span className="text-[#EA580C]">More control.</span>
+            Less magic. <span className="text-orange-600">More control.</span>
           </h2>
           <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
             FlintPHP intentionally rejects the conventions of the past decade that sacrificed engineering clarity for superficial brevity.
@@ -157,28 +157,28 @@ final class UserAnalyticsTest extends TestCase
           <div className="p-6 rounded-2xl bg-white border border-orange-200 shadow-xs ring-1 ring-orange-500/10">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center border border-orange-200">
-                <CheckCircle2 className="w-5 h-5 text-[#EA580C]" />
+                <CheckCircle2 className="w-5 h-5 text-orange-600" />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-stone-900">What FlintPHP Does Instead</h3>
-                <span className="text-xs text-[#EA580C] font-mono font-semibold">Explicit Architecture</span>
+                <span className="text-xs text-orange-600 font-mono font-semibold">Explicit Architecture</span>
               </div>
             </div>
             <ul className="space-y-3 text-sm text-stone-600">
               <li className="flex items-start gap-2.5">
-                <span className="text-[#EA580C] font-mono font-bold shrink-0">✓</span>
+                <span className="text-orange-600 font-mono font-bold shrink-0">✓</span>
                 <span><strong className="text-stone-900">Explicit Dependencies:</strong> Constructor-injected interfaces cleanly defined and type-checked.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <span className="text-[#EA580C] font-mono font-bold shrink-0">✓</span>
+                <span className="text-orange-600 font-mono font-bold shrink-0">✓</span>
                 <span><strong className="text-stone-900">Composable Components:</strong> Modular units assembled through deterministic bootstrappers.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <span className="text-[#EA580C] font-mono font-bold shrink-0">✓</span>
+                <span className="text-orange-600 font-mono font-bold shrink-0">✓</span>
                 <span><strong className="text-stone-900">Predictable Behavior:</strong> Step through with Xdebug effortlessly; no mysterious interception layers.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <span className="text-[#EA580C] font-mono font-bold shrink-0">✓</span>
+                <span className="text-orange-600 font-mono font-bold shrink-0">✓</span>
                 <span><strong className="text-stone-900">Pure Testability:</strong> Instantiate classes directly in unit tests with zero mocking frameworks needed.</span>
               </li>
             </ul>
@@ -194,7 +194,7 @@ final class UserAnalyticsTest extends TestCase
               onClick={() => setActiveTab('facades')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                 activeTab === 'facades'
-                  ? 'bg-[#EA580C] text-white font-semibold shadow-xs'
+                  ? 'bg-orange-600 text-white font-semibold shadow-xs'
                   : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/60'
               }`}
             >
@@ -205,7 +205,7 @@ final class UserAnalyticsTest extends TestCase
               onClick={() => setActiveTab('state')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                 activeTab === 'state'
-                  ? 'bg-[#EA580C] text-white font-semibold shadow-xs'
+                  ? 'bg-orange-600 text-white font-semibold shadow-xs'
                   : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/60'
               }`}
             >
@@ -216,7 +216,7 @@ final class UserAnalyticsTest extends TestCase
               onClick={() => setActiveTab('discovery')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                 activeTab === 'discovery'
-                  ? 'bg-[#EA580C] text-white font-semibold shadow-xs'
+                  ? 'bg-orange-600 text-white font-semibold shadow-xs'
                   : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/60'
               }`}
             >
@@ -227,7 +227,7 @@ final class UserAnalyticsTest extends TestCase
               onClick={() => setActiveTab('testing')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                 activeTab === 'testing'
-                  ? 'bg-[#EA580C] text-white font-semibold shadow-xs'
+                  ? 'bg-orange-600 text-white font-semibold shadow-xs'
                   : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/60'
               }`}
             >
@@ -246,7 +246,7 @@ final class UserAnalyticsTest extends TestCase
                 </span>
                 <span className="text-[11px] text-stone-500 font-mono">Magic / Hidden State</span>
               </div>
-              <div className="p-4 rounded-xl bg-[#1C1917] border border-red-900/30 font-mono text-xs text-stone-300 overflow-x-auto mb-3 shadow-inner">
+              <div className="p-4 rounded-xl bg-stone-900 border border-red-900/30 font-mono text-xs text-stone-300 overflow-x-auto mb-3 shadow-inner">
                 <pre>{current.magicCode}</pre>
               </div>
               <div className="text-xs text-red-700 bg-red-50 p-2.5 rounded-lg border border-red-200 font-sans">
@@ -257,7 +257,7 @@ final class UserAnalyticsTest extends TestCase
             {/* Right: FlintPHP Explicit Composition */}
             <div className="p-5 sm:p-6 bg-white">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-mono font-bold text-[#EA580C] flex items-center gap-1.5">
+                <span className="text-xs font-mono font-bold text-orange-600 flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4" />
                   {current.flintTitle}
                 </span>
@@ -265,7 +265,7 @@ final class UserAnalyticsTest extends TestCase
                   FlintPHP Native
                 </span>
               </div>
-              <div className="p-4 rounded-xl bg-[#1C1917] border border-orange-500/30 font-mono text-xs text-stone-100 overflow-x-auto mb-3 shadow-inner">
+              <div className="p-4 rounded-xl bg-stone-900 border border-orange-500/30 font-mono text-xs text-stone-100 overflow-x-auto mb-3 shadow-inner">
                 <pre>{current.flintCode}</pre>
               </div>
               <div className="text-xs text-emerald-800 bg-emerald-50 p-2.5 rounded-lg border border-emerald-200 font-sans font-medium">

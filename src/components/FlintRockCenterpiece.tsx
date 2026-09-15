@@ -83,14 +83,14 @@ export const FlintRockCenterpiece: React.FC = () => {
         <div className="absolute inset-0 bg-grid-boxes-faint opacity-50 pointer-events-none" />
 
         {/* Ambient Warm Spark Glow */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#EA580C]/8 blur-[80px] pointer-events-none" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-orange-600/8 blur-[80px] pointer-events-none" />
 
         {/* Header HUD: Official Symbol & Live Telemetry Badge */}
         <div className="relative z-10 flex items-center justify-between pb-4 border-b border-stone-200 mb-5">
           <div className="flex items-center gap-2.5">
             <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EA580C] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#EA580C]" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-600 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-600" />
             </span>
             <span className="text-xs font-mono font-bold text-stone-900 uppercase tracking-wider">
               FLINTPHP KERNEL v1.0
@@ -141,7 +141,7 @@ export const FlintRockCenterpiece: React.FC = () => {
                   onClick={() => setActiveSubsystemId(sub.id)}
                   className={`px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all text-center cursor-pointer ${
                     isSelected
-                      ? 'bg-[#EA580C] text-white font-bold shadow-xs'
+                      ? 'bg-orange-600 text-white font-bold shadow-xs'
                       : 'bg-stone-50 hover:bg-stone-100 text-stone-600 hover:text-stone-900 border border-stone-200'
                   }`}
                 >
@@ -155,11 +155,11 @@ export const FlintRockCenterpiece: React.FC = () => {
           <div className="p-3.5 rounded-xl bg-stone-900 text-stone-200 font-mono text-xs border border-stone-800 shadow-xs space-y-2">
             <div className="flex items-center justify-between border-b border-stone-800 pb-2">
               <div className="flex items-center gap-2">
-                <Code2 className="w-3.5 h-3.5 text-[#EA580C]" />
+                <Code2 className="w-3.5 h-3.5 text-orange-600" />
                 <span className="font-bold text-white">{activeSubsystem.name}</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#EA580C]/20 text-[#FF8C38] border border-[#EA580C]/30 font-semibold">
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-orange-600/20 text-[#FF8C38] border border-orange-600/30 font-semibold">
                   {activeSubsystem.badge}
                 </span>
                 <button
@@ -178,7 +178,7 @@ export const FlintRockCenterpiece: React.FC = () => {
             </pre>
 
             <div className="pt-2 border-t border-stone-800/80 text-[11px] text-stone-400 flex items-start gap-1.5">
-              <span className="text-[#EA580C] font-bold">↳</span>
+              <span className="text-orange-600 font-bold">↳</span>
               <span>{activeSubsystem.spec}</span>
             </div>
           </div>
@@ -199,7 +199,7 @@ export const FlintRockCenterpiece: React.FC = () => {
             <div className="text-[10px] text-stone-500 font-medium">Base RAM</div>
           </div>
           <div className="p-2 rounded-lg bg-stone-50 border border-stone-200">
-            <div className="text-xs font-mono font-bold text-[#EA580C]">10.0×</div>
+            <div className="text-xs font-mono font-bold text-orange-600">10.0×</div>
             <div className="text-[10px] text-stone-500 font-medium">vs Laravel</div>
           </div>
         </div>

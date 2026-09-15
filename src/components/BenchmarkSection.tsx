@@ -257,7 +257,7 @@ export const BenchmarkSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-900/90 border border-stone-700/80 text-xs font-mono text-[#FF8C38] font-semibold mb-4 shadow-[0_0_20px_rgba(234,88,12,0.15)]">
-            <Flame className="w-3.5 h-3.5 text-[#EA580C]" />
+            <Flame className="w-3.5 h-3.5 text-orange-600" />
             <span>VERIFIED NGINX + PHP-FPM 8.3 BENCHMARKS • BARE METAL AMD EPYC</span>
           </div>
 
@@ -277,10 +277,10 @@ export const BenchmarkSection: React.FC = () => {
         {/* 4 Standout Hero Stat Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {/* Card 1: 15,200 req/s */}
-          <div className="relative p-6 rounded-2xl bg-gradient-to-b from-stone-900/90 to-[#141210] border-2 border-[#EA580C]/40 shadow-[0_8px_30px_rgba(234,88,12,0.12)] group hover:border-[#EA580C] transition-all">
+          <div className="relative p-6 rounded-2xl bg-gradient-to-b from-stone-900/90 to-[#141210] border-2 border-orange-600/40 shadow-[0_8px_30px_rgba(234,88,12,0.12)] group hover:border-orange-600 transition-all">
             <div className="flex items-center justify-between text-xs font-mono text-stone-400 mb-2">
               <span className="font-semibold text-stone-300">RAW HTTP THROUGHPUT</span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#EA580C]/20 border border-[#EA580C]/40 text-[#FF8C38] font-bold text-[11px]">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-orange-600/20 border border-orange-600/40 text-[#FF8C38] font-bold text-[11px]">
                 10× vs Laravel
               </span>
             </div>
@@ -288,7 +288,7 @@ export const BenchmarkSection: React.FC = () => {
               <span className="text-4xl sm:text-5xl font-black font-mono tracking-tight text-white">
                 ~15,200
               </span>
-              <span className="text-base font-mono font-bold text-[#EA580C]">req/s</span>
+              <span className="text-base font-mono font-bold text-orange-600">req/s</span>
             </div>
             <p className="mt-2 text-xs text-stone-400 leading-relaxed">
               No-I/O dispatch over Radix tree. 0.065ms avg latency across 100 concurrent workers.
@@ -395,7 +395,7 @@ export const BenchmarkSection: React.FC = () => {
                 onClick={() => setActiveMetricView('rps')}
                 className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
                   activeMetricView === 'rps'
-                    ? 'bg-[#EA580C] text-white font-bold shadow-xs'
+                    ? 'bg-orange-600 text-white font-bold shadow-xs'
                     : 'text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -406,7 +406,7 @@ export const BenchmarkSection: React.FC = () => {
                 onClick={() => setActiveMetricView('latency')}
                 className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
                   activeMetricView === 'latency'
-                    ? 'bg-[#EA580C] text-white font-bold shadow-xs'
+                    ? 'bg-orange-600 text-white font-bold shadow-xs'
                     : 'text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -417,7 +417,7 @@ export const BenchmarkSection: React.FC = () => {
                 onClick={() => setActiveMetricView('memory')}
                 className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
                   activeMetricView === 'memory'
-                    ? 'bg-[#EA580C] text-white font-bold shadow-xs'
+                    ? 'bg-orange-600 text-white font-bold shadow-xs'
                     : 'text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -429,7 +429,7 @@ export const BenchmarkSection: React.FC = () => {
           {/* Scenario Details Description Banner */}
           <div className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-stone-400 border-b border-stone-800/80">
             <div className="flex items-center gap-2 text-stone-300">
-              <Activity className="w-4 h-4 text-[#EA580C] shrink-0" />
+              <Activity className="w-4 h-4 text-orange-600 shrink-0" />
               <span className="font-semibold text-white">{scenario.name}:</span>
               <span>{scenario.description}</span>
             </div>
@@ -485,7 +485,7 @@ export const BenchmarkSection: React.FC = () => {
                   key={metric.name}
                   className={`p-4 sm:p-5 rounded-2xl border transition-all ${
                     metric.isFlint
-                      ? 'bg-gradient-to-r from-stone-900/90 via-[#1C1814] to-stone-900/90 border-[#EA580C]/50 shadow-[0_4px_25px_rgba(234,88,12,0.15)] ring-1 ring-[#EA580C]/30'
+                      ? 'bg-gradient-to-r from-stone-900/90 via-[#1C1814] to-stone-900/90 border-orange-600/50 shadow-[0_4px_25px_rgba(234,88,12,0.15)] ring-1 ring-orange-600/30'
                       : 'bg-stone-900/40 border-stone-800 hover:border-stone-700'
                   }`}
                 >
@@ -493,7 +493,7 @@ export const BenchmarkSection: React.FC = () => {
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                     <div className="flex items-center gap-3">
                       {metric.isFlint ? (
-                        <div className="flex items-center justify-center w-6 h-6 rounded-md bg-[#EA580C] text-white">
+                        <div className="flex items-center justify-center w-6 h-6 rounded-md bg-orange-600 text-white">
                           <Flame className="w-3.5 h-3.5 fill-white" />
                         </div>
                       ) : (
@@ -511,7 +511,7 @@ export const BenchmarkSection: React.FC = () => {
                       <span
                         className={`text-[11px] font-mono px-2 py-0.5 rounded font-bold ${
                           metric.isFlint
-                            ? 'bg-[#EA580C]/20 border border-[#EA580C]/40 text-[#FF8C38]'
+                            ? 'bg-orange-600/20 border border-orange-600/40 text-[#FF8C38]'
                             : metric.multiplierVsFlint.includes('2.2×')
                             ? 'bg-stone-800 text-stone-300 border border-stone-700'
                             : 'bg-stone-800/80 text-stone-400 border border-stone-800'
@@ -626,10 +626,10 @@ export const BenchmarkSection: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs font-mono">
               {/* FlintPHP Column */}
-              <div className="p-4 rounded-xl bg-[#1A1613] border-2 border-[#EA580C]/40 space-y-2">
-                <div className="flex items-center justify-between text-[#EA580C] font-bold">
+              <div className="p-4 rounded-xl bg-[#1A1613] border-2 border-orange-600/40 space-y-2">
+                <div className="flex items-center justify-between text-orange-600 font-bold">
                   <span>FLINTPHP 1.0</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#EA580C]/20 text-[#FF8C38]">#1 Winner</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-orange-600/20 text-[#FF8C38]">#1 Winner</span>
                 </div>
                 <div className="text-stone-300 text-xs leading-relaxed space-y-1">
                   <div>✓ Zero runtime reflection</div>
@@ -703,7 +703,7 @@ export const BenchmarkSection: React.FC = () => {
               className="w-full flex items-center justify-between text-xs font-mono text-stone-400 hover:text-stone-200 transition-colors cursor-pointer select-none"
             >
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#EA580C]" />
+                <ShieldCheck className="w-4 h-4 text-orange-600" />
                 <span className="font-bold text-stone-300">BENCHMARK METHODOLOGY & TRANSPARENCY NOTE</span>
               </div>
               <div className="flex items-center gap-1.5 text-[#FF8C38]">

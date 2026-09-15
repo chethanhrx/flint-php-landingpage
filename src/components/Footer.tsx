@@ -165,7 +165,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   className="hover:text-stone-900 transition-colors inline-flex items-center gap-1"
                 >
                   <span>Framework Repository</span>
-                  <ExternalLink className="w-3 h-3 text-[#EA580C]" />
+                  <ExternalLink className="w-3 h-3 text-orange-600" />
                 </a>
               </li>
               <li>
@@ -176,7 +176,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   className="hover:text-stone-900 transition-colors inline-flex items-center gap-1"
                 >
                   <span>Application Skeleton</span>
-                  <ExternalLink className="w-3 h-3 text-[#EA580C]" />
+                  <ExternalLink className="w-3 h-3 text-orange-600" />
                 </a>
               </li>
               <li>

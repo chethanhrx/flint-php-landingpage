@@ -115,7 +115,7 @@ export const ArchitectureVisualization: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-stone-100 border border-stone-200 text-xs font-mono text-[#EA580C] font-semibold mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-stone-100 border border-stone-200 text-xs font-mono text-orange-600 font-semibold mb-3">
             <span>EXPLICIT COMPOSITION</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-4">
@@ -141,7 +141,7 @@ export const ArchitectureVisualization: React.FC = () => {
                     onClick={() => setActiveStep(idx)}
                     className={`w-full text-left p-3.5 rounded-xl border transition-all duration-200 flex items-center justify-between cursor-pointer ${
                       isActive
-                        ? 'bg-stone-50 border-[#EA580C] shadow-xs ring-1 ring-[#EA580C]/20'
+                        ? 'bg-stone-50 border-orange-600 shadow-xs ring-1 ring-orange-600/20'
                         : 'bg-white border-stone-200 hover:border-stone-300 hover:bg-stone-50/50'
                     }`}
                   >
@@ -149,7 +149,7 @@ export const ArchitectureVisualization: React.FC = () => {
                       <div
                         className={`w-8 h-8 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-colors border ${
                           isActive
-                            ? 'bg-[#EA580C] text-white border-[#EA580C]'
+                            ? 'bg-orange-600 text-white border-orange-600'
                             : 'bg-stone-100 text-stone-600 border-stone-200'
                         }`}
                       >
@@ -170,7 +170,7 @@ export const ArchitectureVisualization: React.FC = () => {
 
                     <div className="flex items-center gap-2">
                       {isActive && (
-                        <span className="w-2 h-2 rounded-full bg-[#EA580C]" />
+                        <span className="w-2 h-2 rounded-full bg-orange-600" />
                       )}
                     </div>
                   </button>
@@ -188,11 +188,11 @@ export const ArchitectureVisualization: React.FC = () => {
 
           {/* Right Column: Detailed Inspector Card */}
           <div className="lg:col-span-7 sticky top-24">
-            <div className="rounded-2xl bg-[#FAFAF9] border border-stone-200 p-6 shadow-sm space-y-6">
+            <div className="rounded-2xl bg-stone-50 border border-stone-200 p-6 shadow-sm space-y-6">
               {/* Header */}
               <div className="flex items-start justify-between border-b border-stone-200 pb-4">
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-mono text-[#EA580C] font-semibold mb-1">
+                  <div className="flex items-center gap-2 text-xs font-mono text-orange-600 font-semibold mb-1">
                     <span>STAGE 0{current.id + 1}</span>
                     <span>•</span>
                     <span>{current.subtitle}</span>
@@ -213,7 +213,7 @@ export const ArchitectureVisualization: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="p-3.5 rounded-xl bg-white border border-stone-200 shadow-xs">
                   <span className="text-[11px] font-mono text-stone-500 uppercase block mb-1">Input Contract</span>
-                  <span className="text-xs font-mono text-[#EA580C] font-semibold">{current.input}</span>
+                  <span className="text-xs font-mono text-orange-600 font-semibold">{current.input}</span>
                 </div>
                 <div className="p-3.5 rounded-xl bg-white border border-stone-200 shadow-xs">
                   <span className="text-[11px] font-mono text-stone-500 uppercase block mb-1">Output Contract</span>
@@ -224,14 +224,14 @@ export const ArchitectureVisualization: React.FC = () => {
               {/* Real PHP Implementation Snippet */}
               <div>
                 <span className="text-xs font-mono text-stone-600 block mb-2 font-medium">PHP Implementation</span>
-                <div className="p-4 rounded-xl bg-[#1C1917] border border-stone-800 font-mono text-xs text-stone-100 overflow-x-auto shadow-inner">
+                <div className="p-4 rounded-xl bg-stone-900 border border-stone-800 font-mono text-xs text-stone-100 overflow-x-auto shadow-inner">
                   <pre className="text-stone-200">{current.codeSnippet}</pre>
                 </div>
               </div>
 
               {/* Architectural Insight */}
               <div className="flex items-start gap-2.5 p-3.5 rounded-xl bg-white border border-stone-200 text-xs text-stone-600 shadow-xs">
-                <Info className="w-4 h-4 text-[#EA580C] shrink-0 mt-0.5" />
+                <Info className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" />
                 <p className="leading-relaxed">{current.detail}</p>
               </div>
             </div>
