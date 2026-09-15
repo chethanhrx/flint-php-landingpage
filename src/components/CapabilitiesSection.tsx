@@ -39,7 +39,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
             <span>WHAT FLINTPHP PROVIDES</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-4">
-            Organized subsystems. Built for production.
+            Organized subsystems. Built for speed.
           </h2>
           <p className="text-base text-stone-600 leading-relaxed">
             Presented in meaningful architectural layers rather than an unstructured list. Only real, verified capabilities shipped in the official repository.
@@ -128,7 +128,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
 
                 <button
                   type="button"
-                  onClick={() => onNavigate('docs', item.docPath.split('/').pop())}
+                  onClick={() => onNavigate('docs', item.docPath.replace('/docs/', ''))}
                   className="inline-flex items-center gap-1 text-xs font-mono text-orange-600 hover:text-orange-700 font-semibold pt-2 border-t border-stone-200/80 cursor-pointer"
                 >
                   <span>{item.name} docs</span>

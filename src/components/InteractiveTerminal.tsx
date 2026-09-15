@@ -164,7 +164,7 @@ export const InteractiveTerminal: React.FC = () => {
           '2. Single DB Query (Prepared PDO + Typed OrmManager Hydration):',
           '   Throughput: \x1b[32m5,540 req/sec\x1b[0m  | Avg: \x1b[36m0.180 ms\x1b[0m | P99: \x1b[36m0.350 ms\x1b[0m (5.6× vs Symfony)',
           '',
-          '3. Production REST API (8 Middlewares: CORS, HMAC, JWT, RateLimit):',
+          '3. Complex REST API (8 Middlewares: CORS, HMAC, JWT, RateLimit):',
           '   Throughput: \x1b[32m11,800 req/sec\x1b[0m | Avg: \x1b[36m0.084 ms\x1b[0m | P99: \x1b[36m0.170 ms\x1b[0m (2.2× vs Slim 4)',
           '',
           '4. Kernel Base Memory Footprint:',

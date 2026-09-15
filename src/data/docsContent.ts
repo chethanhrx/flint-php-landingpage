@@ -532,7 +532,7 @@ final class Order
         slug: 'authentication',
         category: 'Security Primitives',
         title: 'Authentication & Passwords',
-        description: 'Argon2id password hashing, token managers, and authentication guards.',
+        description: 'Native password hashing, and authenticator interfaces.',
         readTime: '5 min read',
         content: {
           lead: 'Security primitives are baked directly into the framework core with hardened defaults.',
@@ -542,15 +542,14 @@ final class Order
               codeBlock: {
                 language: 'php',
                 filename: 'src/Security/Hasher.php',
-                code: `use FlintPHP\\Framework\\Security\\PasswordHasher;
+                code: `use FlintPHP\Framework\Authentication\PasswordHasher;
 
-$hasher = new PasswordHasher(algo: PASSWORD_ARGON2ID, options: [
-    'memory_cost' => 65536,
-    'time_cost' => 4,
-    'threads' => 2,
-]);
+$hasher = new PasswordHasher();
 
+// Uses PASSWORD_DEFAULT (Argon2id or bcrypt depending on PHP version)
 $hash = $hasher->hash('super-secret-password');
+
+// Verifies the password against the stored hash
 $valid = $hasher->verify('super-secret-password', $hash);`,
               },
             },
@@ -561,7 +560,7 @@ $valid = $hasher->verify('super-secret-password', $hash);`,
         slug: 'security-headers',
         category: 'Security Primitives',
         title: 'Security Headers & CSRF',
-        description: 'Automatic CSP, HSTS, X-Content-Type-Options, and Clickjacking mitigation.',
+        description: 'Configurable CSP, HSTS, X-Content-Type-Options, and Clickjacking mitigation.',
         readTime: '4 min read',
         content: {
           lead: 'FlintPHP includes configurable security header middleware that you can attach to your request pipeline.',
@@ -779,11 +778,11 @@ final class HealthTest extends TestCase
             {
               heading: 'v1.0.0 — Initial Stable Release',
               bulletPoints: [
-                'Production-ready release of flintphp/framework.',
+                'Stable release of flintphp/framework.',
                 'PSR-11 Container compliance.',
-                'Fast router with typed parameter constraints.',
+                'Fast router with dynamic path variables.',
                 'Explicit Data Mapper ORM and transactional PDO layer.',
-                'Argon2id password hashing and security header enforcement.',
+                'Native password hashing and security header enforcement.',
                               ],
             },
           ],

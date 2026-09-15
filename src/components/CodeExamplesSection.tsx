@@ -21,7 +21,7 @@ export const CodeExamplesSection: React.FC = () => {
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-stone-100 border border-stone-200 text-xs font-mono text-orange-600 font-semibold mb-3">
-            <span>PRODUCTION-READY PHP</span>
+            <span>EXPLICIT PHP</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-4">
             Real code. Zero fabricated syntax.

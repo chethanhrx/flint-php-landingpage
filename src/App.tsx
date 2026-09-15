@@ -19,24 +19,34 @@ export default function App() {
   const [activeDocSlug, setActiveDocSlug] = useState<string>('introduction');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  // Sync with window.location.hash for shareable links
+  // Sync with History API for real URLs
   useEffect(() => {
-    const handleHashChange = () => {
+    const handleLocationChange = () => {
+      const path = window.location.pathname;
+      
+      // Fallback for old hash URLs just in case
       const hash = window.location.hash.replace(/^#/, '');
       if (hash.startsWith('docs/')) {
         const slug = hash.replace('docs/', '');
+        window.history.replaceState({}, '', `/docs/${slug}`);
         setCurrentView('docs');
         setActiveDocSlug(slug);
-      } else if (hash === 'docs') {
+        return;
+      }
+      
+      if (path.startsWith('/docs')) {
         setCurrentView('docs');
-      } else if (hash) {
+        // Extract the slug from the path (e.g., /docs/routing or /docs/core/routing)
+        const slug = path.replace(/^\/docs\/?/, '') || 'introduction';
+        setActiveDocSlug(slug);
+      } else {
         setCurrentView('home');
       }
     };
 
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    handleLocationChange();
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
   }, []);
 
   useEffect(() => {
@@ -55,10 +65,10 @@ export default function App() {
     if (view === 'docs') {
       const targetSlug = docSlug || activeDocSlug || 'introduction';
       setActiveDocSlug(targetSlug);
-      window.location.hash = `docs/${targetSlug}`;
+      window.history.pushState({}, '', `/docs/${targetSlug}`);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      window.location.hash = '';
+      window.history.pushState({}, '', '/');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };

@@ -59,7 +59,7 @@ export const ArchitectureVisualization: React.FC = () => {
       summary: 'Matches incoming HTTP method and URI path against compiled hash-maps and regex patterns with microsecond latency.',
       input: 'HTTP Method (GET/POST/PUT) + URI Path',
       output: 'RouteMatch (Handler + Parameters + Route Middlewares)',
-      codeSnippet: `$router->get('/api/users/{id}', [UserController::class, 'show'], middleware: [RateLimitMiddleware::class], middleware: [RateLimitMiddleware::class]);`,
+      codeSnippet: `$router->get('/api/users/{id}', [UserController::class, 'show'], middleware: [RateLimitMiddleware::class]);`,
       detail: 'Evaluates regex constraints and type casts (e.g. {id}) before handing over to the middleware pipeline.',
     },
     {
@@ -103,7 +103,7 @@ export const ArchitectureVisualization: React.FC = () => {
       summary: 'Schema validators verify payloads, PDO handles atomic transactions, and security policies check roles.',
       input: 'Domain entities & request attributes',
       output: 'Persisted entities & verified permissions',
-      codeSnippet: `$validator->validate($data, ['email' => [new Email()]]);\n$db->transaction(fn($pdo) => $repo->save($entity));\n$policy->can($currentUser, 'edit', $project);`,
+      codeSnippet: `$validator->validate($data, ['email' => [new Email()]]);\n$db->transaction(fn($pdo) => $repo->save($entity));`,
       detail: 'Composed explicitly where needed — no hidden hooks or spooky database triggers.',
     },
   ];

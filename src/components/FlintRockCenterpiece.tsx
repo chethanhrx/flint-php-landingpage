@@ -39,7 +39,7 @@ const SUBSYSTEMS: SubsystemInfo[] = [
     name: 'Strict DI Container',
     label: 'Container',
     badge: 'Compiled Graph',
-    highlight: 'Constructor dependency injection with zero runtime reflection and zero static facades.',
+    highlight: 'Constructor dependency injection with reflection-assisted autowiring and zero static facades.',
     spec: 'Deterministic dependency tree compiled at build time. Instant object instantiation.',
     codeSnippet: `final class OrderService
 {

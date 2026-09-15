@@ -23,7 +23,7 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
       { name: 'Request', description: 'Strictly typed, immutable server requests with validated body, query, and server params.', docPath: '/docs/core/request-response', status: 'Stable' },
       { name: 'Response', description: 'Declarative responses including JSON, stream, text, and redirect builders.', docPath: '/docs/core/request-response', status: 'Stable' },
       { name: 'Headers', description: 'Normalized header bags with case-insensitive inspection and immutability.', docPath: '/docs/core/request-response', status: 'Stable' },
-      { name: 'Routing', description: 'Fast routing supporting typed parameter constraints and REST verbs.', docPath: '/docs/core/routing', status: 'Stable' },
+      { name: 'Routing', description: 'Fast routing supporting dynamic path variables and REST verbs.', docPath: '/docs/core/routing', status: 'Stable' },
       { name: 'Middleware', description: 'Composable onion-skin pipeline adhering to standard middleware contracts.', docPath: '/docs/core/middleware', status: 'Stable' },
       { name: 'Kernel', description: 'Deterministic request lifecycle coordinator with zero magical callbacks.', docPath: '/docs/core/kernel', status: 'Stable' },
       { name: 'Exception Handling', description: 'Centralized, format-aware error handling producing RFC 7807 Problem Details.', docPath: '/docs/core/kernel', status: 'Stable' },
@@ -51,7 +51,7 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
     items: [
       { name: 'Validation', description: 'Composable schema-based validation with clear, localized error bags.', docPath: '/docs/data/validation', status: 'Stable' },
       { name: 'Database Foundation', description: 'Clean PDO connection manager providing simple and direct PDO lifecycle management.', docPath: '/docs/data/database', status: 'Stable' },
-      { name: 'PDO Connections', description: 'Type-safe prepared statements, parameter binding, and robust retry logic.', docPath: '/docs/data/database', status: 'Stable' },
+      { name: 'PDO Connections', description: 'Type-safe prepared statements, parameter binding, and predictable error handling.', docPath: '/docs/data/database', status: 'Stable' },
       { name: 'Transactions', description: 'Explicit closure-based transaction management with auto-rollback on failure.', docPath: '/docs/data/database', status: 'Stable' },
       { name: 'Data Mapper ORM', description: 'Decoupled domain entities and persistence repositories without active-record leaks.', docPath: '/docs/data/orm', status: 'Stable' },
     ],
@@ -63,9 +63,9 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
     description: 'Standard authentication and configurable security headers.',
     items: [
       { name: 'Authentication', description: 'Pluggable token, session, and API key guards with constant-time verification.', docPath: '/docs/security/authentication', status: 'Stable' },
-      { name: 'Authorization', description: 'Voter and policy-based authorization gates with granular domain logic.', docPath: '/docs/security/authorization', status: 'Stable' },
+      { name: 'Authorization', description: 'Voter and policy-based authorization gates with granular domain logic.', docPath: '/docs/security/authorization', status: 'Deferred' },
       { name: 'Password Hashing', description: 'Argon2id and Bcrypt implementations configured with secure cost factors.', docPath: '/docs/security/authentication', status: 'Stable' },
-      { name: 'Security Headers', description: 'Automated CSP, HSTS, X-Frame-Options, and Referrer-Policy enforcement.', docPath: '/docs/security/security-headers', status: 'Stable' },
+      { name: 'Security Headers', description: 'Configurable CSP, HSTS, X-Frame-Options, and Referrer-Policy enforcement.', docPath: '/docs/security/security-headers', status: 'Stable' },
       { name: 'Trusted Proxy Support', description: 'Strict IP/CIDR verification for reverse proxies and load balancers.', docPath: '/docs/security/trusted-proxies', status: 'Stable' },
     ],
   },
@@ -73,7 +73,7 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
     id: 'infrastructure',
     title: 'Infrastructure & Async',
     badge: 'Operations',
-    description: 'Production-ready utilities for caching, message queues, real-time messaging, and observability.',
+    description: 'Foundation utilities for caching, message queues, real-time messaging, and observability.',
     items: [
       { name: 'Cache', description: 'Array and file cache stores.', docPath: '/docs/infrastructure/cache', status: 'Stable' },
       { name: 'Queue', description: 'In-memory job queue foundation (persistence and distributed workers deferred).', docPath: '/docs/infrastructure/queue', status: 'Foundation' },
