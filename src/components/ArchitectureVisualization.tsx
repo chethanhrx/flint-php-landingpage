@@ -37,7 +37,7 @@ export const ArchitectureVisualization: React.FC = () => {
       summary: 'Reads typed configuration files into an immutable repository; validates environment variables.',
       input: '.env files and config/*.php arrays',
       output: 'FlintPHP\\Framework\\Config\\ConfigRepository (Read-Only)',
-      codeSnippet: `return [\n    'db' => env('DB_DSN', 'pgsql:host=localhost;dbname=flint'),\n    'security' => ['hashing_cost' => 12],\n];`,
+      codeSnippet: `return [\n    'db' => ['driver' => 'pgsql', 'host' => 'localhost', 'database' => 'flint'],\n    'security' => ['headers' => ['x_frame_options' => 'DENY']],\n];`,
       detail: 'Configuration values are read once and frozen. Changing configuration at runtime is strictly disallowed.',
     },
     {
@@ -48,7 +48,7 @@ export const ArchitectureVisualization: React.FC = () => {
       summary: 'Instantiates services with constructor auto-reflection; resolves concrete interface implementations.',
       input: 'Class names and interface bindings',
       output: 'Fully wired objects with strict type guarantees',
-      codeSnippet: `$container->singleton(Connection::class, fn($c) => new Connection(...));\n$container->bind(UserRepository::class, SqlUserRepository::class);`,
+      codeSnippet: `$container->singleton(ConnectionInterface::class, fn($c) => ConnectionFactory::make($config));\n$container->bind(UserRepository::class, SqlUserRepository::class);`,
       detail: 'No magic facades. Classes receive their collaborators explicitly through constructor arguments.',
     },
     {
@@ -56,11 +56,11 @@ export const ArchitectureVisualization: React.FC = () => {
       name: 'Router',
       subtitle: 'Hash-Map Engine',
       icon: Share2,
-      summary: 'Matches incoming HTTP method and URI path against compiled hash-maps and regex patterns with microsecond latency.',
+      summary: 'Matches incoming HTTP method and URI path against compiled hash-maps and regex patterns with low-latency dispatch.',
       input: 'HTTP Method (GET/POST/PUT) + URI Path',
       output: 'RouteMatch (Handler + Parameters + Route Middlewares)',
       codeSnippet: `$router->get('/api/users/{id}', [UserController::class, 'show'], middleware: [RateLimitMiddleware::class]);`,
-      detail: 'Evaluates regex constraints and type casts (e.g. {id}) before handing over to the middleware pipeline.',
+      detail: 'Evaluates dynamic path parameters (e.g. {id}) before handing over to the middleware pipeline.',
     },
     {
       id: 4,
@@ -103,7 +103,7 @@ export const ArchitectureVisualization: React.FC = () => {
       summary: 'Schema validators verify payloads, PDO handles atomic transactions, and security policies check roles.',
       input: 'Domain entities & request attributes',
       output: 'Persisted entities & verified permissions',
-      codeSnippet: `$validator->validate($data, ['email' => [new Email()]]);\n$db->transaction(fn($pdo) => $repo->save($entity));`,
+      codeSnippet: `$validator->validate($data, ['email' => [new Email()]]);\n$db->transaction(fn() => $repo->save($entity));`,
       detail: 'Composed explicitly where needed — no hidden hooks or spooky database triggers.',
     },
   ];

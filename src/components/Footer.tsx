@@ -19,8 +19,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             >
               {/* Official Logo Asset 2 */}
               <img
-                src="/flintphp-logo.svg"
-                alt="FlintPHP Official Logo"
+                src="/flintlogo2.png"
+                alt="FlintPHP"
                 className="h-9 w-auto object-contain transition-opacity group-hover:opacity-90"
               />
             </button>
@@ -170,7 +170,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="https://github.com/chethanhrx/flintphp"
+                  href="https://github.com/chethanhrx/flintphp-skeleton"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-stone-900 transition-colors inline-flex items-center gap-1"

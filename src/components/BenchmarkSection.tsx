@@ -66,8 +66,8 @@ export const BenchmarkSection: React.FC = () => {
             {/* FlintPHP Card (#1) */}
             <div className="relative p-6 sm:p-7 rounded-2xl bg-[#111] border border-orange-600/30 shadow-[0_0_40px_-15px_rgba(234,88,12,0.15)] flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between group z-10 transition-transform">
               <div className="flex items-start sm:items-center gap-4 z-10">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-stone-900 border border-stone-800 shrink-0">
-                  <img src="/flintphp-logo.svg" alt="FlintPHP Logo" className="w-7 h-7" />
+                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-stone-900 border border-stone-800 shrink-0 overflow-hidden">
+                  <img src="/flint1.png" alt="FlintPHP" className="w-7 h-7 rounded-full" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">

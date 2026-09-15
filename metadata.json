@@ -1,6 +1,6 @@
 {
   "name": "FlintPHP",
-  "description": "FlintPHP is a fast, secure and modern PHP framework for building production-ready APIs and web applications with explicit composition and minimal magic.",
+  "description": "FlintPHP is a fast, secure and modern PHP framework for building high-performance APIs and web applications with explicit composition and minimal magic.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

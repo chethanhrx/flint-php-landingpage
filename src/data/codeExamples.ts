@@ -18,7 +18,7 @@ export const CODE_EXAMPLES: CodeExample[] = [
 
 declare(strict_types=1);
 
-use FlintPHP\\Framework\\Application;
+use FlintPHP\\Framework\\Foundation\\Application;
 use FlintPHP\\Framework\\Http\\Kernel;
 use FlintPHP\\Framework\\Http\\Request;
 

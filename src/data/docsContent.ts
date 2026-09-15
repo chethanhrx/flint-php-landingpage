@@ -205,7 +205,7 @@ $router->get('/api/welcome', function (Request $request): Response {
           sections: [
             {
               heading: 'Environment Loading & Type Safety',
-              text: 'FlintPHP loads .env files into an immutable repository during the Application bootstrap phase:',
+              text: 'FlintPHP utilizes a strongly typed Configuration Repository initialized during bootstrap:',
               codeBlock: {
                 language: 'php',
                 filename: 'config/app.php',
@@ -214,10 +214,10 @@ $router->get('/api/welcome', function (Request $request): Response {
 declare(strict_types=1);
 
 return [
-    'name' => env('APP_NAME', 'FlintPHP App'),
-    'env' => env('APP_ENV', 'production'),
-    'debug' => (bool) env('APP_DEBUG', false),
-    'url' => env('APP_URL', 'http://localhost:8000'),
+    'name' => 'FlintPHP App',
+    'env' => 'production',
+    'debug' => false,
+    'url' => 'http://localhost:8000',
     'timezone' => 'UTC',
 ];`,
               },
@@ -342,7 +342,6 @@ use FlintPHP\\Framework\\Middleware\\MiddlewareInterface;
 use FlintPHP\\Framework\\Http\\Response;
 use FlintPHP\\Framework\\Http\\Request;
 use FlintPHP\\Framework\\Cache\\CacheInterface;
-use FlintPHP\\Framework\\Exceptions\\TooManyRequestsException;
 
 final class RateLimitMiddleware implements MiddlewareInterface
 {
@@ -357,9 +356,9 @@ final class RateLimitMiddleware implements MiddlewareInterface
         $ip = $request->server('REMOTE_ADDR', '127.0.0.1');
         $key = 'rate_limit:' . $ip;
 
-        $hits = (int) $this->cache->get($key, 0) + 1;
+        $hits = (int) ($this->cache->get($key) ?? 0) + 1;
         if ($hits > $this->maxRequests) {
-            throw new TooManyRequestsException('Rate limit exceeded. Try again in 60 seconds.');
+            return Response::json(['error' => 'Rate limit exceeded. Try again later.'], status: 429);
         }
 
         $this->cache->set($key, $hits, $this->decaySeconds);
@@ -388,6 +387,7 @@ final class RateLimitMiddleware implements MiddlewareInterface
                 language: 'php',
                 filename: 'src/Bootstrappers/PaymentBootstrapper.php',
                 code: `use FlintPHP\\Framework\\Container\\Container;
+use FlintPHP\\Framework\\Config\\Contract\\ConfigRepositoryInterface;
 use App\\Services\\PaymentGateway;
 use App\\Services\\StripeGateway;
 
@@ -397,9 +397,10 @@ final class PaymentBootstrapper
     {
         // Singleton binding with explicit factory closure
         $container->singleton(PaymentGateway::class, function (Container $c): PaymentGateway {
+            $config = $c->get(ConfigRepositoryInterface::class);
             return new StripeGateway(
-                apiKey: $c->get('config')->get('services.stripe.key'),
-                webhookSecret: $c->get('config')->get('services.stripe.secret')
+                apiKey: $config->get('services.stripe.key'),
+                webhookSecret: $config->get('services.stripe.secret')
             );
         });
     }
@@ -440,7 +441,7 @@ $result = $validator->validate(json_decode($request->body(), true) ?? [], [
     'roles' => [new Required(), new In(['editor', 'admin', 'viewer'])],
 ]);
 
-if ($result->fails()) {
+if (!$result->isValid()) {
     return Response::json(['errors' => $result->errors()], status: 422);
 }`,
               },
@@ -466,16 +467,16 @@ if ($result->fails()) {
 
 final class TransferService
 {
-    public function __construct(private readonly Connection $db) {}
+    public function __construct(private readonly ConnectionInterface $db) {}
 
     public function transfer(int $fromId, int $toId, int $amountCents): void
     {
-        $this->db->transaction(function (Connection $db) use ($fromId, $toId, $amountCents) {
-            $db->execute(
+        $this->db->transaction(function () use ($fromId, $toId, $amountCents) {
+            $this->db->execute(
                 'UPDATE accounts SET balance = balance - :amt WHERE id = :id AND balance >= :amt',
                 ['amt' => $amountCents, 'id' => $fromId]
             );
-            $db->execute(
+            $this->db->execute(
                 'UPDATE accounts SET balance = balance + :amt WHERE id = :id',
                 ['amt' => $amountCents, 'id' => $toId]
             );
@@ -561,7 +562,7 @@ $valid = $hasher->verify('super-secret-password', $hash);`,
       {
         slug: 'security-headers',
         category: 'Security Primitives',
-        title: 'Security Headers & CSRF',
+        title: 'Security Headers',
         description: 'Configurable CSP, HSTS, X-Content-Type-Options, and Clickjacking mitigation.',
         readTime: '4 min read',
         content: {
@@ -604,10 +605,12 @@ $valid = $hasher->verify('super-secret-password', $hash);`,
 
 $cache = $container->get(CacheInterface::class);
 
-// Atomic remember pattern
-$stats = $cache->remember('dashboard:metrics', ttl: 300, callback: function () use ($db) {
-    return $db->query('SELECT COUNT(*) as total FROM users');
-});`,
+// Cache with TTL
+$stats = $cache->get('dashboard:metrics');
+if ($stats === null) {
+    $stats = $db->fetchColumn('SELECT COUNT(*) as total FROM users');
+    $cache->set('dashboard:metrics', $stats, 300);
+}`,
               },
             },
           ],
@@ -617,10 +620,10 @@ $stats = $cache->remember('dashboard:metrics', ttl: 300, callback: function () u
         slug: 'queue',
         category: 'Infrastructure',
         title: 'Asynchronous Job Queues',
-        description: 'Reliable background job dispatching with retry backoff and worker pools.',
+        description: 'In-memory job queue foundation (persistence and distributed workers deferred).',
         readTime: '5 min read',
         content: {
-          lead: 'Offload long-running operations from HTTP requests into durable asynchronous job queues.',
+          lead: 'Offload operations into an in-memory job queue.',
           sections: [
             {
               heading: 'Dispatching a Job',
@@ -630,7 +633,6 @@ $stats = $cache->remember('dashboard:metrics', ttl: 300, callback: function () u
                 code: `namespace App\\Jobs;
 
 use FlintPHP\\Framework\\Queue\\JobInterface;
-use FlintPHP\\Framework\\Mail\\MailerInterface;
 
 final class SendWelcomeEmailJob implements JobInterface
 {
@@ -639,13 +641,11 @@ final class SendWelcomeEmailJob implements JobInterface
         public readonly string $emailAddress,
     ) {}
 
-    public function handle(MailerInterface $mailer): void
+    public function handle(): void
     {
-        $mailer->send(
-            to: $this->emailAddress,
-            subject: 'Welcome to our platform',
-            body: 'Thank you for registering.'
-        );
+        // Send welcome email using your preferred mailer
+        // e.g., PHP mail(), SMTP library, or third-party service
+        mail($this->emailAddress, 'Welcome!', 'Thank you for registering.');
     }
 }`,
               },
@@ -657,7 +657,7 @@ final class SendWelcomeEmailJob implements JobInterface
         slug: 'websockets',
         category: 'Infrastructure',
         title: 'WebSockets & Real-Time',
-        description: 'High-concurrency bidirectional WebSocket channels integrated with Flint event loops.',
+        description: 'WebSocket protocol frame parser (server runtime deferred).',
         readTime: '5 min read',
         content: {
           lead: 'Build real-time notification streams, presence indicators, and live dashboards.',
@@ -667,24 +667,33 @@ final class SendWelcomeEmailJob implements JobInterface
               codeBlock: {
                 language: 'php',
                 filename: 'src/WebSockets/ChatHandler.php',
-                code: `use FlintPHP\\Framework\\WebSockets\\WebSocketHandlerInterface;
-use FlintPHP\\Framework\\WebSockets\\Connection;
+                code: `use FlintPHP\\Framework\\WebSocket\\Parser\\IncrementalParser;
+use FlintPHP\\Framework\\WebSocket\\Frame\\FrameBuilder;
+use FlintPHP\\Framework\\WebSocket\\Handshake\\HandshakeValidator;
 
-final class ChatHandler implements WebSocketHandlerInterface
+final class ProtocolParser
 {
-    public function onOpen(Connection $conn): void
+    private IncrementalParser $parser;
+    private FrameBuilder $frameBuilder;
+
+    public function __construct()
     {
-        $conn->send(json_encode(['type' => 'connected']));
+        $this->parser = new IncrementalParser();
+        $this->frameBuilder = new FrameBuilder();
     }
 
-    public function onMessage(Connection $conn, string $message): void
+    public function onData(string $data): ?string
     {
-        // Broadcast message to channel
-        $conn->broadcast(json_encode([
-            'type' => 'chat',
-            'body' => $message,
-            'time' => time(),
-        ]));
+        // Feed raw TCP data into the incremental parser
+        $this->parser->feed($data);
+
+        // Attempt to extract a complete frame
+        $frame = $this->parser->nextFrame();
+        if ($frame === null) {
+            return null;
+        }
+
+        return $frame->payload;
     }
 }`,
               },
@@ -702,7 +711,7 @@ final class ChatHandler implements WebSocketHandlerInterface
         slug: 'cli',
         category: 'Developer Tools',
         title: 'Flint Console (bin/flint)',
-        description: 'Expressive CLI runner for migrations, scaffolding, route inspection, and cache clearing.',
+        description: 'Foundation console application for registering and executing custom commands.',
         readTime: '4 min read',
         content: {
           lead: 'Command-line utilities designed for speed and clarity in local and CI environments.',
@@ -724,7 +733,7 @@ final class ChatHandler implements WebSocketHandlerInterface
         slug: 'testing',
         category: 'Developer Tools',
         title: 'Testing Suite',
-        description: 'Zero-mock HTTP testing client with fluent response assertions and container overrides.',
+        description: 'Base test case with HTTP helpers and fluent response assertions.',
         readTime: '4 min read',
         content: {
           lead: 'FlintPHP applications are 100% testable without boot-strapping global PHP globals.',
@@ -736,16 +745,23 @@ final class ChatHandler implements WebSocketHandlerInterface
                 filename: 'tests/Feature/HealthTest.php',
                 code: `namespace Tests\\Feature;
 
-use PHPUnit\\Framework\\TestCase;
-use FlintPHP\\Framework\\Testing\\TestClient;
+use FlintPHP\\Framework\\Http\\Kernel;
+use FlintPHP\\Framework\\Http\\Request;
+use FlintPHP\\Framework\\Testing\\TestCase;
 
 final class HealthTest extends TestCase
 {
+    protected function createKernel(): Kernel
+    {
+        // Bootstrap your application and return its Kernel
+        $app = require __DIR__ . '/../../bootstrap/app.php';
+        $app->boot();
+        return $app->kernel();
+    }
+
     public function test_health_endpoint_returns_200_and_json(): void
     {
-        $client = TestClient::create();
-
-        $response = $client->get('/api/health');
+        $response = $this->get('/api/health');
 
         $response->assertStatus(200);
         $response->assertHeader('Content-Type', 'application/json');

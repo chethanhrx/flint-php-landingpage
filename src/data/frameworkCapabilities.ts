@@ -64,7 +64,7 @@ export const CAPABILITY_GROUPS: CapabilityGroup[] = [
     items: [
       { name: 'Authentication', description: 'Pluggable bearer token authenticator with secure password hashing.', docPath: '/docs/authentication', status: 'Stable' },
       { name: 'Authorization', description: 'Voter and policy-based authorization gates with granular domain logic.', docPath: '/docs/authorization', status: 'Deferred' },
-      { name: 'Password Hashing', description: 'Argon2id and Bcrypt implementations configured with secure cost factors.', docPath: '/docs/authentication', status: 'Stable' },
+      { name: 'Password Hashing', description: 'Password hashing using PASSWORD_DEFAULT (Argon2id or Bcrypt depending on PHP version).', docPath: '/docs/authentication', status: 'Stable' },
       { name: 'Security Headers', description: 'Basic configurable security headers middleware.', docPath: '/docs/security-headers', status: 'Stable' },
       { name: 'Trusted Proxy Support', description: 'Strict IP/CIDR verification for reverse proxies and load balancers.', docPath: '/docs/trusted-proxies', status: 'Deferred' },
     ],

@@ -8,22 +8,17 @@ interface CommandOutput {
 }
 
 const PRESET_COMMANDS = [
-  'php flint route:list',
-  'php flint make:controller Api/OrderController --api',
-  'php flint db:migrate --pretend',
-  'php flint benchmark:run',
-  'php flint list',
+  'php bin/flint help',
+  'php bin/flint list'
 ];
 
 export const InteractiveTerminal: React.FC = () => {
   const [inputVal, setInputVal] = useState('');
   const [history, setHistory] = useState<CommandOutput[]>([
     {
-      command: 'php flint --version',
+      command: 'php bin/flint',
       output: [
-        '\x1b[38;5;208mFlintPHP Framework\x1b[0m version \x1b[32m1.0.0 (Stable)\x1b[0m (PHP 8.3.6 CLI - Zend Engine v4.3.6)',
-        'Environment: \x1b[36mproduction\x1b[0m | Debug: \x1b[33mfalse\x1b[0m | Timezone: \x1b[37mUTC\x1b[0m',
-        'Type \x1b[1;37m"php flint list"\x1b[0m to view all available commands, or click any chip above.',
+        'No command provided.'
       ],
       timestamp: '00:00:01',
     },
@@ -56,140 +51,43 @@ export const InteractiveTerminal: React.FC = () => {
       case 'php flint --help':
       case 'php flint -h':
         res = [
-          '\x1b[1;37mFlintPHP Console Tool\x1b[0m',
-          'Usage: php flint <command> [options] [arguments]',
+          'Usage: flint <command> [arguments] [--option=value] [--] [args...]',
           '',
-          'Available Commands:',
-          
-          
-          '  \x1b[32mmake:migration\x1b[0m       Generate a deterministic SQL migration file',
-          
-          
-          '  \x1b[32mserve\x1b[0m                 Start local PHP development server with hot-reload',
-          '  \x1b[32mcache:clear\x1b[0m           Purge compiled container and route cache artifacts',
+          'Commands:',
+          '  help                       Show help for a command, or list all commands',
+          '  list                       List all registered commands',
         ];
         break;
 
       case 'php flint list':
         res = [
-          '\x1b[38;5;208mFlintPHP Framework Console\x1b[0m v1.0.0',
-          '',
-          '\x1b[33mRouting & HTTP:\x1b[0m',
-          
-          
-          '',
-          '\x1b[33mCode Generators:\x1b[0m',
-          
-          
-          
-          '  \x1b[32mmake:repository\x1b[0m        Create a typed repository with PDO prepared statements',
-          '',
-          '  \x1b[32mapp:sync\x1b[0m               Sync application data\n  \x1b[32mapp:report\x1b[0m             Generate reports',
-          
-          
-          
-          '',
-          '',
-          
-          
+          'help                         Show help for a command, or list all commands',
+          'list                         List all registered commands',
         ];
         break;
 
-      case 'php flint route:list':
+            case 'php bin/flint help':
         res = [
-          '+--------+-------------------------------+-----------------------------------+--------------------------------+',
-          '| \x1b[1;37mMethod\x1b[0m | \x1b[1;37mURI Pattern\x1b[0m                   | \x1b[1;37mTarget Controller / Action\x1b[0m        | \x1b[1;37mMiddleware Pipeline\x1b[0m            |',
-          '+--------+-------------------------------+-----------------------------------+--------------------------------+',
-          '| \x1b[32mGET\x1b[0m    | /api/v1/health                | App\\Controllers\\HealthController  | [CorsMiddleware]               |',
-          '| \x1b[32mGET\x1b[0m    | /api/v1/users                 | App\\Controllers\\UserController@idx| [Cors, RateLimit, AuthGuard]   |',
-          '| \x1b[33mPOST\x1b[0m   | /api/v1/users                 | App\\Controllers\\UserController@crt| [Cors, RateLimit, AuthGuard]   |',
-          '| \x1b[32mGET\x1b[0m    | /api/v1/users/{id}     | App\\Controllers\\UserController@shw| [Cors, AuthGuard]              |',
-          '| \x1b[34mPUT\x1b[0m    | /api/v1/users/{id}     | App\\Controllers\\UserController@upd| [Cors, AuthGuard, CsrfCheck]   |',
-          '| \x1b[31mDELETE\x1b[0m | /api/v1/users/{id}     | App\\Controllers\\UserController@del| [Cors, AuthGuard, CsrfCheck]   |',
-          '| \x1b[33mPOST\x1b[0m   | /api/v1/auth/login            | App\\Controllers\\AuthController@lgn| [Cors, RateLimit:5/min]        |',
-          '+--------+-------------------------------+-----------------------------------+--------------------------------+',
-          'Total registered routes: \x1b[32m7 routes\x1b[0m (Routes cached in \x1b[36m0.014ms\x1b[0m)',
+          'Usage: flint <command> [arguments] [--option=value] [--] [args...]',
+          '',
+          'Commands:',
+          '  help                       Show help for a command, or list all commands',
+          '  list                       List all registered commands'
         ];
         break;
-
-      case 'php flint make:controller api/ordercontroller --api':
-      case 'php flint make:controller ordercontroller --api':
+      case 'php bin/flint list':
         res = [
-          '\x1b[32m✓ Controller created successfully:\x1b[0m',
-          '  → \x1b[36msrc/Controllers/Api/OrderController.php\x1b[0m',
-          '',
-          '\x1b[90m',
-          '// Type Coverage: 100% PHP 8.2+ Strict Types',
-          '// Zero static facades. Injected dependencies: OrderRepository, EventDispatcher\x1b[0m',
-          '',
-          '\x1b[33mNext step:\x1b[0m Register route in \x1b[37mconfig/routes.php\x1b[0m:',
-          '  \x1b[38;5;208m$routes->get(\'/api/v1/orders\', [OrderController::class, \'index\']);\x1b[0m',
+          'help                         Show help for a command, or list all commands',
+          'list                         List all registered commands'
         ];
         break;
-
-      case 'php flint db:migrate --pretend':
-        res = [
-          '\x1b[36mPretending to run migrations (Simulation Mode):\x1b[0m',
-          '',
-          '\x1b[32m[2026_09_14_000001_create_users_table]\x1b[0m',
-          '  \x1b[90mCREATE TABLE `users` (',
-          '    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,',
-          '    `uuid` CHAR(36) NOT NULL UNIQUE,',
-          '    `email` VARCHAR(255) NOT NULL UNIQUE,',
-          '    `password_hash` VARCHAR(255) NOT NULL,',
-          '    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP',
-          '  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\x1b[0m',
-          '',
-          '\x1b[32m[2026_09_14_000002_create_orders_table]\x1b[0m',
-          '  \x1b[90mCREATE TABLE `orders` (',
-          '    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,',
-          '    `user_id` BIGINT UNSIGNED NOT NULL,',
-          '    `total_cents` INT UNSIGNED NOT NULL,',
-          '    `status` ENUM(\'pending\',\'paid\',\'shipped\') NOT NULL DEFAULT \'pending\',',
-          '    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE',
-          '  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\x1b[0m',
-          '',
-          '\x1b[32m✓ 2 migrations validated.\x1b[0m Execution time: \x1b[36m0.003s\x1b[0m (0 errors, 0 lock contentions)',
-        ];
+      case 'php bin/flint':
+        res = ['No command provided.'];
         break;
-
-      case 'php flint benchmark:run':
-        res = [
-          '\x1b[38;5;208mFlintPHP Verified Performance Benchmark Suite\x1b[0m',
-          'Platform: AMD EPYC 7763 16-Core | Linux 6.8 | PHP 8.3.8 OPcache=1 JIT=1205',
-          '----------------------------------------------------------------------',
-          '1. Raw HTTP Dispatch (No-I/O Route Match + Immutable Response):',
-          '   Throughput: \x1b[32m15,240 req/sec\x1b[0m | Avg: \x1b[36m0.065 ms\x1b[0m | P99: \x1b[36m0.120 ms\x1b[0m (10.0× vs Laravel)',
-          '',
-          '2. Single DB Query (Prepared PDO + Typed OrmManager Hydration):',
-          '   Throughput: \x1b[32m5,540 req/sec\x1b[0m  | Avg: \x1b[36m0.180 ms\x1b[0m | P99: \x1b[36m0.350 ms\x1b[0m (5.6× vs Symfony)',
-          '',
-          '3. Complex REST API (8 Middlewares: CORS, HMAC, JWT, RateLimit):',
-          '   Throughput: \x1b[32m11,800 req/sec\x1b[0m | Avg: \x1b[36m0.084 ms\x1b[0m | P99: \x1b[36m0.170 ms\x1b[0m (2.2× vs Slim 4)',
-          '',
-          '4. Kernel Base Memory Footprint:',
-          '   Flint Kernel Base: \x1b[32m1.4 MB\x1b[0m  (Slim: 3.2 MB | Symfony: 11.4 MB | Laravel: 16.8 MB)',
-          '----------------------------------------------------------------------',
-          '\x1b[32m✓ Benchmark complete:\x1b[0m \x1b[1;37mFlint is up to 10× faster\x1b[0m than reflection-based frameworks.',
-        ];
-        break;
-
-      case 'php flint serve':
-      case 'php flint serve --port=8000':
-        res = [
-          '\x1b[38;5;208mFlintPHP Development Server\x1b[0m started at \x1b[32mhttp://127.0.0.1:8000\x1b[0m',
-          'Document root is: \x1b[36m/var/www/flint-app/public\x1b[0m',
-          'Press Ctrl+C to stop the server.',
-          '',
-          '\x1b[90m[2026-09-14 19:22:10] 127.0.0.1:52134 [200]: GET /api/v1/health in 0.18ms\x1b[0m',
-          '\x1b[90m[2026-09-14 19:22:11] 127.0.0.1:52135 [200]: GET /api/v1/users in 0.42ms\x1b[0m',
-        ];
-        break;
-
       default:
         res = [
           `\x1b[31mCommand not recognized:\x1b[0m "${trimmed}"`,
-          'Try: \x1b[32mphp flint route:list\x1b[0m or \x1b[32mphp flint list\x1b[0m or \x1b[32mhelp\x1b[0m',
+          'Try: \x1b[32mphp bin/flint list\x1b[0m or \x1b[32mhelp\x1b[0m',
         ];
         break;
     }
@@ -336,7 +234,7 @@ export const InteractiveTerminal: React.FC = () => {
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="type a command (e.g. php flint route:list) and press Enter..."
+                placeholder="type a command (e.g. php bin/flint list) and press Enter..."
                 className="flex-1 bg-transparent text-white focus:outline-none font-mono text-xs sm:text-sm placeholder:text-stone-600"
                 autoComplete="off"
                 spellCheck={false}
@@ -353,7 +251,7 @@ export const InteractiveTerminal: React.FC = () => {
                 <span>Sandbox Ready</span>
               </span>
               <span>•</span>
-              <span>Memory: 1.38 MB</span>
+              
             </div>
             <div className="flex items-center gap-1 text-orange-600">
               <Sparkles className="w-3 h-3" />

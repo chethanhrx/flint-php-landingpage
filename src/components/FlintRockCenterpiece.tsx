@@ -16,7 +16,7 @@ const SUBSYSTEMS: SubsystemInfo[] = [
     id: 'router',
     name: 'Router',
     label: 'Router',
-    badge: '0.065ms Dispatch',
+    badge: 'O(1) Hash-Map',
     highlight: 'Static hash-map route resolution with optimized sequential regex fallback.',
     spec: 'Constant-time path traversal with reflection-assisted handler parameter conversion.',
     codeSnippet: `$router->get('/v1/metrics/{id}', [MetricsController::class, 'show'], middleware: [AuthGuardMiddleware::class]);`,
@@ -28,19 +28,19 @@ const SUBSYSTEMS: SubsystemInfo[] = [
     badge: 'Zero Magic',
     highlight: 'Pure immutable request/response pipeline. No global state bleed in FrankenPHP or RoadRunner.',
     spec: 'Built with explicit composition and strict immutability.',
-    codeSnippet: `public function process(Request $request, RequestHandler $handler): Response
+    codeSnippet: `public function process(Request $request, callable $next): Response
 {
     $token = $request->header('X-API-Key');
-    return $handler->handle($request->withAttribute('auth', $token));
+    return $next($request->withAttribute('auth', $token));
 }`,
   },
   {
     id: 'di',
     name: 'Strict DI Container',
     label: 'Container',
-    badge: 'Compiled Graph',
+    badge: 'PSR-11',
     highlight: 'Constructor dependency injection with reflection-assisted autowiring and zero static facades.',
-    spec: 'Deterministic dependency tree compiled at build time. Instant object instantiation.',
+    spec: 'PSR-11 compliant container with singleton caching, aliases, and auto-wiring.',
     codeSnippet: `final class OrderService
 {
     public function __construct(
@@ -51,13 +51,12 @@ const SUBSYSTEMS: SubsystemInfo[] = [
   },
   {
     id: 'security',
-    name: 'Argon2id & CSRF Guard',
+    name: 'Password Hashing & Security Headers',
     label: 'Security',
-    badge: 'RFC 9106',
-    highlight: 'Memory-hard password hashing and constant-time token comparison out of the box.',
-    spec: 'Constant-time hash_equals against timing attacks, cryptographically secure random session tokens.',
+    badge: 'PASSWORD_DEFAULT',
+    highlight: 'Password hashing using PASSWORD_DEFAULT (Argon2id or Bcrypt) and configurable security headers.',
+    spec: 'Built-in security headers middleware with X-Frame-Options, CSP, and HSTS support.',
     codeSnippet: `$hashedPassword = $hasher->hash($plainText);
-// RFC 9106 Argon2id: memory=65536, time=4, threads=2
 $isValid = $hasher->verify($plainText, $hashedPassword);`,
   },
 ];
@@ -92,10 +91,10 @@ export const FlintRockCenterpiece: React.FC = () => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-600" />
             </span>
             <span className="text-xs font-mono font-bold text-stone-900 uppercase tracking-wider">
-              FLINTPHP KERNEL v1.0
+              FlintPHP v1.0.0
             </span>
             <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold">
-              ACTIVE
+              Stable
             </span>
           </div>
 
@@ -115,7 +114,7 @@ export const FlintRockCenterpiece: React.FC = () => {
           </div>
           <div className="mt-2 text-center">
             <span className="text-xs font-mono font-bold text-stone-800">
-              ZERO-REFLECTION DISPATCH ENGINE
+              EXPLICIT COMPOSITION KERNEL
             </span>
             <p className="text-[11px] text-stone-500 max-w-xs mx-auto mt-0.5">
               Fast path routing • Immutable HTTP Primitives • Strict constructor injection
@@ -186,19 +185,19 @@ export const FlintRockCenterpiece: React.FC = () => {
         {/* Bottom Production Telemetry HUD: Real Benchmarks */}
         <div className="relative z-10 grid grid-cols-4 gap-2 pt-3 border-t border-stone-200 text-center">
           <div className="p-2 rounded-lg bg-stone-50 border border-stone-200">
-            <div className="text-xs font-mono font-bold text-stone-900">~15,200</div>
+            <div className="text-xs font-mono font-bold text-stone-900">3,964</div>
             <div className="text-[10px] text-stone-500 font-medium">req/s</div>
           </div>
           <div className="p-2 rounded-lg bg-stone-50 border border-stone-200">
-            <div className="text-xs font-mono font-bold text-stone-900">0.065 ms</div>
-            <div className="text-[10px] text-stone-500 font-medium">Avg Latency</div>
+            <div className="text-xs font-mono font-bold text-stone-900">2.08×</div>
+            <div className="text-[10px] text-stone-500 font-medium">vs Slim</div>
           </div>
           <div className="p-2 rounded-lg bg-stone-50 border border-stone-200">
-            <div className="text-xs font-mono font-bold text-emerald-700">1.4 MB</div>
-            <div className="text-[10px] text-stone-500 font-medium">Base RAM</div>
+            <div className="text-xs font-mono font-bold text-emerald-700">14 ms</div>
+            <div className="text-[10px] text-stone-500 font-medium">P95 Latency</div>
           </div>
           <div className="p-2 rounded-lg bg-stone-50 border border-stone-200">
-            <div className="text-xs font-mono font-bold text-orange-600">10.0×</div>
+            <div className="text-xs font-mono font-bold text-orange-600">12.9×</div>
             <div className="text-[10px] text-stone-500 font-medium">vs Laravel</div>
           </div>
         </div>

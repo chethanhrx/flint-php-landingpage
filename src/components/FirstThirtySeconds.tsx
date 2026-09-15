@@ -57,10 +57,10 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
     },
     {
       id: 4,
-      question: 'How fast it runs (15,200 req/s)',
-      summary: '~15,200 req/s raw HTTP dispatch, ~5,500 req/s with PDO, and an ultra-lean 1.4 MB memory footprint.',
+      question: 'How fast it runs (3,964 req/s)',
+      summary: '3,964 req/s (P95 14 ms) raw HTTP dispatch measured on the built-in PHP server at concurrency 50.',
       detail:
-        'Independent bare-metal AMD EPYC benchmarks verify that FlintPHP is 2.2× faster than Slim, 5.6× faster than Symfony, and 10× faster than Laravel by eliminating runtime reflection and facades.',
+        'Measured locally with PHP built-in server at concurrency 50. FlintPHP is 2.08× faster than Slim 4 (1,908 req/s) and 12.9× faster than Laravel 11 (307 req/s) on identical simple plaintext endpoints.',
       icon: Cpu,
       badge: 'Benchmarks',
       actionText: 'Explore Benchmarks',
@@ -118,7 +118,7 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
       question: 'Where the source code is',
       summary: 'Open source under the permissive MIT license on GitHub (chethanhrx/flintphp).',
       detail:
-        'Official repository: github.com/chethanhrx/flintphp and official project skeleton: github.com/chethanhrx/flintphp.',
+        'Official repository: github.com/chethanhrx/flintphp and official project skeleton: github.com/chethanhrx/flintphp-skeleton.',
       icon: FolderGit2,
       badge: 'Open Source',
       actionText: 'GitHub Repository',

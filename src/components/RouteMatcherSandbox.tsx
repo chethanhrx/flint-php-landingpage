@@ -25,14 +25,14 @@ const REGISTERED_ROUTES: RouteDefinition[] = [
     controller: 'App\\Controllers\\Api\\UserController',
     action: 'show',
     middleware: ['CorsMiddleware', 'AuthGuard'],
-    regexExplanation: ['Static token match: "api"', 'Static token match: "v1"', 'Static token match: "users"', 'Parameter captured: id matching [0-9]+'],
+    regexExplanation: ['Static token match: "api"', 'Static token match: "v1"', 'Static token match: "users"', 'Parameter captured: id'],
   },
   {
     method: 'POST',
     pattern: '/api/v1/users/{id}/posts',
     controller: 'App\\Controllers\\Api\\PostController',
     action: 'store',
-    middleware: ['CorsMiddleware', 'AuthGuard', 'CsrfGuard', 'JsonBodyValidator'],
+    middleware: ['CorsMiddleware', 'AuthGuard', 'JsonBodyValidator'],
     regexExplanation: ['Static token match: "api"', 'Static token match: "v1"', 'Static token match: "users"', 'Parameter captured: id', 'Static token match: "posts"'],
   },
   {
@@ -55,11 +55,7 @@ export const RouteMatcherSandbox: React.FC = () => {
       if (route.method !== method) continue;
       
       let paramNames: string[] = [];
-      let regexPattern = route.pattern.replace(/{([a-zA-Z0-9_]+):([^}]+)}/g, (_, name, regex) => {
-        paramNames.push(name);
-        return `(${regex})`;
-      });
-      regexPattern = regexPattern.replace(/{([a-zA-Z0-9_]+)}/g, (_, name) => {
+      let regexPattern = route.pattern.replace(/{([a-zA-Z0-9_]+)}/g, (_, name) => {
         paramNames.push(name);
         return `([^/]+)`;
       });

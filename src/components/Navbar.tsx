@@ -40,8 +40,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             {/* Official Logo Asset 2 */}
             <img
-              src="/flintphp-logo.svg"
-              alt="FlintPHP Logo"
+              src="/flintlogo2.png"
+              alt="FlintPHP"
               className="h-9 w-auto object-contain transition-opacity duration-200 group-hover:opacity-85"
             />
           </button>
@@ -103,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <span>Benchmarks</span>
             <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-orange-600/10 text-orange-600 border border-orange-600/20">
-              15.2k
+              3.9k
             </span>
           </button>
           <button

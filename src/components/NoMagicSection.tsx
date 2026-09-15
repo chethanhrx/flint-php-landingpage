@@ -36,7 +36,7 @@ final class UserAnalytics
         return $this->cache->get('metrics', []);
     }
 }`,
-      flintAdvantage: 'Explicit contract, pure object-oriented PHP, testable in zero milliseconds.',
+      flintAdvantage: 'Explicit contract, pure object-oriented PHP, testable with standard tools.',
     },
     state: {
       title: 'Global State vs Immutable Requests',
@@ -92,13 +92,14 @@ final class UserAnalyticsTest extends TestCase
 {
     public function test_metrics(): void
     {
-        $cache = new InMemoryCache(['metrics' => ['active' => 10]]);
+        $cache = new ArrayCache();
+        $cache->set('metrics', ['active' => 10]);
         $analytics = new UserAnalytics($cache);
 
         $this->assertEquals(['active' => 10], $analytics->getMetrics());
     }
 }`,
-      flintAdvantage: 'Standard PHPUnit test with zero framework harness overhead.',
+      flintAdvantage: 'Standard PHPUnit test with minimal framework harness overhead.',
     },
   };
 
