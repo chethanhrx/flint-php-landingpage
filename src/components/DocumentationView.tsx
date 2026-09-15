@@ -125,10 +125,13 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
                     const isActive = page.slug === currentPage.slug;
                     return (
                       <li key={page.slug}>
-                        <button
-                          type="button"
-                          onClick={() => handleSelectPage(page.slug)}
-                          className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-between cursor-pointer ${
+                        <a
+                          href={`/docs/${page.slug}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleSelectPage(page.slug);
+                          }}
+                          className={`block w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-between cursor-pointer ${
                             isActive
                               ? 'bg-orange-50 text-orange-600 font-semibold border-l-2 border-orange-600'
                               : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'
@@ -138,7 +141,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
                           {isActive && (
                             <span className="w-1.5 h-1.5 rounded-full bg-orange-600 shrink-0" />
                           )}
-                        </button>
+                        </a>
                       </li>
                     );
                   })}
@@ -179,17 +182,20 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
                           const isActive = page.slug === currentPage.slug;
                           return (
                             <li key={page.slug}>
-                              <button
-                                type="button"
-                                onClick={() => handleSelectPage(page.slug)}
-                                className={`w-full text-left px-2 py-1.5 rounded-lg text-xs transition-colors ${
+                              <a
+                                href={`/docs/${page.slug}`}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  handleSelectPage(page.slug);
+                                }}
+                                className={`block w-full text-left px-2 py-1.5 rounded-lg text-xs transition-colors ${
                                   isActive
                                     ? 'bg-orange-600 text-white font-semibold'
                                     : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'
                                 }`}
                               >
                                 {page.title}
-                              </button>
+                              </a>
                             </li>
                           );
                         })}
@@ -346,10 +352,13 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
           {/* Previous / Next Navigation */}
           <div className="mt-14 pt-8 border-t border-stone-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {prevPage ? (
-              <button
-                type="button"
-                onClick={() => handleSelectPage(prevPage.slug)}
-                className="p-4 rounded-xl bg-white border border-stone-200 hover:border-stone-300 hover:shadow-xs transition-all text-left group cursor-pointer shadow-xs"
+              <a
+                href={`/docs/${prevPage.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSelectPage(prevPage.slug);
+                }}
+                className="block p-4 rounded-xl bg-white border border-stone-200 hover:border-stone-300 hover:shadow-xs transition-all text-left group cursor-pointer shadow-xs"
               >
                 <div className="flex items-center gap-1 text-[11px] font-mono text-stone-500 mb-1">
                   <ChevronLeft className="w-3 h-3 group-hover:-translate-x-0.5 transition-transform" />
@@ -358,14 +367,17 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
                 <div className="text-sm font-semibold text-stone-900 group-hover:text-orange-600 transition-colors truncate">
                   {prevPage.title}
                 </div>
-              </button>
+              </a>
             ) : <div />}
 
             {nextPage ? (
-              <button
-                type="button"
-                onClick={() => handleSelectPage(nextPage.slug)}
-                className="p-4 rounded-xl bg-white border border-stone-200 hover:border-stone-300 hover:shadow-xs transition-all text-right group cursor-pointer sm:col-start-2 shadow-xs"
+              <a
+                href={`/docs/${nextPage.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSelectPage(nextPage.slug);
+                }}
+                className="block p-4 rounded-xl bg-white border border-stone-200 hover:border-stone-300 hover:shadow-xs transition-all text-right group cursor-pointer sm:col-start-2 shadow-xs"
               >
                 <div className="flex items-center justify-end gap-1 text-[11px] font-mono text-stone-500 mb-1">
                   <span>NEXT</span>
@@ -374,7 +386,7 @@ export const DocumentationView: React.FC<DocumentationViewProps> = ({
                 <div className="text-sm font-semibold text-stone-900 group-hover:text-orange-600 transition-colors truncate">
                   {nextPage.title}
                 </div>
-              </button>
+              </a>
             ) : <div />}
           </div>
         </main>

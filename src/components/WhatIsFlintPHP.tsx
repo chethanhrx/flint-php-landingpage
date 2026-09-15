@@ -37,20 +37,18 @@ export const WhatIsFlintPHP: React.FC<WhatIsFlintPHPProps> = ({ onNavigate }) =>
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <button
-                type="button"
-                onClick={() => onNavigate('docs', 'introduction')}
+              <a href="/docs/introduction"
+                onClick={(e) => { e.preventDefault(); onNavigate('docs', 'introduction'); }}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white text-sm font-semibold shadow-[0_2px_8px_rgba(234,88,12,0.25)] transition-all cursor-pointer"
               >
                 Read the Introduction
-              </button>
-              <button
-                type="button"
-                onClick={() => onNavigate('docs', 'installation')}
+              </a>
+              <a href="/docs/installation"
+                onClick={(e) => { e.preventDefault(); onNavigate('docs', 'installation'); }}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-stone-50 text-stone-800 text-sm font-semibold border border-stone-200 shadow-xs transition-all cursor-pointer"
               >
                 Installation Guide
-              </button>
+              </a>
             </div>
           </div>
 

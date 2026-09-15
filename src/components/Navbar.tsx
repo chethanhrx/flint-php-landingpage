@@ -32,9 +32,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Left: Official FlintPHP Logo (Asset 2) */}
         <div className="flex items-center gap-6">
-          <button
-            type="button"
-            onClick={() => handleNavClick('home')}
+          <a href="/"
+            onClick={(e) => { e.preventDefault(); handleNavClick('home'); }}
             className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 rounded-md transition-transform"
             aria-label="FlintPHP Home"
           >
@@ -44,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               alt="FlintPHP"
               className="h-9 w-auto object-contain transition-opacity duration-200 group-hover:opacity-85"
             />
-          </button>
+          </a>
 
           {/* Version Badge */}
           <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-stone-100 border border-stone-200 text-xs font-mono text-stone-600">
@@ -57,9 +56,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Center: Main Navigation Links */}
         <nav className="hidden lg:flex items-center gap-1 text-sm font-medium text-stone-600">
-          <button
-            type="button"
-            onClick={() => handleNavClick('docs')}
+          <a href="/docs"
+            onClick={(e) => { e.preventDefault(); handleNavClick('docs'); }}
             className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
               currentView === 'docs'
                 ? 'bg-stone-100 text-orange-600 font-semibold'
@@ -67,52 +65,46 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             Docs
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNavClick('home', 'quick-start')}
+          </a>
+          <a href="/#quick-start"
+            onClick={(e) => { e.preventDefault(); handleNavClick('home', 'quick-start'); }}
             className="px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
             Quick Start
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNavClick('home', 'architecture')}
+          </a>
+          <a href="/#architecture"
+            onClick={(e) => { e.preventDefault(); handleNavClick('home', 'architecture'); }}
             className="px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
             Architecture
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNavClick('home', 'routing')}
+          </a>
+          <a href="/#routing"
+            onClick={(e) => { e.preventDefault(); handleNavClick('home', 'routing'); }}
             className="px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
             Router
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNavClick('home', 'terminal')}
+          </a>
+          <a href="/#terminal"
+            onClick={(e) => { e.preventDefault(); handleNavClick('home', 'terminal'); }}
             className="px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
             CLI Console
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNavClick('home', 'benchmarks')}
+          </a>
+          <a href="/#benchmarks"
+            onClick={(e) => { e.preventDefault(); handleNavClick('home', 'benchmarks'); }}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
             <span>Benchmarks</span>
             <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-orange-600/10 text-orange-600 border border-orange-600/20">
               3.9k
             </span>
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNavClick('home', 'no-magic')}
+          </a>
+          <a href="/#no-magic"
+            onClick={(e) => { e.preventDefault(); handleNavClick('home', 'no-magic'); }}
             className="px-3 py-1.5 rounded-lg hover:text-stone-900 hover:bg-stone-100/70 transition-colors cursor-pointer"
           >
             Philosophy
-          </button>
+          </a>
         </nav>
 
         {/* Right: Search + GitHub + Get Started CTA */}
@@ -133,7 +125,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* GitHub Link */}
           <a
-            href="https://github.com/chethanhrx/flintphp"
+            href="https://github.com/flintphp/framework"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-1.5 p-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100 border border-transparent hover:border-stone-200 transition-colors"
@@ -144,13 +136,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           {/* Primary CTA */}
-          <button
-            type="button"
-            onClick={() => handleNavClick('docs', 'installation')}
+          <a href="/docs/installation"
+            onClick={(e) => { e.preventDefault(); handleNavClick('docs', 'installation'); }}
             className="hidden sm:inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-700 text-white text-xs sm:text-sm font-semibold shadow-[0_1px_3px_rgba(234,88,12,0.3)] transition-all duration-200 cursor-pointer"
           >
             <span>Get Started</span>
-          </button>
+          </a>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -173,51 +164,45 @@ export const Navbar: React.FC<NavbarProps> = ({
               v1.0.0 Stable
             </span>
           </div>
-          <button
-            type="button"
-            onClick={() => handleNavClick('docs')}
+          <a href="/docs"
+            onClick={(e) => { e.preventDefault(); handleNavClick('docs'); }}
             className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-900 hover:bg-stone-100"
           >
             Documentation
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNavClick('home', 'quick-start')}
+          </a>
+          <a href="/#quick-start"
+            onClick={(e) => { e.preventDefault(); handleNavClick('home', 'quick-start'); }}
             className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
           >
             Quick Start
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNavClick('home', 'routing')}
+          </a>
+          <a href="/#routing"
+            onClick={(e) => { e.preventDefault(); handleNavClick('home', 'routing'); }}
             className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
           >
             Router Sandbox
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNavClick('home', 'terminal')}
+          </a>
+          <a href="/#terminal"
+            onClick={(e) => { e.preventDefault(); handleNavClick('home', 'terminal'); }}
             className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
           >
             Interactive CLI Terminal (Simulation)
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNavClick('home', 'benchmarks')}
+          </a>
+          <a href="/#benchmarks"
+            onClick={(e) => { e.preventDefault(); handleNavClick('home', 'benchmarks'); }}
             className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
           >
             Performance Benchmarks
-          </button>
-          <button
-            type="button"
-            onClick={() => handleNavClick('home', 'no-magic')}
+          </a>
+          <a href="/#no-magic"
+            onClick={(e) => { e.preventDefault(); handleNavClick('home', 'no-magic'); }}
             className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100"
           >
             Philosophy (No Magic)
-          </button>
+          </a>
           <div className="pt-2 border-t border-stone-200 flex items-center justify-between">
             <a
-              href="https://github.com/chethanhrx/flintphp"
+              href="https://github.com/flintphp/framework"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-xs text-stone-600 hover:text-stone-900"
@@ -225,13 +210,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Github className="w-4 h-4" />
               <span>GitHub (chethanhrx/flintphp)</span>
             </a>
-            <button
-              type="button"
-              onClick={() => handleNavClick('docs', 'installation')}
+            <a href="/docs/installation"
+              onClick={(e) => { e.preventDefault(); handleNavClick('docs', 'installation'); }}
               className="px-3 py-1.5 rounded-lg bg-orange-600 text-white text-xs font-semibold"
             >
               Get Started
-            </button>
+            </a>
           </div>
         </div>
       )}

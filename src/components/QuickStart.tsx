@@ -196,14 +196,13 @@ export const QuickStart: React.FC<QuickStartProps> = ({ onNavigate }) => {
 
             <div className="mt-4 flex items-center justify-between text-xs text-stone-500 px-1">
               <span>Skeleton includes routing, middleware, and standard folder structure.</span>
-              <button
-                type="button"
-                onClick={() => onNavigate('docs', 'routing')}
+              <a href="/docs/routing"
+                onClick={(e) => { e.preventDefault(); onNavigate('docs', 'routing'); }}
                 className="text-orange-600 hover:text-orange-700 font-semibold inline-flex items-center gap-1 cursor-pointer"
               >
                 <span>Read Routing Docs</span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+              </a>
             </div>
           </div>
         </div>

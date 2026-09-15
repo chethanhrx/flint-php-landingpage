@@ -123,14 +123,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
             {/* Action CTAs: Enhanced Hierarchy */}
             <div className="flex flex-wrap items-center gap-3.5 mb-8">
-              <button
-                type="button"
-                onClick={() => onNavigate('docs', 'installation')}
+              <a href="/docs/installation"
+                onClick={(e) => { e.preventDefault(); onNavigate('docs', 'installation'); }}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-orange-600 hover:bg-orange-700 text-white text-sm sm:text-base font-semibold shadow-[0_4px_16px_rgba(234,88,12,0.3)] hover:shadow-[0_6px_20px_rgba(234,88,12,0.4)] transition-all duration-200 cursor-pointer group"
               >
                 <span>Get Started</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-              </button>
+              </a>
 
               <button
                 type="button"
@@ -144,14 +143,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 </span>
               </button>
 
-              <button
-                type="button"
-                onClick={() => onNavigate('docs')}
+              <a href="/docs"
+                onClick={(e) => { e.preventDefault(); onNavigate('docs'); }}
                 className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white hover:bg-stone-50 text-stone-600 hover:text-stone-900 text-sm sm:text-base font-medium border border-stone-200 shadow-xs transition-colors cursor-pointer"
               >
                 <BookOpen className="w-4 h-4 text-stone-500" />
                 <span>Docs</span>
-              </button>
+              </a>
             </div>
 
             {/* 4 Standout Micro Telemetry Highlights */}

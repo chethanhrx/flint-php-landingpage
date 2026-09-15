@@ -12,9 +12,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-stone-200">
           {/* Brand Column with Official Logo (Asset 2) */}
           <div className="lg:col-span-2 space-y-4">
-            <button
-              type="button"
-              onClick={() => onNavigate('home')}
+            <a href="/"
+              onClick={(e) => { e.preventDefault(); onNavigate('home'); }}
               className="flex items-center gap-3 text-left focus:outline-none group cursor-pointer"
             >
               {/* Official Logo Asset 2 */}
@@ -23,13 +22,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 alt="FlintPHP"
                 className="h-9 w-auto object-contain transition-opacity group-hover:opacity-90"
               />
-            </button>
+            </a>
             <p className="text-xs sm:text-sm text-stone-600 max-w-sm leading-relaxed">
               A fast, secure, modern PHP framework designed from first principles. Explicit composition over magic, immutable HTTP foundations, and zero static facades.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://github.com/chethanhrx/flintphp"
+                href="https://github.com/flintphp/framework"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 border border-stone-200 transition-colors shadow-xs"
@@ -50,49 +49,44 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('docs', 'introduction')}
+                <a href="/docs/introduction"
+                  onClick={(e) => { e.preventDefault(); onNavigate('docs', 'introduction'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   Introduction
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('docs', 'installation')}
+                <a href="/docs/installation"
+                  onClick={(e) => { e.preventDefault(); onNavigate('docs', 'installation'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   Installation & Setup
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('docs', 'first-application')}
+                <a href="/docs/first-application"
+                  onClick={(e) => { e.preventDefault(); onNavigate('docs', 'first-application'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   First Application
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('docs', 'project-structure')}
+                <a href="/docs/project-structure"
+                  onClick={(e) => { e.preventDefault(); onNavigate('docs', 'project-structure'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   Project Structure
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('docs', 'routing')}
+                <a href="/docs/routing"
+                  onClick={(e) => { e.preventDefault(); onNavigate('docs', 'routing'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   Fast Routing
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -104,49 +98,44 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('docs', 'dependency-injection')}
+                <a href="/docs/dependency-injection"
+                  onClick={(e) => { e.preventDefault(); onNavigate('docs', 'dependency-injection'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   Dependency Injection
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('docs', 'middleware')}
+                <a href="/docs/middleware"
+                  onClick={(e) => { e.preventDefault(); onNavigate('docs', 'middleware'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   Middleware
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('docs', 'database')}
+                <a href="/docs/database"
+                  onClick={(e) => { e.preventDefault(); onNavigate('docs', 'database'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   Database & PDO
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('docs', 'orm')}
+                <a href="/docs/orm"
+                  onClick={(e) => { e.preventDefault(); onNavigate('docs', 'orm'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   Data Mapper ORM
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('docs', 'authentication')}
+                <a href="/docs/authentication"
+                  onClick={(e) => { e.preventDefault(); onNavigate('docs', 'authentication'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   Password Hashing
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -159,7 +148,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2 text-xs">
               <li>
                 <a
-                  href="https://github.com/chethanhrx/flintphp"
+                  href="https://github.com/flintphp/framework"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-stone-900 transition-colors inline-flex items-center gap-1"
@@ -170,7 +159,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="https://github.com/chethanhrx/flintphp-skeleton"
+                  href="https://github.com/flintphp/framework-skeleton"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-stone-900 transition-colors inline-flex items-center gap-1"
@@ -180,31 +169,28 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('docs', 'changelog')}
+                <a href="/docs/changelog"
+                  onClick={(e) => { e.preventDefault(); onNavigate('docs', 'changelog'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   Changelog & Releases
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('docs', 'security')}
+                <a href="/docs/security"
+                  onClick={(e) => { e.preventDefault(); onNavigate('docs', 'security'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   Security Policy
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('home', 'no-magic')}
+                <a href="/#no-magic"
+                  onClick={(e) => { e.preventDefault(); onNavigate('home', 'no-magic'); }}
                   className="hover:text-stone-900 transition-colors cursor-pointer"
                 >
                   No-Magic Manifesto
-                </button>
+                </a>
               </li>
             </ul>
           </div>

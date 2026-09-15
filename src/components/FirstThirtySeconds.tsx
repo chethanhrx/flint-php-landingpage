@@ -131,7 +131,7 @@ export const FirstThirtySeconds: React.FC<FirstThirtySecondsProps> = ({ onNaviga
       icon: FolderGit2,
       badge: 'Open Source',
       actionText: 'GitHub Repository',
-      externalUrl: 'https://github.com/chethanhrx/flintphp',
+      externalUrl: 'https://github.com/flintphp/framework',
     },
   ];
 
