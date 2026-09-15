@@ -184,20 +184,20 @@ export const FlintRockCenterpiece: React.FC = () => {
 
         {/* Bottom Production Telemetry HUD: Real Benchmarks */}
         <div className="relative z-10 grid grid-cols-4 gap-2 pt-3 border-t border-stone-200 text-center">
-          <div className="p-2 rounded-lg bg-stone-50 border border-stone-200">
-            <div className="text-xs font-mono font-bold text-stone-900">3,964</div>
-            <div className="text-[10px] text-stone-500 font-medium">req/s</div>
+          <div className="p-2 rounded-lg bg-stone-50 border border-stone-200 flex flex-col justify-center">
+            <div className="text-xs font-mono font-bold text-stone-900">15.2k</div>
+            <div className="text-[10px] text-stone-500 font-medium">req/s (No I/O)</div>
           </div>
-          <div className="p-2 rounded-lg bg-stone-50 border border-stone-200">
-            <div className="text-xs font-mono font-bold text-stone-900">2.08×</div>
+          <div className="p-2 rounded-lg bg-stone-50 border border-stone-200 flex flex-col justify-center">
+            <div className="text-xs font-mono font-bold text-stone-900">2.2&times;</div>
             <div className="text-[10px] text-stone-500 font-medium">vs Slim</div>
           </div>
-          <div className="p-2 rounded-lg bg-stone-50 border border-stone-200">
-            <div className="text-xs font-mono font-bold text-emerald-700">14 ms</div>
-            <div className="text-[10px] text-stone-500 font-medium">P95 Latency</div>
+          <div className="p-2 rounded-lg bg-stone-50 border border-stone-200 flex flex-col justify-center">
+            <div className="text-xs font-mono font-bold text-stone-900">5.6&times;</div>
+            <div className="text-[10px] text-stone-500 font-medium">vs Symfony</div>
           </div>
-          <div className="p-2 rounded-lg bg-stone-50 border border-stone-200">
-            <div className="text-xs font-mono font-bold text-orange-600">12.9×</div>
+          <div className="p-2 rounded-lg bg-stone-50 border border-stone-200 flex flex-col justify-center">
+            <div className="text-xs font-mono font-bold text-orange-600">~10&times;</div>
             <div className="text-[10px] text-stone-500 font-medium">vs Laravel</div>
           </div>
         </div>

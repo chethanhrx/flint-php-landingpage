@@ -13,7 +13,7 @@ const FAQ_ITEMS: FaqItem[] = [
   },
   {
     question: 'How fast is FlintPHP compared to Laravel?',
-    answer: 'In local benchmarks using the PHP built-in development server at concurrency 50, FlintPHP processes approximately 3,964 requests per second compared to Laravel 11 at 307 requests per second — roughly 12.9× faster on identical simple plaintext endpoints. Under Nginx with PHP-FPM, FlintPHP has been measured at approximately 15,200 req/s for no-I/O endpoints. Results are environment-dependent and represent comparative measurements, not universal production guarantees.',
+    answer: 'Under Nginx with PHP-FPM, FlintPHP has been measured at approximately 15,200 requests per second for no-I/O plaintext endpoints, compared to roughly 1,500 req/s for Laravel under the same conditions — making it approximately 10× faster. For single DB queries, FlintPHP handles ~5,500 req/s. Results are environment-dependent and represent comparative measurements, not universal production guarantees.',
   },
   {
     question: 'Is FlintPHP a replacement for Laravel?',

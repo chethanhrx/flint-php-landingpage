@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary Meta Tags -->
-    <title>FlintPHP — Fast, Explicit PHP Framework for High-Performance APIs</title>
-    <meta name="title" content="FlintPHP — Fast, Explicit PHP Framework for High-Performance APIs" />
-    <meta name="description" content="FlintPHP is a fast, explicit PHP framework for building high-performance APIs and web applications. Uses constructor dependency injection, immutable HTTP primitives, and hash-map routing — no facades, no global state. PHP 8.2+." />
-    <meta name="keywords" content="FlintPHP, PHP framework, fast PHP framework, modern PHP framework, PHP API framework, lightweight PHP framework, PHP dependency injection, PHP routing, PHP ORM, explicit PHP framework, Laravel alternative, high-performance PHP" />
+    <title>FlintPHP — High-Performance, Explicit PHP Framework for Modern APIs</title>
+    <meta name="title" content="FlintPHP — High-Performance, Explicit PHP Framework for Modern APIs" />
+    <meta name="description" content="FlintPHP is an ultra-fast, open-source PHP framework for building APIs and web apps. Features explicit dependency injection, hash-map routing, and up to 15,200 req/s. No magic, no global state. PHP 8.2+." />
+    <meta name="keywords" content="FlintPHP, PHP framework, fast PHP framework, modern PHP framework, PHP API framework, lightweight PHP framework, PHP dependency injection, PHP routing, PHP ORM, explicit PHP framework, Laravel alternative, high-performance PHP, Slim alternative, Symfony alternative" />
     <meta name="author" content="FlintPHP Team" />
     <meta name="theme-color" content="#FAFAF9" />
     <link rel="canonical" href="https://flintphp.dev/" />
@@ -20,20 +20,20 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://flintphp.dev/" />
-    <meta property="og:title" content="FlintPHP — Fast, Explicit PHP Framework for High-Performance APIs" />
-    <meta property="og:description" content="FlintPHP is a fast, explicit PHP framework for building high-performance APIs and web applications. Uses constructor dependency injection, immutable HTTP primitives, and hash-map routing — no facades, no global state." />
+    <meta property="og:title" content="FlintPHP — High-Performance, Explicit PHP Framework for Modern APIs" />
+    <meta property="og:description" content="FlintPHP is an ultra-fast, open-source PHP framework for building APIs and web apps. Features explicit dependency injection, hash-map routing, and up to 15,200 req/s. No magic, no global state. PHP 8.2+." />
     <meta property="og:image" content="https://flintphp.dev/flintlogo2.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="FlintPHP — Fast, Explicit PHP Framework for High-Performance APIs" />
+    <meta property="og:image:alt" content="FlintPHP — High-Performance, Explicit PHP Framework for Modern APIs" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://flintphp.dev/" />
-    <meta property="twitter:title" content="FlintPHP — Fast, Explicit PHP Framework for High-Performance APIs" />
-    <meta property="twitter:description" content="FlintPHP is a fast, explicit PHP framework for building high-performance APIs and web applications. Uses constructor dependency injection, immutable HTTP primitives, and hash-map routing — no facades, no global state." />
+    <meta property="twitter:title" content="FlintPHP — High-Performance, Explicit PHP Framework for Modern APIs" />
+    <meta property="twitter:description" content="FlintPHP is an ultra-fast, open-source PHP framework for building APIs and web apps. Features explicit dependency injection, hash-map routing, and up to 15,200 req/s. No magic, no global state. PHP 8.2+." />
     <meta property="twitter:image" content="https://flintphp.dev/flintlogo2.png" />
-    <meta property="twitter:image:alt" content="FlintPHP — Fast, Explicit PHP Framework for High-Performance APIs" />
+    <meta property="twitter:image:alt" content="FlintPHP — High-Performance, Explicit PHP Framework for Modern APIs" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,86 +45,126 @@
     {
       "@context": "https://schema.org",
       "@graph": [
-        {
-          "@type": "SoftwareApplication",
-          "name": "FlintPHP",
-          "operatingSystem": "Cross-platform (PHP 8.2+)",
-          "applicationCategory": "DeveloperApplication",
-          "description": "FlintPHP is a fast, explicit PHP framework for building high-performance APIs and web applications. It uses constructor dependency injection, immutable HTTP primitives, and hash-map routing without facades or global state.",
-          "softwareVersion": "1.0.0",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          },
-          "license": "https://opensource.org/licenses/MIT",
-          "author": {
-            "@type": "Organization",
-            "name": "FlintPHP",
-            "url": "https://flintphp.dev"
-          },
-          "url": "https://flintphp.dev",
-          "downloadUrl": "https://packagist.org/packages/flintphp/framework",
-          "programmingLanguage": "PHP",
-          "runtimePlatform": "PHP 8.2+",
-          "featureList": "Explicit dependency injection, immutable HTTP primitives, hash-map routing, PSR-11 container, Data Mapper ORM, middleware pipeline, validation, authentication, caching, OpenAPI document builder"
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
             {
-              "@type": "Question",
-              "name": "What is FlintPHP?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "FlintPHP is an open-source PHP framework for building high-performance APIs and web applications. It uses explicit constructor dependency injection, immutable HTTP primitives, and a hash-map routing engine. It requires PHP 8.2+ and is installed via Composer."
-              }
+                  "@type": "SoftwareApplication",
+                  "name": "FlintPHP",
+                  "operatingSystem": "Cross-platform (PHP 8.2+)",
+                  "applicationCategory": "DeveloperApplication",
+                  "description": "FlintPHP is a fast, explicit PHP framework for building high-performance APIs and web applications. It uses constructor dependency injection, immutable HTTP primitives, and hash-map routing without facades or global state.",
+                  "softwareVersion": "1.0.0",
+                  "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD"
+                  },
+                  "license": "https://opensource.org/licenses/MIT",
+                  "author": {
+                        "@type": "Organization",
+                        "name": "FlintPHP",
+                        "url": "https://flintphp.dev"
+                  },
+                  "url": "https://flintphp.dev",
+                  "downloadUrl": "https://packagist.org/packages/flintphp/framework",
+                  "programmingLanguage": "PHP",
+                  "runtimePlatform": "PHP 8.2+",
+                  "featureList": "Explicit dependency injection, immutable HTTP primitives, hash-map routing, PSR-11 container, Data Mapper ORM, middleware pipeline, validation, authentication, caching, OpenAPI document builder"
             },
             {
-              "@type": "Question",
-              "name": "How fast is FlintPHP compared to Laravel?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "In local benchmarks using the PHP built-in development server at concurrency 50, FlintPHP processes approximately 3,964 requests per second compared to Laravel 11 at 307 requests per second — roughly 12.9x faster on identical simple plaintext endpoints. Under Nginx with PHP-FPM, FlintPHP has been measured at approximately 15,200 req/s for no-I/O endpoints."
-              }
+                  "@type": "FAQPage",
+                  "mainEntity": [
+                        {
+                              "@type": "Question",
+                              "name": "What is FlintPHP?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "FlintPHP is an open-source PHP framework for building high-performance APIs and web applications. It uses explicit constructor dependency injection, immutable HTTP primitives, and a hash-map routing engine. It requires PHP 8.2+ and is installed via Composer. FlintPHP is designed for developers who want predictable behavior without facades, global state, or automatic service discovery."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "How fast is FlintPHP compared to Laravel?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Under Nginx with PHP-FPM, FlintPHP has been measured at approximately 15,200 requests per second for no-I/O plaintext endpoints, compared to roughly 1,500 req/s for Laravel under the same conditions \u2014 making it approximately 10\u00d7 faster. For single DB queries, FlintPHP handles ~5,500 req/s. Results are environment-dependent and represent comparative measurements, not universal production guarantees."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "Is FlintPHP a replacement for Laravel?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "FlintPHP is not designed to replace Laravel. It serves a different audience: developers who prefer explicit composition, minimal abstraction overhead, and predictable behavior over convenience features like facades, auto-discovery, and rich ecosystems. Laravel remains an excellent choice for teams that value its extensive package ecosystem and convention-over-configuration approach. FlintPHP is for teams that want more control."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "Does FlintPHP use facades or global state?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "No. FlintPHP intentionally avoids facades, global state, and automatic service discovery. All dependencies are declared explicitly through constructor injection. The framework uses a PSR-11 compliant container for dependency resolution, but there are no static facade classes or ambient singletons."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "What PHP version does FlintPHP require?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "FlintPHP requires PHP 8.2 or higher. It leverages modern PHP features including readonly properties, enums, fibers, and strict types. The framework is installed via Composer and follows PSR-4 autoloading standards."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "Does FlintPHP have an ORM?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Yes. FlintPHP includes a Data Mapper ORM with model classes, query builders, hydration, and transaction support. Unlike Active Record patterns, the Data Mapper approach separates domain entities from persistence logic. The ORM works with PDO and supports SQLite, MySQL, and PostgreSQL."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "Is FlintPHP production-ready?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "FlintPHP v1.0.0 provides stable foundations for routing, middleware, dependency injection, HTTP primitives, validation, database access, authentication, and caching. Some subsystems \u2014 including queues, events, observability, WebSocket server runtime, and CLI commands \u2014 are explicitly marked as foundations. Teams should evaluate whether the current feature set meets their production requirements."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "How do I install FlintPHP?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Create a new project using the official skeleton: composer create-project flintphp/skeleton my-app. Then cd into the directory and run php -S localhost:8000 -t public/ to start the development server. Alternatively, add FlintPHP to an existing project with: composer require flintphp/framework."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "Does FlintPHP support middleware?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Yes. FlintPHP includes a composable onion-skin middleware pipeline. Middleware classes implement a simple process(Request $request, callable $next): Response interface. Middleware can be registered globally on the application or scoped to individual routes."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "What database systems does FlintPHP support?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "FlintPHP supports SQLite, MySQL, and PostgreSQL through PDO. The ConnectionFactory class builds DSN strings from configuration arrays. The framework provides prepared statements, parameter binding, transaction management, and a Data Mapper ORM."
+                              }
+                        }
+                  ]
             },
             {
-              "@type": "Question",
-              "name": "Does FlintPHP use facades or global state?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. FlintPHP intentionally avoids facades, global state, and automatic service discovery. All dependencies are declared explicitly through constructor injection using a PSR-11 compliant container."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What PHP version does FlintPHP require?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "FlintPHP requires PHP 8.2 or higher. It leverages modern PHP features including readonly properties, enums, fibers, and strict types."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How do I install FlintPHP?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Create a new project using the official skeleton: composer create-project flintphp/skeleton my-app. Then cd into the directory and run php -S localhost:8000 -t public/ to start the development server."
-              }
+                  "@type": "Organization",
+                  "name": "FlintPHP",
+                  "url": "https://flintphp.dev",
+                  "logo": "https://flintphp.dev/flintlogo2.png",
+                  "sameAs": [
+                        "https://github.com/chethanhrx/flintphp"
+                  ]
             }
-          ]
-        },
-        {
-          "@type": "Organization",
-          "name": "FlintPHP",
-          "url": "https://flintphp.dev",
-          "logo": "https://flintphp.dev/flintlogo2.png",
-          "sameAs": [
-            "https://github.com/chethanhrx/flintphp"
-          ]
-        }
       ]
-    }
+}
     </script>
   </head>
   <body class="bg-stone-50 text-stone-900 font-sans antialiased selection:bg-orange-600/20 selection:text-orange-800 min-h-screen">

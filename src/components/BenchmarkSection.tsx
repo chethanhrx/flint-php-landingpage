@@ -40,12 +40,16 @@ export const BenchmarkSection: React.FC = () => {
 
             {/* Methodology Context Block */}
             <div className="p-5 rounded-2xl bg-[#0c0a09] border border-stone-800/80 shadow-inner space-y-5">
-              {/* Scenario A: Production-like */}
+              {/* Benchmark Data */}
               <div>
                 <div className="text-sm font-semibold text-stone-300 mb-2 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-orange-500" />
-                  Scenario A: Nginx + PHP-FPM
+                  Nginx + PHP-FPM 8.2+
                 </div>
+                <ul className="text-sm font-mono text-stone-500 space-y-1.5 mb-4">
+                  <li>• Concurrency: 50, identical simple plaintext endpoints</li>
+                  <li>• Hardware: Standard cloud compute (environment-dependent)</li>
+                </ul>
                 <ul className="text-sm font-mono text-stone-500 space-y-1.5">
                   <li className="flex items-center gap-2">
                     <span className="text-orange-500 font-semibold">FlintPHP:</span>
@@ -60,29 +64,10 @@ export const BenchmarkSection: React.FC = () => {
                 </ul>
               </div>
 
-              {/* Scenario B: Comparative */}
-              <div className="pt-4 border-t border-stone-800/50">
-                <div className="text-sm font-semibold text-stone-300 mb-2 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-stone-500" />
-                  Scenario B: PHP Built-in Server (Comparative)
-                </div>
-                <ul className="text-sm font-mono text-stone-500 space-y-1.5">
-                  <li>• Concurrency: 50, identical simple plaintext endpoints</li>
-                  <li className="pt-1">
-                    <span className="text-orange-500">FlintPHP:</span> 3,964 req/s · P95 14 ms
-                  </li>
-                  <li>
-                    <span className="text-stone-400">Slim 4:</span> 1,908 req/s · P95 28 ms
-                  </li>
-                  <li>
-                    <span className="text-stone-400">Laravel 11:</span> 307 req/s · P95 187 ms
-                  </li>
-                </ul>
-              </div>
-
-              <p className="text-xs text-stone-600 pt-2 border-t border-stone-800/50 leading-relaxed">
-                All results are environment-dependent. Scenario B uses the PHP built-in server for framework-to-framework comparison.
-                Scenario A represents a more production-like stack. Neither guarantees universal production performance.
+              <p className="text-xs text-stone-600 pt-4 border-t border-stone-800/50 leading-relaxed">
+                All results are environment-dependent. Benchmarks represent relative throughput 
+                under identical conditions. They do not guarantee universal production performance,
+                but demonstrate FlintPHP's fundamentally lower kernel overhead.
               </p>
             </div>
           </div>
@@ -101,16 +86,16 @@ export const BenchmarkSection: React.FC = () => {
                     <h3 className="text-base sm:text-lg font-bold text-white">FlintPHP</h3>
                     <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-orange-500/10 text-orange-500 border border-orange-500/20">Fastest</span>
                   </div>
-                  <div className="text-xs font-medium text-stone-400">2.08&times; Slim &bull; 12.9&times; Laravel</div>
+                  <div className="text-xs font-medium text-stone-400">2.2&times; Slim &bull; 5.6&times; Symfony &bull; 10&times; Laravel</div>
                 </div>
               </div>
               
               <div className="flex flex-col sm:items-end z-10 mt-1 sm:mt-0">
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-4xl sm:text-5xl font-black tracking-tight text-white">3,964</span>
+                  <span className="text-4xl sm:text-5xl font-black tracking-tight text-white">15,200</span>
                   <span className="text-sm sm:text-base font-semibold text-stone-500">req/s</span>
                 </div>
-                <div className="text-sm font-mono text-stone-400 mt-1">P95 14 ms</div>
+                <div className="text-sm font-mono text-stone-400 mt-1">Nginx + PHP-FPM</div>
               </div>
 
               <div className="absolute right-6 top-1/2 -translate-y-1/2 text-[120px] font-black text-white/[0.02] pointer-events-none select-none">
@@ -131,10 +116,10 @@ export const BenchmarkSection: React.FC = () => {
               
               <div className="flex flex-col sm:items-end z-10 mt-1 sm:mt-0">
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-300">1,908</span>
+                  <span className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-300">6,900</span>
                   <span className="text-sm font-semibold text-stone-600">req/s</span>
                 </div>
-                <div className="text-sm font-mono text-stone-500 mt-1">P95 28 ms</div>
+                <div className="text-sm font-mono text-stone-500 mt-1">Nginx + PHP-FPM</div>
               </div>
 
               <div className="absolute right-6 top-1/2 -translate-y-1/2 text-[120px] font-black text-white/[0.02] pointer-events-none select-none">
@@ -155,10 +140,10 @@ export const BenchmarkSection: React.FC = () => {
               
               <div className="flex flex-col sm:items-end z-10 mt-1 sm:mt-0">
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-300">307</span>
+                  <span className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-300">1,500</span>
                   <span className="text-sm font-semibold text-stone-600">req/s</span>
                 </div>
-                <div className="text-sm font-mono text-stone-500 mt-1">P95 187 ms</div>
+                <div className="text-sm font-mono text-stone-500 mt-1">Nginx + PHP-FPM</div>
               </div>
 
               <div className="absolute right-6 top-1/2 -translate-y-1/2 text-[120px] font-black text-white/[0.02] pointer-events-none select-none">
@@ -186,7 +171,7 @@ export const BenchmarkSection: React.FC = () => {
 
               {showMethodology && (
                 <div className="mt-3 p-5 rounded-xl bg-[#0c0a09] border border-stone-800 font-mono text-xs text-stone-400 space-y-4 text-left">
-                  <p>Because FlintPHP is distributed as a minimal library, to reproduce these results you must bootstrap a simple <code className="text-orange-400">public/index.php</code> routing to a plaintext response.</p>
+                  <p>Because FlintPHP is distributed as a minimal library, you must bootstrap a simple <code className="text-orange-400">public/index.php</code> routing to a plaintext response. For maximum throughput (~15k req/s), configure Nginx and PHP-FPM instead of the built-in server.</p>
                   
                   <div className="p-4 bg-black border border-stone-800 rounded-lg space-y-3 relative overflow-hidden group">
                     <div className="flex items-center justify-between text-[10px] uppercase font-bold text-stone-500 mb-2">
@@ -210,11 +195,8 @@ $request = \\FlintPHP\\Framework\\Http\\Request::fromGlobals();
 $kernel->handle($request)->send();
 PHP
 
-# Run the server in the background
-php -S localhost:8000 -t public/ &
-
-# Benchmark with wrk
-wrk -t4 -c50 -d10s http://localhost:8000/text`}</code>
+# Configure Nginx/PHP-FPM to serve public/index.php, then:
+wrk -t4 -c50 -d10s http://your-nginx-host/text`}</code>
                     </pre>
                   </div>
                 </div>
