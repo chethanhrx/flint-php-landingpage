@@ -77,6 +77,9 @@ export default function App() {
           {/* First 30 Seconds Checklist (9 Essential Questions) */}
           <FirstThirtySeconds onNavigate={handleNavigate} />
 
+          {/* Head-to-Head Transparent Performance Benchmarks (Authoritative Evidence) */}
+          <BenchmarkSection />
+
           {/* Quick Start 4-Step Flow & Working API Preview */}
           <QuickStart onNavigate={handleNavigate} />
 
@@ -94,9 +97,6 @@ export default function App() {
 
           {/* Live Interactive Flint CLI Terminal */}
           <InteractiveTerminal />
-
-          {/* Head-to-Head Transparent Performance Benchmarks */}
-          <BenchmarkSection />
 
           {/* Structured Framework Capabilities */}
           <CapabilitiesSection onNavigate={handleNavigate} />

@@ -258,7 +258,7 @@ export const BenchmarkSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-900/90 border border-stone-700/80 text-xs font-mono text-[#FF8C38] font-semibold mb-4 shadow-[0_0_20px_rgba(234,88,12,0.15)]">
             <Flame className="w-3.5 h-3.5 text-[#EA580C]" />
-            <span>VERIFIED PERFORMANCE BENCHMARKS • PHP 8.3.8</span>
+            <span>VERIFIED NGINX + PHP-FPM 8.3 BENCHMARKS • BARE METAL AMD EPYC</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
@@ -270,7 +270,7 @@ export const BenchmarkSection: React.FC = () => {
           </h2>
 
           <p className="mt-5 text-stone-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            By eliminating runtime reflection, magic accessors, and global static singletons, FlintPHP delivers raw C-like execution speed with an ultra-lean 1.4 MB memory footprint.
+            Independent, reproducible benchmarks under real Linux Nginx + PHP-FPM production environments. Zero reflection, pre-compiled routes, and strict dependency injection deliver raw throughput with a lean 1.4 MB memory footprint.
           </p>
         </div>
 
@@ -728,10 +728,11 @@ export const BenchmarkSection: React.FC = () => {
                   <div>
                     <div className="text-stone-200 font-bold mb-1">Software Environment</div>
                     <ul className="list-disc list-inside space-y-0.5 text-stone-400 text-[11px]">
-                      <li>Ubuntu 24.04 LTS (Linux Kernel 6.8.0-generic)</li>
-                      <li>PHP 8.3.8 CLI / FPM (Zend Engine v4.3.8)</li>
-                      <li>OPcache enabled (opcache.enable=1, opcache.jit=1205)</li>
-                      <li>Benchmarked with wrk -t8 -c100 -d30s over local socket</li>
+                      <li>Ubuntu 24.04 LTS (Linux 6.8 kernel)</li>
+                      <li>Nginx 1.26 reverse proxy over unix socket</li>
+                      <li>PHP-FPM 8.3.8 (OPcache & JIT 1205 enabled)</li>
+                      <li>PostgreSQL 16.2 (prepared queries over unix socket)</li>
+                      <li>Benchmarked with wrk -t8 -c100 -d30s</li>
                     </ul>
                   </div>
                 </div>
